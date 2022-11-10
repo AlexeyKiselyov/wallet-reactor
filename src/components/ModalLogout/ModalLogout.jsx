@@ -1,4 +1,3 @@
-ModalLogout;
 export const ModalLogout = () => {
   return (
     <>
