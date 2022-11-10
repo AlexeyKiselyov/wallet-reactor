@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.7acaea2f.css",
+    "main.css": "/wallet-reactor/static/css/main.4a650372.css",
     "main.js": "/wallet-reactor/static/js/main.7ab83481.js",
     "index.html": "/wallet-reactor/index.html",
-    "main.7acaea2f.css.map": "/wallet-reactor/static/css/main.7acaea2f.css.map",
+    "main.4a650372.css.map": "/wallet-reactor/static/css/main.4a650372.css.map",
     "main.7ab83481.js.map": "/wallet-reactor/static/js/main.7ab83481.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
+    "static/css/main.4a650372.css",
     "static/js/main.7ab83481.js"
   ]
 }
