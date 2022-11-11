@@ -1,8 +1,8 @@
-// import { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { validate } from 'indicative/validator';
-
+import { authOperations } from '../../redux/auth';
 // import { toast } from 'react-toastify';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
@@ -23,23 +23,23 @@ import style from './LoginForm.module.css';
 
 export default function LoginForm() {
   // const [loginUser, { data, error, isLoading }] = useLogInUserMutation();
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // const [validationError, setValidationError] = useState({ field: null, message: '' });
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = event => {
-    // const { name, value } = event.target;
+    const { name, value } = event.target;
     // setValidationError({ field: null, message: '' });
 
-    // switch (name) {
-    //   case 'email':
-    //     return setEmail(value);
-    //   case 'password':
-    //     return setPassword(value);
-    //   default:
-    //     return;
-    // }
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
   };
 
   // useEffect(() => {
@@ -54,10 +54,17 @@ export default function LoginForm() {
   // }, [data, dispatch, error]);
 
   const onLoginSubmit = e => {
-    // e.preventDefault();
+    e.preventDefault();
     // validate({ email, password }, rules, messages)
     //   .then(() => {
     //     loginUser({ user: { email, password } });
+    const singInData = 
+          {
+          email,
+          password
+        };
+      dispatch(authOperations.logIn(singInData));
+
     //   })
     //   .catch(errors => {
     //     setValidationError({ field: errors[0].field, message: errors[0].message });
@@ -84,7 +91,7 @@ export default function LoginForm() {
             placeholder='E-mail'
             onChange={handleChange}
             name='email'
-            // value={email}
+            value={email}
             autoFocus
           ></input>
           <svg width='21' height='16' className={style.inputIcon}>
@@ -99,7 +106,7 @@ export default function LoginForm() {
             onChange={handleChange}
             name='password'
             type='password'
-            // value={password}
+            value={password}
           ></input>
           <svg width='16' height='21' className={style.inputIcon}>
             <use href={`${Icons}#icon-lock`} />

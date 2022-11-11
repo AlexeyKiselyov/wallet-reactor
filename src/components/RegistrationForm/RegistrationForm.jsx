@@ -43,7 +43,7 @@ import { authOperations } from '../../redux/auth';
 export default function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   // const [password_confirmation, setPasswordConfirm] = useState('');
   // const [validationError, setValidationError] = useState({ field: null, message: '' });
   // const [createUser, { data, error, isLoading }] = useCreateUserMutation();
@@ -83,9 +83,16 @@ export default function RegistrationForm() {
     e.preventDefault();
     // validate({ email, password, password_confirmation, name }, rules, messages)
       // .then(() => {
-        // const user = { name, email, password };
+
+        const registerData = 
+          {username,
+          email,
+          password
+        };
+        // console.log(registerData);
+        // const user = { "username": name, "email": email, "password": password };
         // createUser({ user });
-        dispatch(authOperations.register({ name, email, password }));
+        dispatch(authOperations.register(registerData));
   
       // })
       // .catch(errors => {
@@ -158,7 +165,7 @@ export default function RegistrationForm() {
             placeholder='Your name'
             onChange={handleChange}
             name='name'
-            value={name}
+            value={username}
             autoComplete='off'
           ></input>
           <svg width='18' height='18' className={style.inputIcon}>

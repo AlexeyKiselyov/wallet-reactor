@@ -19,7 +19,7 @@ const token = {
  */
 const register = createAsyncThunk('/auth/sign-up', async (credentials, thunkAPI) => {
   try {
-    const { data } = await axios.post('/auth/sign-in', credentials);
+    const { data } = await axios.post('/auth/sign-up', credentials);
     token.set(data.token);
     return data;
   } catch (error) {
