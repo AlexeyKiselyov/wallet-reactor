@@ -1,16 +1,23 @@
+import { Route, Routes } from 'react-router-dom';
+
+import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
+import { LoginPage } from 'pages/LoginPage/LoginPage';
+import { DashboardPage } from 'pages/DashboardPage/DashboardPage';
+import { HomePage } from 'pages/HomePage/HomePage';
+import { DiagramPage } from 'pages/DiagramPage/DiagramPage';
+// =========================================================================
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React Team Progect
-    </div>
+    <>
+      <Routes>
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<DashboardPage />}>
+          <Route path="home" element={<HomePage />} />
+          <Route path="diagram" element={<DiagramPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
