@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useState, useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { validate } from 'indicative/validator';
 
@@ -64,10 +64,10 @@ export default function LoginForm() {
     //   });
   };
 
-  const resetForm = () => {
+  // const resetForm = () => {
     // setEmail('');
     // setPassword('');
-  };
+  // };
 
   // const { message, field } = validationError;
 
