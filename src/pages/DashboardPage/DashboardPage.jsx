@@ -13,7 +13,6 @@ export const DashboardPage = () => {
       <Navigation />
       <Balance />
       <Currency />
-
       <Outlet />
     </>
   );

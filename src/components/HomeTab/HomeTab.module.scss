@@ -1,0 +1,86 @@
+.tableWrap {
+  max-width: 715px;
+  margin: 20px;
+}
+
+.scrollTableBody {
+  height: 60vh;
+  overflow-x: auto;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.scrollTable table {
+  width: 100%;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+
+  th {
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: #fff;
+    &:first-child {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+    &:last-child {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+  }
+
+  td {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+}
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.tableWrapMob {
+  margin: 20px;
+}
+
+.scrollTableBodyMob {
+  height: 60vh;
+  overflow-x: auto;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.scrollTableMob table {
+  width: 100%;
+  table-layout: fixed;
+  // border-collapse: collapse;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: 3px;
+  border-radius: 20px;
+
+  tr {
+    // border-left: 3px solid rgb(214, 24, 24);
+    & > td:first-child {
+      text-align: left;
+      font-weight: 700;
+      border-left: 3px solid rgb(214, 24, 24);
+      left: 10px;
+    }
+    & > td:last-child {
+      text-align: right;
+    }
+  }
+
+  td {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+}
