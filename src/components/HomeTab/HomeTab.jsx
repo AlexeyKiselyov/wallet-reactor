@@ -1,219 +1,61 @@
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import s from './HomeTab.module.scss';
-
-const tableData = [
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '-',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-  {
-    date: '11.12.19',
-    type: '+',
-    category: 13,
-    comment: 'some comment is here, maybe some text',
-    sum: 15,
-    balance: 16,
-  },
-];
+import { selectTransactions } from 'redux/transactions/transactionsSelectors';
 
 export const HomeTab = () => {
+  const transactions = useSelector(selectTransactions);
+  console.log(transactions);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isLaptop = useMediaQuery({ query: '(min-width: 768px)' });
+
   return (
     <>
       {isMobile && (
         <div className={s.tableWrapMob}>
           <div className={s.scrollTableMob}>
-            {/* <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Category</th>
-                  <th>Comment</th>
-                  <th>Sum</th>
-                  <th>Balance</th>
-                </tr>
-              </thead>
-            </table> */}
-
             <div className={s.scrollTableBodyMob}>
-              {tableData.map(el => (
-                <table>
-                  <tr>
-                    <td>Data</td>
-                    <td>{el.date}</td>
-                  </tr>
-                  <tr>
-                    <td>Type</td>
-                    <td>{el.type}</td>
-                  </tr>
-                  <tr>
-                    <td>Category</td>
-                    <td>{el.category}</td>
-                  </tr>
-                  <tr>
-                    <td>Comment</td>
-                    <td>{el.comment}</td>
-                  </tr>
-                  <tr>
-                    <td>Sum</td>
-                    <td>{el.sum}</td>
-                  </tr>
-                  <tr>
-                    <td>Balance</td>
-                    <td>{el.balance}</td>
-                  </tr>
-                </table>
-              ))}
+              {transactions.length !== 0 ? (
+                transactions.map(el => (
+                  <table
+                    className={
+                      el.amount > 0 ? s.tablePositive : s.tableNegative
+                    }
+                    key={el.id}
+                  >
+                    <tr>
+                      <td>Data</td>
+                      <td>{el.transactionDate}</td>
+                    </tr>
+                    <tr>
+                      <td>Type</td>
+                      <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                    </tr>
+                    <tr>
+                      <td>Category</td>
+                      <td>
+                        {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Comment</td>
+                      <td>{el.comment}</td>
+                    </tr>
+                    <tr>
+                      <td>Sum</td>
+                      <td className={el.amount > 0 ? s.positive : s.negative}>
+                        {el.amount}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Balance</td>
+                      <td>{el.balanceAfter}</td>
+                    </tr>
+                  </table>
+                ))
+              ) : (
+                <p>No transactions</p>
+              )}
             </div>
           </div>
         </div>
@@ -238,16 +80,24 @@ export const HomeTab = () => {
             <div className={s.scrollTableBody}>
               <table>
                 <tbody>
-                  {tableData.map(el => (
+                  {transactions.length ? (
+                    transactions.map(el => (
+                      <tr key={el.id}>
+                        <td>{el.transactionDate}</td>
+                        <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                        <td>{el.type !== 'EXPENSE' ? 'Income' : el.type}</td>
+                        <td>{el.comment}</td>
+                        <td className={el.amount > 0 ? s.positive : s.negative}>
+                          {el.amount}
+                        </td>
+                        <td>{el.balanceAfter}</td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr>
-                      <td>{el.date}</td>
-                      <td>{el.type}</td>
-                      <td>{el.category}</td>
-                      <td>{el.comment}</td>
-                      <td>{el.sum}</td>
-                      <td>{el.balance}</td>
+                      <td>No transactions</td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>

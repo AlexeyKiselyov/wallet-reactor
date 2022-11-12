@@ -31,7 +31,6 @@ export const fetchTransactions = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios('/api/transactions');
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
