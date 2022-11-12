@@ -1,0 +1,172 @@
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  width: 220px;
+  height: 120px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+.authForm {
+  display: block;
+  padding-top: 110px;
+  min-width: 320px;
+}
+.form {
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logoIcon {
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 30px;
+}
+
+.input {
+  width: 280px;
+  height: 34px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-left: 55px;
+  font-size: 18px;
+  line-height: 27px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px, solid;
+  border-color: #e7eaf2;
+}
+
+::placeholder {
+  color: #bdbdbd;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  bottom: 3px;
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.authLabel {
+  position: relative;
+  width: 280px;
+  color: var(--grey-color);
+  transition: color var(--animation);
+}
+
+.authLabel:hover,
+.authLabel:focus-within {
+  color: var(--main-currency-bg-color);
+}
+
+.authLink {
+  outline: none;
+  text-decoration: none;
+}
+
+/* validation errors */
+.error {
+  position: absolute;
+  color: red;
+}
+
+.emailError {
+  composes: error;
+  top: 44px;
+}
+
+.passwordError {
+  composes: error;
+  top: 120px;
+}
+
+.nameError {
+  composes: error;
+  top: 274px;
+}
+
+@media screen and (max-width: 767px) {
+  .form {
+    text-align: center;
+    height: 100vh;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logoIcon {
+    width: 181px;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 180px;
+  }
+
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-bg-color);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 148px;
+    padding: 40px 65px 60px;
+    width: 540px;
+    height: 100%;
+    border-radius: 20px;
+  }
+  .wrapper {
+    margin-top: 30px;
+  }
+
+  .authLabel {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .input {
+    width: 410px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  .emailError {
+    top: 54px;
+  }
+
+  .passwordError {
+    top: 130px;
+  }
+
+  .nameError {
+    top: 282px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .authForm {
+    width: 540px;
+    height: auto;
+    margin-top: 136px;
+    margin-bottom: 116px;
+  }
+}
