@@ -12,6 +12,8 @@ export const selectId = state => state.auth.user.id;
 
 export const selectIsLoading = state => state.auth.isLoading;
 
+export const selectBalance = state => state.auth.user.balance;
+
 const authSelectors = {
   selectIsLoggedIn,
   selectUser,
@@ -19,5 +21,6 @@ const authSelectors = {
   selectEmail,
   selectToken,
   selectIsLoading,
+  selectBalance,
 };
 export default authSelectors;
