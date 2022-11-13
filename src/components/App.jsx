@@ -1,31 +1,46 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import { DashboardPage } from 'pages/DashboardPage/DashboardPage';
 import { HomePage } from 'pages/HomePage/HomePage';
 import { DiagramPage } from 'pages/DiagramPage/DiagramPage';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-
-// import { authOperations } from 'redux/auth';
+import { PrivateRoute } from 'HOCs/PrivateRoute';
+import { PublicRoute } from 'HOCs/PublicRoute';
 // =========================================================================
 
 export const App = () => {
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(authOperations.fetchCurrentUser());
-  // }, [dispatch]);
-
   return (
     <>
       <Routes>
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<DashboardPage />}>
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        >
           <Route path="home" element={<HomePage />} />
           <Route path="diagram" element={<DiagramPage />} />
         </Route>
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </>
   );

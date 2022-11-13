@@ -2,6 +2,7 @@
 
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import { Link } from 'react-router-dom';
 import {
   HeaderContainer,
   HeaderStyled,
@@ -18,7 +19,9 @@ export const Header = () => {
     <HeaderStyled>
       <HeaderContainer>
         <div>
-          <Logo />
+          <Link to='/home'>
+            <Logo />
+          </Link>
         </div>
 
         <UserMenuWrapper style={{ display: 'flex' }}>
