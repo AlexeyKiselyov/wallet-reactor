@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import s from './HomeTab.module.scss';
 import { selectTransactions } from 'redux/transactions/transactionsSelectors';
+// import { useMedia } from 'react-use';
+import { useMediaQuery } from 'react-responsive';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
   console.log(transactions);
+  // const isMobile = useMedia({ maxWidth: '767px' });
+  // const isLaptop = useMedia({ minWidth: '768px' });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isLaptop = useMediaQuery({ query: '(min-width: 768px)' });
 
