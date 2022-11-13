@@ -8,7 +8,7 @@ import { AsideBar } from 'components/Aside Bar/AsideBar';
 import { Header } from 'components/Header/Header';
 
 import { MainContainer, MainStyled } from './DashboardPage.styled';
-// ==================================================
+// ================================================
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();

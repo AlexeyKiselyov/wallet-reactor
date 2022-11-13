@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderStyled = styled.header``;
 
 export const HeaderContainer = styled.div`
-  padding: 20px 20px;
+  padding: 15px 20px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -14,22 +14,38 @@ export const HeaderContainer = styled.div`
 
   background-color: var(--white-background-color);
 
-  @include mq(mob) {
+  @media screen and (min-width: 480px) {
+    width: 480px;
+
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 20px 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    width: 1280px;
+    padding: 20px 16px;
+  }
+
+  /* @include mq(mob) {
     width: 480px;
   }
   @include mq(tab) {
-    width: 728px;
+    width: 768px;
     padding: 0 32px;
   }
   @include mq(desk) {
-    width: 1366px;
+    width: 1280px;
     padding: 0 16px;
-  }
+  } */
 `;
 
 export const UserMenuWrapper = styled.div`
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const UserName = styled.p`

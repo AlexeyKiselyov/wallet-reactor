@@ -3,14 +3,14 @@ import React from 'react';
 // import { transactionsSelectors } from '../../../src/redux/';
 // import styles from './Balance.module.scss';
 
-const Balance = () => {
+export const Balance = () => {
   const balance = 20000;
   // useSelector(transactionsSelectors.getBalance);
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.title}>Current Balance</h2>
-      <p className={styles.text}>
-        <span className={styles.currency}>&#8372;</span>
+    <div >
+      <h2>Current Balance</h2>
+      <p >
+        <span >&#8372;</span>
         {balance}
       </p>
     </div>
