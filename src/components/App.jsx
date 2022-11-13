@@ -8,14 +8,14 @@ import { DiagramPage } from 'pages/DiagramPage/DiagramPage';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { authOperations } from 'redux/auth';
+// import { authOperations } from 'redux/auth';
 // =========================================================================
 
 export const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
 
   return (
     <>
