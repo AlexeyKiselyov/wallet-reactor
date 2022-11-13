@@ -74,7 +74,7 @@ export const LogoutBtn = styled.button`
   color: var(--secondary-text-color);
 
   display: flex;
-  align-items: center;
+  align-items: stretch;
   padding: 4px 12px;
 
   border-color: transparent;

@@ -2,7 +2,11 @@
 
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { authOperations } from 'redux/auth';
+import { authSelectors } from 'redux/auth';
+
 import {
   HeaderContainer,
   HeaderStyled,
@@ -14,21 +18,24 @@ import {
 // ================================================================
 
 export const Header = () => {
-  const onLogout = () => {};
+  const name = useSelector(state=>state.auth.user.username);
+  console.log(name);
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(authOperations.logOut());
+  };
+
   return (
     <HeaderStyled>
       <HeaderContainer>
         <div>
-          <Link to='/home'>
+          <Link to="/home">
             <Logo />
           </Link>
         </div>
 
-        <UserMenuWrapper style={{ display: 'flex' }}>
-          <UserName>
-            Name
-            {/* {name}! */}
-          </UserName>
+        <UserMenuWrapper style={{ display: 'flex', alignItems: 'center' }}>
+          <UserName>{name}</UserName>
 
           <LogoutBtn onClick={onLogout} type="button">
             <LogoExit>
