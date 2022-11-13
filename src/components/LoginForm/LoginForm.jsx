@@ -12,7 +12,7 @@ import { useAuth } from 'hook';
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:6|max:12',
+  password: 'required|min:6|max:25',
 };
 const messages = {
   required: field => `${field} is required`,
