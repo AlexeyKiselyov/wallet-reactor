@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.aec8b3dd.css",
+    "main.css": "/wallet-reactor/static/css/main.8d52e5e2.css",
     "main.js": "/wallet-reactor/static/js/main.3218a9d2.js",
     "static/media/Main_img.svg": "/wallet-reactor/static/media/Main_img.524a2ae994a99e78aba6.svg",
     "static/media/Main_reg_img.svg": "/wallet-reactor/static/media/Main_reg_img.75b887ed3fcbc6bc6817.svg",
@@ -20,11 +20,11 @@
     "index.html": "/wallet-reactor/index.html",
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
-    "main.aec8b3dd.css.map": "/wallet-reactor/static/css/main.aec8b3dd.css.map",
+    "main.8d52e5e2.css.map": "/wallet-reactor/static/css/main.8d52e5e2.css.map",
     "main.3218a9d2.js.map": "/wallet-reactor/static/js/main.3218a9d2.js.map"
   },
   "entrypoints": [
-    "static/css/main.aec8b3dd.css",
+    "static/css/main.8d52e5e2.css",
     "static/js/main.3218a9d2.js"
   ]
 }
