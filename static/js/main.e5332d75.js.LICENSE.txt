@@ -4,6 +4,13 @@
           @license MIT
           */
 
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
 /*! ./Component */
 
 /*! ./Context */
@@ -219,6 +226,20 @@
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
+ */
+
+/**
+ * charmap
+ *
+ * @license MIT
+ * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
+ */
+
+/**
+ * node-slug
+ *
+ * @license MIT
+ * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
 /** @license React v16.13.1
