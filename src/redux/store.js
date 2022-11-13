@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import transactionsReduser from './transactions/transactionsSlice';
+import transactionCategoriesReduser from './transactionCategories/transactionCategoriesSlice';
 import {
   persistStore,
   persistReducer,
@@ -31,6 +32,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReduser,
+    transactionCategories: transactionCategoriesReduser,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

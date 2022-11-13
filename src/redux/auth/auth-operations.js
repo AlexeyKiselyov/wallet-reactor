@@ -49,7 +49,7 @@ const logIn = createAsyncThunk('/auth/sign-in', async (credentials, thunkAPI) =>
  */
 const logOut = createAsyncThunk('/auth/sign-out', async (_, thunkAPI) => {
   try {
-    await axios.post('/auth/sign-out');
+    await axios.delete('/auth/sign-out');
     token.unset();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
