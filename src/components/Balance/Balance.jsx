@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { transactionsSelectors } from '../../../src/redux/transactions';
-import styles from './Balance.module.css';
+// import { useSelector } from 'react-redux';
+// import { transactionsSelectors } from '../../../src/redux/';
+import styles from './Balance.module.scss';
 
 const Balance = () => {
-  const balance = useSelector(transactionsSelectors.getBalance);
+  const balance = 2000;
+  //useSelector(transactionsSelectors.getBalance);
   // console.log(balance);
   return (
     <div className={styles.wrapper}>

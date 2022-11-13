@@ -1,4 +1,4 @@
-import { Balance } from 'components/Balance/Balance';
+import Balance from 'components/Balance/Balance';
 import { Currency } from 'components/Currency/Currency';
 import { Header } from 'components/Header/Header';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
