@@ -5,7 +5,7 @@ import Icons from 'images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { authOperations } from 'redux/auth';
-import { authSelectors } from 'redux/auth';
+// import { authSelectors } from 'redux/auth';
 
 import {
   HeaderContainer,
