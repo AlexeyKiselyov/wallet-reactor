@@ -1,18 +1,30 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.59955887.css",
-    "main.js": "/wallet-reactor/static/js/main.e9df4840.js",
+    "main.css": "/wallet-reactor/static/css/main.aec8b3dd.css",
+    "main.js": "/wallet-reactor/static/js/main.066ebce8.js",
     "static/media/Main_img.svg": "/wallet-reactor/static/media/Main_img.524a2ae994a99e78aba6.svg",
     "static/media/Main_reg_img.svg": "/wallet-reactor/static/media/Main_reg_img.75b887ed3fcbc6bc6817.svg",
+    "static/media/Circe Bold.woff": "/wallet-reactor/static/media/Circe Bold.e49f49d14366bfc57672.woff",
+    "static/media/Circe.woff": "/wallet-reactor/static/media/Circe.68e68c98d58dab2e6c5d.woff",
+    "static/media/Circe Bold.eot": "/wallet-reactor/static/media/Circe Bold.ebfee3b3d351b8aa5cc2.eot",
+    "static/media/Circe.eot": "/wallet-reactor/static/media/Circe.faefe54f85f95ba64378.eot",
+    "static/media/Circe Bold.woff2": "/wallet-reactor/static/media/Circe Bold.951e6ebf3e30b33d0d97.woff2",
+    "static/media/Circe.woff2": "/wallet-reactor/static/media/Circe.4a0d729c8464cb6dfa66.woff2",
+    "static/media/Poppins Bold.woff": "/wallet-reactor/static/media/Poppins Bold.f63cfd1eb7f7e109592b.woff",
+    "static/media/Poppins Regular.woff": "/wallet-reactor/static/media/Poppins Regular.f0e2bb2cc70beb77a75d.woff",
+    "static/media/Poppins Bold.eot": "/wallet-reactor/static/media/Poppins Bold.ee4ca137b98f3e9e0c06.eot",
+    "static/media/Poppins Regular.eot": "/wallet-reactor/static/media/Poppins Regular.30159e0f1e637a3cdc25.eot",
+    "static/media/Poppins Bold.woff2": "/wallet-reactor/static/media/Poppins Bold.7dddb5e307189184819d.woff2",
+    "static/media/Poppins Regular.woff2": "/wallet-reactor/static/media/Poppins Regular.df8102a40f74d3d66413.woff2",
     "static/media/sprite.svg": "/wallet-reactor/static/media/sprite.2ff8c251446e20eb300ae7b5c4b8d862.svg",
     "index.html": "/wallet-reactor/index.html",
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
-    "main.59955887.css.map": "/wallet-reactor/static/css/main.59955887.css.map",
-    "main.e9df4840.js.map": "/wallet-reactor/static/js/main.e9df4840.js.map"
+    "main.aec8b3dd.css.map": "/wallet-reactor/static/css/main.aec8b3dd.css.map",
+    "main.066ebce8.js.map": "/wallet-reactor/static/js/main.066ebce8.js.map"
   },
   "entrypoints": [
-    "static/css/main.59955887.css",
-    "static/js/main.e9df4840.js"
+    "static/css/main.aec8b3dd.css",
+    "static/js/main.066ebce8.js"
   ]
 }
