@@ -8,7 +8,7 @@ import { validate } from 'indicative/validator';
 // import { toast } from 'react-toastify';
 import style from './RegistrationForm.module.css';
 import { authOperations } from 'redux/auth';
-import { useAuth } from 'HOCs';
+import { useAuth } from 'hook';
 
 const rules = {
   email: 'required|email',
@@ -45,7 +45,10 @@ export default function RegistrationForm() {
   const [password, setPassword] = useState('');
   const [username, setName] = useState('');
   const [password_confirmation, setPasswordConfirm] = useState('');
-  const [validationError, setValidationError] = useState({ field: null, message: '' });
+  const [validationError, setValidationError] = useState({
+    field: null,
+    message: '',
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useAuth();
@@ -70,14 +73,13 @@ export default function RegistrationForm() {
 
   const onRegisterSubmit = e => {
     e.preventDefault();
-    validate({ email, password, password_confirmation, username }, rules, messages)
+    validate(
+      { email, password, password_confirmation, username },
+      rules,
+      messages
+    )
       .then(() => {
-        const registerData = 
-          {username,
-          email,
-          password
-        };
-        // dispatch(authOperations.register(registerData));
+        const registerData = { username, email, password };
         dispatch(authOperations.register(registerData)).then(response => {
           if (response.payload === 'Request failed with status code 409') {
             // toast.error('Oops...User with such data already exists!');
@@ -85,12 +87,16 @@ export default function RegistrationForm() {
           }
           if (response.payload.token) {
             // toast.success('You are successfully sign up!');
-            navigate('/home', { replace: true});          }
+            navigate('/home', { replace: true });
+          }
         });
-        resetForm()
+        resetForm();
       })
       .catch(errors => {
-        setValidationError({ field: errors[0].field, message: errors[0].message });
+        setValidationError({
+          field: errors[0].field,
+          message: errors[0].message,
+        });
       });
   };
 
@@ -113,28 +119,28 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder='E-mail'
-            name='email'
+            placeholder="E-mail"
+            name="email"
             onChange={handleChange}
             value={email}
             autoFocus
-            autoComplete='off'
+            autoComplete="off"
           ></input>
-          <svg width='21' height='16' className={style.inputIcon}>
+          <svg width="21" height="16" className={style.inputIcon}>
             <use href={`${Icons}#icon-email`} />
           </svg>
         </label>
         <label className={style.authLabel}>
           <input
-            id='inputcheck'
+            id="inputcheck"
             className={style.input}
-            placeholder='Password'
-            name='password'
-            type='password'
+            placeholder="Password"
+            name="password"
+            type="password"
             onChange={handleChange}
             value={password}
           ></input>
-          <svg width='16' height='21' className={style.inputIcon}>
+          <svg width="16" height="21" className={style.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
@@ -142,13 +148,13 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder='Confirm password'
-            type='password'
-            name='password_confirmation'
+            placeholder="Confirm password"
+            type="password"
+            name="password_confirmation"
             onChange={handleChange}
             value={password_confirmation}
           ></input>
-          <svg width='16' height='21' className={style.inputIcon}>
+          <svg width="16" height="21" className={style.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
@@ -156,20 +162,25 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder='Your name'
+            placeholder="Your name"
             onChange={handleChange}
-            name='username'
+            name="username"
             value={username}
-            autoComplete='off'
+            autoComplete="off"
           ></input>
-          <svg width='18' height='18' className={style.inputIcon}>
+          <svg width="18" height="18" className={style.inputIcon}>
             <use href={`${Icons}#icon-account_box`} />
           </svg>
         </label>
         <div className={style.wrapper}>
-          <Button className='btn__primary' type='submit' text='register' isLoading={isLoading} />
-          <Link to='/login' className={style.authLink}>
-            <Button className='btn__secondary' type='buttom' text='log in' />
+          <Button
+            className="btn__primary"
+            type="submit"
+            text="register"
+            isLoading={isLoading}
+          />
+          <Link to="/login" className={style.authLink}>
+            <Button className="btn__secondary" type="buttom" text="log in" />
           </Link>
         </div>
       </form>
