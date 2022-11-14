@@ -8,9 +8,11 @@ export const AsideWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    justify-content: space-between;
   }
 
   @media screen and (min-width: 1280px) {
     flex-direction: column;
+    
   }
 `;

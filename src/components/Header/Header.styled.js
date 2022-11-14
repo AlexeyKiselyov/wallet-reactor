@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const HeaderStyled = styled.header``;
+export const HeaderStyled = styled.header`
+background-color:var(--white-background-color);
+`;
 
 export const HeaderContainer = styled.div`
   padding: 15px 20px;

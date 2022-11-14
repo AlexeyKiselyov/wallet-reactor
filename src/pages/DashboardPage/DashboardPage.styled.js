@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 
 export const MainStyled = styled.main`
-  backdrop-filter: blur(25px);
+  ::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    backdrop-filter: blur(25px);
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -11,7 +20,7 @@ export const MainContainer = styled.div`
   width: 100%;
 
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
@@ -20,6 +29,8 @@ export const MainContainer = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    align-items: normal;
+
     width: 768px;
     padding: 32px 32px;
   }
