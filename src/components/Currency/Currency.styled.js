@@ -8,7 +8,7 @@ export const TableWrap = styled.div`
   height: 174px;
 
   border-radius: 30px;
-  color: var();
+  color: var(--primary-background-color);
   background: url(${CurrencyWaveMob}) no-repeat bottom,
     linear-gradient(
       to bottom,
