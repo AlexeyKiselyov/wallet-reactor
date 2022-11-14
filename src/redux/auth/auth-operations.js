@@ -1,7 +1,8 @@
+import { BASE_URL } from 'variables';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://wallet.goit.ua/api';
+axios.defaults.baseURL = `${BASE_URL}/api`;
 
 const token = {
   set(token) {
