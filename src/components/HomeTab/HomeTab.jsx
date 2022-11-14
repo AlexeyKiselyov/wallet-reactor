@@ -26,34 +26,36 @@ export const HomeTab = () => {
                     }
                     key={el.id}
                   >
-                    <tr>
-                      <td>Data</td>
-                      <td>{el.transactionDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Type</td>
-                      <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                    </tr>
-                    <tr>
-                      <td>Category</td>
-                      <td>
-                        {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Comment</td>
-                      <td>{el.comment}</td>
-                    </tr>
-                    <tr>
-                      <td>Sum</td>
-                      <td className={el.amount > 0 ? s.positive : s.negative}>
-                        {el.amount}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Balance</td>
-                      <td>{el.balanceAfter}</td>
-                    </tr>
+                    <tbody>
+                      <tr>
+                        <td>Data</td>
+                        <td>{el.transactionDate}</td>
+                      </tr>
+                      <tr>
+                        <td>Type</td>
+                        <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                      </tr>
+                      <tr>
+                        <td>Category</td>
+                        <td>
+                          {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Comment</td>
+                        <td>{el.comment}</td>
+                      </tr>
+                      <tr>
+                        <td>Sum</td>
+                        <td className={el.amount > 0 ? s.positive : s.negative}>
+                          {el.amount}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Balance</td>
+                        <td>{el.balanceAfter}</td>
+                      </tr>
+                    </tbody>
                   </table>
                 ))
               ) : (
