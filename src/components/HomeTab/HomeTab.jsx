@@ -94,7 +94,11 @@ export const HomeTab = () => {
                       <tr key={el.id}>
                         <td>{el.transactionDate}</td>
                         <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                        <td>{el.type !== 'EXPENSE' ? 'Income' : el.type}</td>
+                        <td>
+                          {categoriesList.length &&
+                            categoriesList.find(cat => cat.id === el.categoryId)
+                              .name}
+                        </td>
                         <td>{el.comment}</td>
                         <td className={el.amount > 0 ? s.positive : s.negative}>
                           {el.amount}
