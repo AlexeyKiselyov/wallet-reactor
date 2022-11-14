@@ -5,7 +5,6 @@ import Icons from 'images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { authOperations } from 'redux/auth';
 import { authSelectors } from 'redux/auth'
 
 import {
@@ -16,15 +15,15 @@ import {
   LogoExit,
   LogoutBtn,
 } from './Header.styled';
+
+import { openModalLogout } from 'redux/index';
+
 // ================================================================
 
 export const Header = () => {
-  const name = useSelector(authSelectors.selectUser);
   const dispatch = useDispatch();
-  const onLogout = () => {
-    dispatch(authOperations.logOut());
-  };
-
+  const name = useSelector(authSelectors.selectUser);
+  
   return (
     <HeaderStyled>
       <HeaderContainer>
@@ -37,7 +36,7 @@ export const Header = () => {
         <UserMenuWrapper style={{ display: 'flex', alignItems: 'center' }}>
           <UserName>{name}</UserName>
 
-          <LogoutBtn onClick={onLogout} type="button">
+          <LogoutBtn onClick={() => dispatch(openModalLogout())} type="button">
             <LogoExit>
               <use href={`${Icons}#icon-logout`} />
             </LogoExit>
@@ -45,7 +44,6 @@ export const Header = () => {
           </LogoutBtn>
         </UserMenuWrapper>
       </HeaderContainer>
-      {/* <ModalLogout /> */}
     </HeaderStyled>
   );
 };

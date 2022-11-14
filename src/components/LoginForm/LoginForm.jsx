@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { validate } from 'indicative/validator';
-import { authOperations } from '../../redux/auth';
+import { authOperations } from 'redux/auth';
 import { toast } from 'react-toastify';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
@@ -64,7 +64,7 @@ export default function LoginForm() {
             return;
           }
           if (response.payload.token) {
-            navigate('/home', { replace: true });
+            navigate('/', { replace: true });
           }
         });
         resetForm();
