@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { authOperations } from 'redux/auth';
-// import { authSelectors } from 'redux/auth'
+import { authSelectors } from 'redux/auth'
 
 import {
   HeaderContainer,
@@ -19,8 +19,7 @@ import {
 // ================================================================
 
 export const Header = () => {
-  const name = useSelector(state=>state.auth.user.username);
-  console.log(name);
+  const name = useSelector(authSelectors.selectUser);
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(authOperations.logOut());
