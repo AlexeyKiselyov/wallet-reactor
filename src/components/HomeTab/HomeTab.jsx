@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import s from './HomeTab.module.scss';
 import { selectTransactions } from 'redux/transactions/transactionsSelectors';
+// import { useMedia } from 'react-use';
+import { useMediaQuery } from 'react-responsive';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
   console.log(transactions);
+  // const isMobile = useMedia({ maxWidth: '767px' });
+  // const isLaptop = useMedia({ minWidth: '768px' });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isLaptop = useMediaQuery({ query: '(min-width: 768px)' });
 
@@ -23,34 +26,36 @@ export const HomeTab = () => {
                     }
                     key={el.id}
                   >
-                    <tr>
-                      <td>Data</td>
-                      <td>{el.transactionDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Type</td>
-                      <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                    </tr>
-                    <tr>
-                      <td>Category</td>
-                      <td>
-                        {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Comment</td>
-                      <td>{el.comment}</td>
-                    </tr>
-                    <tr>
-                      <td>Sum</td>
-                      <td className={el.amount > 0 ? s.positive : s.negative}>
-                        {el.amount}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Balance</td>
-                      <td>{el.balanceAfter}</td>
-                    </tr>
+                    <tbody>
+                      <tr>
+                        <td>Data</td>
+                        <td>{el.transactionDate}</td>
+                      </tr>
+                      <tr>
+                        <td>Type</td>
+                        <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                      </tr>
+                      <tr>
+                        <td>Category</td>
+                        <td>
+                          {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Comment</td>
+                        <td>{el.comment}</td>
+                      </tr>
+                      <tr>
+                        <td>Sum</td>
+                        <td className={el.amount > 0 ? s.positive : s.negative}>
+                          {el.amount}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Balance</td>
+                        <td>{el.balanceAfter}</td>
+                      </tr>
+                    </tbody>
                   </table>
                 ))
               ) : (
