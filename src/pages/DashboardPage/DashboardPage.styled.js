@@ -26,6 +26,8 @@ export const MainContainer = styled.div`
 
   @media screen and (min-width: 1280px) {
     flex-direction: row;
+    align-items: flex-start;
+
     width: 1280px;
     padding: 46px 16px;
   }
