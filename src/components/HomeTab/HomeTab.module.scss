@@ -1,6 +1,5 @@
 .tableWrap {
   max-width: 715px;
-  margin: 20px;
 }
 
 .scrollTableBody {
@@ -62,16 +61,16 @@
   width: 100%;
   table-layout: fixed;
   text-align: center;
-  // background-color: #fff;
-  margin-bottom: 3px;
-  border-radius: 10px;
-
   border-collapse: collapse;
+  margin-bottom: 5px;
 
   tr {
     background-color: #fff;
     padding-top: 2px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.308);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.308);
+    }
     &:not(:first-child, :last-child) {
       box-shadow: inset 4px 0px 0px #ff6596;
     }
