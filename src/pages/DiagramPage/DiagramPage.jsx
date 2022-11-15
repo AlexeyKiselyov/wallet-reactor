@@ -1,7 +1,5 @@
+import { DiagramTab } from 'components/DiagramTab/DiagramTab';
+
 export const DiagramPage = () => {
-  return (
-    <>
-      <div>Diagram Page</div>
-    </>
-  );
+  return <DiagramTab />;
 };

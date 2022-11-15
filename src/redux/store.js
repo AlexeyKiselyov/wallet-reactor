@@ -14,7 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { globalReducer } from './global/global-slice';
-
+import { trSummaryReducer } from './transactionSumController/transactionSumControllerSlice';
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
@@ -35,6 +35,7 @@ export const store = configureStore({
     transactions: transactionsReduser,
     transactionCategories: transactionCategoriesReduser,
     global: globalReducer,
+    trSummary: trSummaryReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
