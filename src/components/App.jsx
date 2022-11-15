@@ -21,7 +21,6 @@ import { CurrencyMobilePage } from 'pages/CurrencyMobilePage/CurrencyMobilePage'
 // =========================================================================
 
 export const App = () => {
-
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
 
   return (
@@ -58,9 +57,8 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
-      {showModalLogout && <Modal children={<ModalLogout action='logout' />} />}
-      <ToastContainer autoClose={3000} theme='colored' limit={2} />
-
+      {showModalLogout && <Modal children={<ModalLogout action="logout" />} />}
+      <ToastContainer autoClose={3000} theme="colored" limit={2} />
     </>
   );
 };
