@@ -1,61 +1,73 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { PrivateRoute } from 'HOCs/PrivateRoute';
+import { PublicRoute } from 'HOCs/PublicRoute';
+
+import { selectIsModalLogoutOpen } from 'redux/selectors';
+import { authSelectors } from 'redux/auth';
+import { authOperations } from 'redux/auth';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Modal from 'components/Modal';
+import ModalLogout from 'components/ModalLogout';
 
 import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import { DashboardPage } from 'pages/DashboardPage/DashboardPage';
-import { HomePage } from 'pages/HomePage/HomePage';
-import { DiagramPage } from 'pages/DiagramPage/DiagramPage';
-import { PrivateRoute } from 'HOCs/PrivateRoute';
-import { PublicRoute } from 'HOCs/PublicRoute';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Modal from 'components/Modal';
-import ModalLogout from 'components/ModalLogout';
-import { selectIsModalLogoutOpen } from 'redux/selectors';
-
-import { CurrencyMobilePage } from 'pages/CurrencyMobilePage/CurrencyMobilePage';
-
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const DiagramPage = lazy(() => import('pages/DiagramPage/DiagramPage'));
+const CurrencyMobilePage = lazy(() => import('pages/DiagramPage/DiagramPage'));
 // =========================================================================
 
 export const App = () => {
+  const dispatch = useDispatch();
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
+  const isCurrentUserRefreshing = useSelector(authSelectors.selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
-      <Routes>
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <RegistrationPage />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <LoginPage />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <DashboardPage />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<HomePage />} />
-          <Route path="diagram" element={<DiagramPage />} />
-          <Route path="currency" element={<CurrencyMobilePage />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      {!isCurrentUserRefreshing && (
+        <Routes>
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<HomePage />} />
+            <Route path="diagram" element={<DiagramPage />} />
+            <Route path="currency" element={<CurrencyMobilePage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      )}
 
       {showModalLogout && <Modal children={<ModalLogout action="logout" />} />}
       <ToastContainer autoClose={3000} theme="colored" limit={2} />

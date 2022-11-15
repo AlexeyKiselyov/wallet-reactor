@@ -1,5 +1,7 @@
 import { DiagramTab } from 'components/DiagramTab/DiagramTab';
 
-export const DiagramPage = () => {
+const DiagramPage = () => {
   return <DiagramTab />;
 };
+
+export default DiagramPage;
