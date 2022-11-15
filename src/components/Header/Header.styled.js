@@ -60,6 +60,10 @@ export const UserName = styled.p`
   font-family: 'Circe';
   font-size: 18px;
   color: var(--secondary-text-color);
+
+  @media screen and (max-width: 767px) {
+    border-right:none;
+  }
 `;
 
 export const LogoExit = styled.svg`

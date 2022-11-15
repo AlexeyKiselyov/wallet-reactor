@@ -17,7 +17,7 @@ import { Loader } from 'components/Loader/Loader';
 export const DashboardPage = () => {
   const dispatch = useDispatch();
 
-  const loaderTransactions = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -42,7 +42,7 @@ export const DashboardPage = () => {
         </MainContainer>
       </MainStyled>
 
-      {loaderTransactions && <Loader />}
+      {isLoading && <Loader />}
     </>
   );
 };

@@ -4,8 +4,9 @@ import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useMedia } from 'react-use';
 
-import { authSelectors } from 'redux/auth'
+import { authSelectors } from 'redux/auth';
 
 import {
   HeaderContainer,
@@ -21,9 +22,11 @@ import { openModalLogout } from 'redux/index';
 // ================================================================
 
 export const Header = () => {
+  const isMobile = useMedia('(max-width: 767px)');
+
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.selectUser);
-  
+
   return (
     <HeaderStyled>
       <HeaderContainer>
@@ -40,7 +43,7 @@ export const Header = () => {
             <LogoExit>
               <use href={`${Icons}#icon-logout`} />
             </LogoExit>
-            Exit
+            {!isMobile && "Exit"}
           </LogoutBtn>
         </UserMenuWrapper>
       </HeaderContainer>
