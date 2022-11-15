@@ -1,7 +1,9 @@
-export const ButtonAddTransactions = () => {
+export const ButtonAddTransactions = ({ onModalOpen }) => {
   return (
     <>
-      <div>Button Add Transactions</div>
+      <button onClick={onModalOpen} type="button">
+        Button Add Transactions
+      </button>
     </>
   );
 };
