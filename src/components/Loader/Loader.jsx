@@ -1,7 +1,19 @@
-export const Loader = () => {
+import s from './Loader.module.css';
+// =====================
+
+export function Loader() {
   return (
-    <>
-      <div>Loader</div>
-    </>
+    <div className={s.overlay}>
+      <div className={s.ldsRoller}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   );
-};
+}

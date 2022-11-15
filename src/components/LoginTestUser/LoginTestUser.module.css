@@ -21,7 +21,7 @@
 @media screen and (min-width: 768px) {
   .modalContainer {
     right: 2vw;
-    top: 10vh;
+    top: 30vh;
     padding: 24px;
     transform: translateY(0%);
   }
