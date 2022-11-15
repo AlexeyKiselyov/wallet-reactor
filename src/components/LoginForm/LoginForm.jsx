@@ -55,6 +55,10 @@ export default function LoginForm() {
           password,
         };
         dispatch(authOperations.logIn(singInData)).then(response => {
+          if (response.payload === 'Request failed with status code 400') {
+            toast.error('Oops... Validation error!');
+            return;
+          }
           if (response.payload === 'Request failed with status code 403') {
             toast.error('Oops... Password is incorrect!');
             return;
@@ -65,9 +69,9 @@ export default function LoginForm() {
           }
           if (response.payload.token) {
             navigate('/', { replace: true });
+            resetForm();
           }
         });
-        resetForm();
       })
       .catch(errors => {
         setValidationError({
