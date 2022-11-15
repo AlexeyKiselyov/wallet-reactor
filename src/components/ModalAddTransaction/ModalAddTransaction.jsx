@@ -1,8 +1,8 @@
 //import PropTypes from 'prop-types';
-
+import { authOperations } from 'redux/auth';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { authSelectors } from 'redux/auth';
+import { authSelectors } from 'redux/auth';
 import { addTransaction } from 'redux/transactions/transactionsOperations';
 import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
 
@@ -20,7 +20,7 @@ import cssForm from './FormAddTransaction.module.scss';
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
-  // const balance = useSelector(authSelectors.selectBalance);
+  const balance = useSelector(authSelectors.selectBalance);
   const { isShowSelect, toggleHook } = useToggle();
   // const { isShowSelect, show, hide, toggleHook } = useToggle();
 
@@ -41,7 +41,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
 
   // console.log(balance);
-  const total = 10;
+  // const total = 10;
   useEffect(() => {
     // show();
     dispatch(fetchTransactionCategories());
@@ -100,7 +100,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
     if (isShowSelect) {
       // if (total - amount < 0)
-      if (amount > total) {
+      if (amount > balance) {
         return alert('Сумма больше, чем баланс. Введите нужную сумму');
       }
       const amount1 = -amount;
@@ -113,6 +113,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
         comment,
       });
       resetForm();
+      dispatch(authOperations.fetchCurrentUser());
       return;
     }
 
@@ -123,7 +124,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
       transactionDate,
       comment,
     });
-
+    dispatch(authOperations.fetchCurrentUser());
     resetForm();
   };
 
