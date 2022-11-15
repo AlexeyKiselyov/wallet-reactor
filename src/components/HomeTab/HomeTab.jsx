@@ -8,8 +8,6 @@ export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectTransactionCategories);
   const categoriesList = categories.map(data => data);
-  console.log(transactions);
-  console.log(categories);
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
 
