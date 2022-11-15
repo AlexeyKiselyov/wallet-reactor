@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.96ac3ae8.css",
-    "main.js": "/wallet-reactor/static/js/main.53ea8652.js",
+    "main.css": "/wallet-reactor/static/css/main.9b3277a3.css",
+    "main.js": "/wallet-reactor/static/js/main.0d8fb460.js",
     "static/media/Main_img.svg": "/wallet-reactor/static/media/Main_img.524a2ae994a99e78aba6.svg",
     "static/media/Main_reg_img.svg": "/wallet-reactor/static/media/Main_reg_img.75b887ed3fcbc6bc6817.svg",
     "static/media/Circe Bold.woff": "/wallet-reactor/static/media/Circe Bold.e49f49d14366bfc57672.woff",
@@ -23,11 +23,11 @@
     "index.html": "/wallet-reactor/index.html",
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
-    "main.96ac3ae8.css.map": "/wallet-reactor/static/css/main.96ac3ae8.css.map",
-    "main.53ea8652.js.map": "/wallet-reactor/static/js/main.53ea8652.js.map"
+    "main.9b3277a3.css.map": "/wallet-reactor/static/css/main.9b3277a3.css.map",
+    "main.0d8fb460.js.map": "/wallet-reactor/static/js/main.0d8fb460.js.map"
   },
   "entrypoints": [
-    "static/css/main.96ac3ae8.css",
-    "static/js/main.53ea8652.js"
+    "static/css/main.9b3277a3.css",
+    "static/js/main.0d8fb460.js"
   ]
 }
