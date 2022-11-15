@@ -19,7 +19,7 @@ export const Navigation = () => {
         <nav>
           <NavMobMenuList>
             <NavMobMenuItem>
-              <Link to="/home" end>
+              <Link to="/" end>
                 <NavIcon width="38" height="38">
                   <use href={`${Icons}#icon-home`} />
                 </NavIcon>
@@ -48,7 +48,7 @@ export const Navigation = () => {
         <nav>
           <NavMenuList>
             <NavMenuItem>
-              <Link to="/home" end>
+              <Link to="/" end>
                 <NavIcon width="18" height="18">
                   <use href={`${Icons}#icon-home`} />
                 </NavIcon>

@@ -10,6 +10,7 @@ export const Link = styled(NavLink)`
   line-height: 1.6;
   text-decoration: none;
   padding-bottom: 12px;
+  font-weight: 400;
 
   &.active {
     font-weight: bold;
