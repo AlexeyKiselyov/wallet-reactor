@@ -1,16 +1,17 @@
 import { useSelector } from 'react-redux';
 import s from './HomeTab.module.scss';
 import { selectTransactions } from 'redux/transactions/transactionsSelectors';
-// import { useMedia } from 'react-use';
-import { useMediaQuery } from 'react-responsive';
+import { useMedia } from 'react-use';
+import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
+  const categories = useSelector(selectTransactionCategories);
+  const categoriesList = categories.map(data => data);
   console.log(transactions);
-  // const isMobile = useMedia({ maxWidth: '767px' });
-  // const isLaptop = useMedia({ minWidth: '768px' });
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const isLaptop = useMediaQuery({ query: '(min-width: 768px)' });
+  console.log(categories);
+  const isMobile = useMedia('(max-width: 767px)');
+  const isLaptop = useMedia('(min-width: 768px)');
 
   return (
     <>
@@ -35,10 +36,13 @@ export const HomeTab = () => {
                         <td>Type</td>
                         <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
                       </tr>
+
                       <tr>
                         <td>Category</td>
                         <td>
-                          {el.type !== 'EXPENSE' ? 'Regular solary' : el.type}
+                          {categoriesList.length &&
+                            categoriesList.find(cat => cat.id === el.categoryId)
+                              .name}
                         </td>
                       </tr>
                       <tr>
@@ -90,7 +94,11 @@ export const HomeTab = () => {
                       <tr key={el.id}>
                         <td>{el.transactionDate}</td>
                         <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                        <td>{el.type !== 'EXPENSE' ? 'Income' : el.type}</td>
+                        <td>
+                          {categoriesList.length &&
+                            categoriesList.find(cat => cat.id === el.categoryId)
+                              .name}
+                        </td>
                         <td>{el.comment}</td>
                         <td className={el.amount > 0 ? s.positive : s.negative}>
                           {el.amount}
