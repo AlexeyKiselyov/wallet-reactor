@@ -51,11 +51,11 @@ export const App = () => {
             </PrivateRoute>
           }
         >
-          <Route path="home" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="diagram" element={<DiagramPage />} />
           <Route path="currency" element={<CurrencyMobilePage />} />
         </Route>
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       {showModalLogout && <Modal children={<ModalLogout action='logout' />} />}

@@ -28,7 +28,7 @@ export const Header = () => {
     <HeaderStyled>
       <HeaderContainer>
         <div>
-          <Link to="/home">
+          <Link to="/">
             <Logo />
           </Link>
         </div>
