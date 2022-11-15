@@ -21,7 +21,7 @@ import { DashboardPage } from 'pages/DashboardPage/DashboardPage';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const DiagramPage = lazy(() => import('pages/DiagramPage/DiagramPage'));
-const CurrencyMobilePage = lazy(() => import('pages/DiagramPage/DiagramPage'));
+const CurrencyMobilePage = lazy(() => import('pages/CurrencyMobilePage/CurrencyMobilePage'));
 // =========================================================================
 
 export const App = () => {
