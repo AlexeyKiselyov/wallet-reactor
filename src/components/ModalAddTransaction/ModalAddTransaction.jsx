@@ -21,9 +21,10 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
   // const balance = useSelector(authSelectors.selectBalance);
-  const { isShowSelect, show, hide, toggleHook } = useToggle();
+  const { isShowSelect, toggleHook } = useToggle();
+  // const { isShowSelect, show, hide, toggleHook } = useToggle();
 
-  const [toggle, setToggle] = useState('');
+  // const [toggle, setToggle] = useState('');
   const [amount, setAmount] = useState('');
   const [valueDate, onChange] = useState(new Date());
   const [transactionDate, setTransactionDate] = useState(
@@ -36,8 +37,8 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
-  const toggleShowSelectList = () =>
-    setIsShowSelectList(isShowSelectList => !isShowSelectList);
+  // const toggleShowSelectList = () =>
+  //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
 
   // console.log(balance);
   const total = 10;
@@ -54,7 +55,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
     return () => {
       window.removeEventListener('keydown', closeByEscape);
     };
-  }, [closeModal]);
+  }, [closeModal,dispatch]);
 
   const closeByBackdrop = event => {
     if (event.currentTarget === event.target) {
@@ -152,18 +153,19 @@ export const ModalAddTransaction = ({ closeModal }) => {
     toggleHook();
   };
 
-  const categoriesExpense = categories.filter(
-    category => category.type !== 'INCOME'
-  ); //нужно и это в переменную?
+  // const categoriesExpense = categories.filter(
+  //   category => category.type !== 'INCOME'
+  // );
+   //нужно и это в переменную?
 
   const handleClickOption = e => {
     console.log(e.currentTarget.value);
     setCategoryId(e.currentTarget.value);
     setIsShowSelectList(true);
   };
-  const handleChangeSelectInput = () => {
-    setIsShowSelectList(true);
-  };
+  // const handleChangeSelectInput = () => {
+  //   setIsShowSelectList(true);
+  // };
 
   let inputProps = {
     name: 'transactionDate',
