@@ -1,9 +1,10 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
-import { switchBgChart } from 'helpers/switchBgStatistic';
 import { Doughnut } from 'react-chartjs-2';
-import { ChartWrapper, ChartBalInfo } from './Chart.styled';
 import { authSelectors } from 'redux/auth';
 import { useSelector } from 'react-redux';
+
+import { switchBgChart } from 'helpers/switchBgStatistic';
+import { ChartWrapper, ChartBalInfo } from './Chart.styled';
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -16,18 +17,6 @@ export const Chart = ({ trSummary }) => {
     cutout: '65%',
   };
 
-  const data = {
-    labels: name,
-    datasets: [
-      {
-        label: '# of Votes',
-        data: total,
-        backgroundColor: colors,
-        borderColor: ['transparent'],
-      },
-    ],
-  };
-
   const initialData = {
     labels: ['No trasactions'],
     datasets: [
@@ -35,6 +24,18 @@ export const Chart = ({ trSummary }) => {
         label: '# of Votes',
         data: [1],
         backgroundColor: ['#C5BAFF'],
+        borderColor: ['transparent'],
+      },
+    ],
+  };
+
+  const data = {
+    labels: name,
+    datasets: [
+      {
+        label: '# of Votes',
+        data: total,
+        backgroundColor: colors,
         borderColor: ['transparent'],
       },
     ],

@@ -18,7 +18,6 @@ const trSummarySlice = createSlice({
       state.error = null;
     },
     [getTransactionsSummary.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.summary = payload.categoriesSummary;
       state.expenseSummary = payload.expenseSummary;
       state.incomeSummary = payload.incomeSummary;
@@ -32,5 +31,3 @@ const trSummarySlice = createSlice({
 });
 
 export const trSummaryReducer = trSummarySlice.reducer;
-
-// expenseSummary;
