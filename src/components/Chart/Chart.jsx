@@ -23,7 +23,7 @@ export const Chart = ({ trSummary }) => {
       {
         label: '# of Votes',
         data: [1],
-        backgroundColor: ['#C5BAFF'],
+        backgroundColor: ['#a6a6a6'],
         borderColor: ['transparent'],
       },
     ],
