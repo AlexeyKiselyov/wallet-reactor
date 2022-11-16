@@ -11,6 +11,7 @@ import {
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsCurrency } from '../../assets/lang/langOptionsCurrency';
 import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 export const Currency = () => {
   const [currency, setCurrency] = useState(null);
@@ -19,7 +20,8 @@ export const Currency = () => {
 
   const lang = useSelector(getLang);
   const { messageText, CurrencyText, PurchaseText, SaleText } = langOptionsCurrency;
-
+  const theme = useSelector(getTheme);
+  
   useEffect(() => {
     async function getCurrency() {
       try {
@@ -43,7 +45,11 @@ export const Currency = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>{message}</p>}
+      {error && <p
+      style={{
+        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+      }}
+      >{message}</p>}
       {currency && (
         <TableWrap>
           <Table>

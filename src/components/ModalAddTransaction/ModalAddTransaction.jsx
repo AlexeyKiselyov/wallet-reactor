@@ -19,6 +19,7 @@ import cssForm from './FormAddTransaction.module.scss';
 
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsModalAddTransaction } from '../../assets/lang/langOptionsModalAddTransaction';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -42,8 +43,8 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const [isShowSelectList, setIsShowSelectList] = useState('false');
 
   const lang = useSelector(getLang);
-  const { AddTransactionText, CommentText, AddText, CancelText } =
-    langOptionsModalAddTransaction;
+  const { AddTransactionText, CommentText, AddText, CancelText } = langOptionsModalAddTransaction;
+  const theme = useSelector(getTheme);
 
   // const toggleShowSelectList = () =>
   //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
@@ -182,8 +183,17 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
   return (
     <>
-      <div className={css.Overlay} onClick={closeByBackdrop}>
-        <div className={css.Modal}>
+      <div className={css.Overlay} onClick={closeByBackdrop}
+      style={{
+        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)",
+        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)', 
+      }}
+      >
+        <div className={css.Modal}
+        style={{
+          backgroundColor: theme === "light" ? "" : "var(--dark-mood-addForm-color)" 
+        }}
+        >
           <h2 className={cssForm.titleForm}>{AddTransactionText[lang]}</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
@@ -277,6 +287,9 @@ export const ModalAddTransaction = ({ closeModal }) => {
             </div>
             <label className={cssForm.commentLabel}>
               <input
+              style={{
+                backgroundColor: theme === "light" ? "" : "var(--dark-mood-addForm-color)" 
+              }}
                 className={cssForm.inputComment}
                 type="text"
                 name="comment"

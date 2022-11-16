@@ -12,6 +12,7 @@ import { useMedia } from 'react-use';
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsNavigation } from '../../assets/lang/langOptionsNavigation';
 import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 export const Navigation = () => {
   const isMobile = useMedia('(max-width: 767px)');
@@ -19,6 +20,7 @@ export const Navigation = () => {
   
   const lang = useSelector(getLang);
   const { HomeText, StatisticsText } = langOptionsNavigation;
+  const theme = useSelector(getTheme);
 
   return (
     <div>
@@ -59,7 +61,11 @@ export const Navigation = () => {
                 <NavIcon width="18" height="18">
                   <use href={`${Icons}#icon-home`} />
                 </NavIcon>
-                <Span>{HomeText[lang]}</Span>
+                <Span
+                style={{
+                  color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                }}
+                >{HomeText[lang]}</Span>
               </Link>
             </NavMenuItem>
 
@@ -68,7 +74,11 @@ export const Navigation = () => {
                 <NavIcon width="18" height="18">
                   <use href={`${Icons}#icon-statistics`} />
                 </NavIcon>
-                <Span>{StatisticsText[lang]}</Span>
+                <Span
+                style={{
+                  color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                }}
+                >{StatisticsText[lang]}</Span>
               </Link>
             </NavMenuItem>
           </NavMenuList>

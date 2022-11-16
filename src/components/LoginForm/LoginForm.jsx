@@ -11,6 +11,7 @@ import style from './LoginForm.module.css';
 import { useAuth } from 'hook';
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsLogIn } from '../../assets/lang/langOptionsLogIn';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 const rules = {
   email: 'required|email',
@@ -36,6 +37,7 @@ export default function LoginForm() {
 
   const lang = useSelector(getLang);
   const { inputEmail, inputPass, buttonReg, buttonLogIn, Error403Text, Error404Text } = langOptionsLogIn;
+  const theme = useSelector(getTheme);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -94,7 +96,11 @@ export default function LoginForm() {
   const { message, field } = validationError;
 
   return (
-    <div className={style.authForm}>
+    <div className={style.authForm}
+    style={{
+      backgroundColor: theme === "light" ? "" : "var(--dark-mood-form-color)"  
+    }}
+    >
       <div className={style.logo}>
         <Logo />
       </div>
@@ -103,6 +109,7 @@ export default function LoginForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
+
             placeholder={inputEmail[lang]}
             onChange={handleChange}
             name="email"
@@ -130,7 +137,7 @@ export default function LoginForm() {
 
         <div className={style.wrapper}>
           <Button
-            className="btn__primary"
+            className="btn__primary" 
             type="submit"
             text={buttonLogIn[lang]}
             isLoading={isLoading}

@@ -11,12 +11,14 @@ import { Loader } from 'components/Loader/Loader';
 
 import { MainContainer, MainStyled } from './DashboardPage.styled';
 import { selectIsLoading } from 'redux/transactions/transactionsSelectors';
+import { getTheme } from '../../redux/theme/themeSelector';
+
 // ================================================
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();
-
   const isLoading = useSelector(selectIsLoading);
+  const theme = useSelector(getTheme);
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -29,7 +31,11 @@ export const DashboardPage = () => {
   return (
     <>
       <Header />
-      <MainStyled>
+      <MainStyled
+      style={{
+        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
+      }}
+      >
         <MainContainer>
           <AsideBar />
           <Suspense fallback={<Loader />}>
