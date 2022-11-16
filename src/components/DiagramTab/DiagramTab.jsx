@@ -13,6 +13,7 @@ import { ChartBox, Box, Title, Wrapper } from './DiagramTab.styled';
 
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsDiagramTab } from '../../assets/lang/langOptionsDiagramTab';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 export const DiagramTab = () => {
   const [month, setMonth] = useState('');
@@ -25,7 +26,7 @@ export const DiagramTab = () => {
 
   const lang = useSelector(getLang);
   const { StatisticsText, } = langOptionsDiagramTab;
-
+  const theme = useSelector(getTheme);
 
   useEffect(() => {
     const fetchTransactionsSummary = ({ month, year }) => {
@@ -39,7 +40,11 @@ export const DiagramTab = () => {
 
   return (
     <Wrapper>
-      <Title>{StatisticsText[lang]}</Title>
+      <Title
+      style={{
+        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+      }}
+      >{StatisticsText[lang]}</Title>
       <Box>
         <ChartBox>{<Chart trSummary={trSummary} />}</ChartBox>
         <StatisticTabel

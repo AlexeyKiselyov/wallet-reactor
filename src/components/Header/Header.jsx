@@ -24,6 +24,8 @@ import { getLang } from 'redux/lang/langSelector';
 import { langOptionsExit } from '../../assets/lang/langOptionsExit';
 import SwitchLangHeader from 'components/SwitchLangHeader/SwitchLangHeader';
 import { randomAvatar } from '../../utils/randomAvatar';
+import SwitchTheme from "components/SwitchTheme/SwitchTheme";
+import { getTheme } from '../../redux/theme/themeSelector';
 
 // ================================================================
 
@@ -35,10 +37,19 @@ export const Header = () => {
 
   const lang = useSelector(getLang);
   const { ExitText } = langOptionsExit;
+  const theme = useSelector(getTheme);
 
   return (
-    <HeaderStyled>
-      <HeaderContainer>
+    <HeaderStyled
+    style={{
+      backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
+    }}
+    >
+      <HeaderContainer
+      style={{
+        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
+      }}
+      >
         <div>
           <Link to="/">
             <Logo />
@@ -59,6 +70,7 @@ export const Header = () => {
           <SwitchLangHeader />
         </UserMenuWrapper>
       </HeaderContainer> 
+      <SwitchTheme />
     </HeaderStyled>
   );
 };

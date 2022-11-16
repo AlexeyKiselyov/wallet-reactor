@@ -7,18 +7,29 @@ import styles from './Balance.module.scss';
 
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsBalance } from '../../assets/lang/langOptionsBalance';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 const Balance = () => {
   const balance = useSelector(authSelectors.selectBalance);
   
   const lang = useSelector(getLang);
   const { CurrentBalanceText } = langOptionsBalance;
-
+  const theme = useSelector(getTheme);
+  
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper}
+    style={{
+      backgroundColor: theme === "light" ? "" : "var(--dark-mood-form-color)"  
+    }}
+    >
       <h2 className={styles.title}>{CurrentBalanceText[lang]}</h2>
-      <p className={styles.text}>
-        <span className={styles.currency}>&#8372;</span>
+      <p className={styles.text}
+      style={{
+        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+      }}
+      >
+        <span className={styles.currency}
+        >&#8372;</span>
         {balance}.00
       </p>
     </div>

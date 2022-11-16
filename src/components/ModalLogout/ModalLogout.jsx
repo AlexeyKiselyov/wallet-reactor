@@ -6,11 +6,13 @@ import Button from 'components/Button';
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsModalLogOut } from '../../assets/lang/langOptionsModalLogOut';
 import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 function ModalLogoutAndDelete({ action }) {
   const dispatch = useDispatch();
   const lang = useSelector(getLang);
   const { TitleText, YesText, NoText } = langOptionsModalLogOut;
+  const theme = useSelector(getTheme);
 
   const onLogout = () => {
     cleanState();
@@ -27,8 +29,16 @@ function ModalLogoutAndDelete({ action }) {
   };
 
   return (
-    <div className={style.modal}>
-      <h2 className={style.title}>{TitleText[lang]}</h2>
+    <div className={style.modal}
+    style={{
+      backgroundColor: theme === "light" ? "" : "var(--dark-mood-addForm-color)", 
+    }}
+    >
+      <h2 className={style.title}
+      style={{
+        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+      }}
+      >{TitleText[lang]}</h2>
       <div className={style.wrapper}>
         {action === 'logout' && (
           <Button

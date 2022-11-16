@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/toolkit';
 import transactionsReduser from './transactions/transactionsSlice';
 import transactionCategoriesReduser from './transactionCategories/transactionCategoriesSlice';
 import {
@@ -16,6 +16,7 @@ import { authReducer } from './auth';
 import { globalReducer } from './global/global-slice';
 import { trSummaryReducer } from './transactionSumController/transactionSumControllerSlice';
 import langReducer from "./lang/langSlice";
+import themeReducer from "./theme/themeSlice";
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -30,18 +31,29 @@ const authPersistConfig = {
   storage,
   whitelist: ['token'],
 };
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 
-export const store = configureStore({
-  reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-    transactions: transactionsReduser,
-    transactionCategories: transactionCategoriesReduser,
-    global: globalReducer,
-    trSummary: trSummaryReducer,
-    lang: langReducer,
-  },
+const rootPersistConfig = {
+  key: "root",
+  storage,
+  whitelist: ['theme', 'lang'],
+};
+
+const rootReducer = combineReducers({
+  auth: authPersistedReducer,
+  transactions: transactionsReduser,
+  transactionCategories: transactionCategoriesReduser,
+  global: globalReducer,
+  trSummary: trSummaryReducer,
+  lang: langReducer,
+  theme: themeReducer,
+});
+
+const rootPersistedReducer = persistReducer(rootPersistConfig, rootReducer);
+
+export const  store = configureStore({
+  reducer: rootPersistedReducer,
   middleware,
-  devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);

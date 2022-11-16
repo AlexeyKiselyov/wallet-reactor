@@ -11,6 +11,7 @@ import { authOperations } from 'redux/auth';
 import { useAuth } from 'hook';
 import { getLang } from "redux/lang/langSelector";
 import { langOptionsRegister } from '../../assets/lang/langOptionsRegister';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 const rules = {
   email: 'required|email',
@@ -65,6 +66,7 @@ export default function RegistrationForm() {
     Error409Text,
     SuccessText,
   } = langOptionsRegister;
+  const theme = useSelector(getTheme);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -127,7 +129,11 @@ export default function RegistrationForm() {
   const { message, field } = validationError;
 
   return (
-    <div className={style.authForm}>
+    <div className={style.authForm}
+    style={{
+      backgroundColor: theme === "light" ? "" : "var(--dark-mood-form-color)"  
+    }}
+    >
       <div className={style.logo}>
         <Logo />
       </div>
