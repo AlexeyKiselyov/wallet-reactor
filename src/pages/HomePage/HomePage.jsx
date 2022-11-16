@@ -3,7 +3,7 @@ import { HomeTab } from 'components/HomeTab/HomeTab';
 import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -19,3 +19,4 @@ export const HomePage = () => {
     </>
   );
 };
+export default HomePage;

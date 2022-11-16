@@ -60,6 +60,10 @@ export default function LoginForm() {
           password,
         };
         dispatch(authOperations.logIn(singInData)).then(response => {
+          if (response.payload === 'Request failed with status code 400') {
+            toast.error('Oops... Validation error!');
+            return;
+          }
           if (response.payload === 'Request failed with status code 403') {
             toast.error(Error403Text[lang]);
             return;

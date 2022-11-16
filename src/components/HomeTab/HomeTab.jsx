@@ -12,6 +12,7 @@ export const HomeTab = () => {
   const categoriesList = categories.map(data => data);
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
+  const transactionsReverse = [...transactions];
 
   const lang = useSelector(getLang);
   const {
@@ -31,7 +32,7 @@ export const HomeTab = () => {
           <div className={s.scrollTableMob}>
             <div className={s.scrollTableBodyMob}>
               {transactions.length !== 0 ? (
-                transactions.map(el => (
+                transactionsReverse.map(el => (
                   <table
                     className={
                       el.amount > 0 ? s.tablePositive : s.tableNegative
@@ -101,7 +102,7 @@ export const HomeTab = () => {
               <table>
                 <tbody>
                   {transactions.length ? (
-                    transactions.map(el => (
+                    transactionsReverse.map(el => (
                       <tr key={el.id}>
                         <td>{el.transactionDate}</td>
                         <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>

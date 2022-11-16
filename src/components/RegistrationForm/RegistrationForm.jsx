@@ -94,6 +94,10 @@ export default function RegistrationForm() {
       .then(() => {
         const registerData = { username, email, password };
         dispatch(authOperations.register(registerData)).then(response => {
+          if (response.payload === 'Request failed with status code 400') {
+            toast.error('Oops... Validation error!!');
+            return;
+          }
           if (response.payload === 'Request failed with status code 409') {
             toast.error(Error409Text[lang]);
             return;
