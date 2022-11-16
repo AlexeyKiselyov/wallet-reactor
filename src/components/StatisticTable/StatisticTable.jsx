@@ -1,6 +1,10 @@
 import { useMedia } from 'react-use';
 import Select from 'react-select';
 
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
+import { useSelector } from 'react-redux';
+
 import {
   Box,
   SelectWrap,
@@ -44,10 +48,6 @@ function generateArrayOfYears() {
   return years;
 }
 
-import { getLang } from "redux/lang/langSelector";
-import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
-import { useSelector } from 'react-redux';
-
 export const StatisticTabel = ({
   trSummary,
   expenseSummary,
@@ -69,7 +69,8 @@ export const StatisticTabel = ({
     }, []);
 
   const lang = useSelector(getLang);
-  const { MonthText, YearText, CategoryText, SumText, ExpansesText, IncomesText } = langOptionsStatisticTable;
+  const { CategoryText, SumText, ExpansesText, IncomesText } = langOptionsStatisticTable;
+//    MonthText, YearText
 
   return (
     <Box>
