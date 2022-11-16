@@ -1,5 +1,5 @@
 import { useMedia } from 'react-use';
-// import Select from 'react-select';
+import Select from 'react-select';
 
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
