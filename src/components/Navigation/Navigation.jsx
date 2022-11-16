@@ -9,10 +9,17 @@ import {
 } from './Navigation.styled';
 import Icons from 'images/sprite.svg';
 import { useMedia } from 'react-use';
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsNavigation } from '../../assets/lang/langOptionsNavigation';
+import { useSelector } from 'react-redux';
 
 export const Navigation = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
+  
+  const lang = useSelector(getLang);
+  const { HomeText, StatisticsText } = langOptionsNavigation;
+
   return (
     <div>
       {isMobile && (
@@ -52,7 +59,7 @@ export const Navigation = () => {
                 <NavIcon width="18" height="18">
                   <use href={`${Icons}#icon-home`} />
                 </NavIcon>
-                <Span>Home</Span>
+                <Span>{HomeText[lang]}</Span>
               </Link>
             </NavMenuItem>
 
@@ -61,7 +68,7 @@ export const Navigation = () => {
                 <NavIcon width="18" height="18">
                   <use href={`${Icons}#icon-statistics`} />
                 </NavIcon>
-                <Span>Statistics</Span>
+                <Span>{StatisticsText[lang]}</Span>
               </Link>
             </NavMenuItem>
           </NavMenuList>

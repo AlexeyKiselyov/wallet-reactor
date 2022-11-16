@@ -7,20 +7,27 @@ import { toast } from 'react-toastify';
 import Spinner from 'components/Spinner';
 import { useAuth } from 'hook';
 import { authOperations } from 'redux/auth';
+import { getLang } from 'redux/lang/langSelector';
+import { langOptionsLoginTestUser } from '../../assets/lang/langOptionsLoginTestUser';
+import { useSelector } from 'react-redux';
+// import Lazy from 'yup/lib/Lazy';
 
 export default function LoginTestUser({ showTestMode, onClose }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useAuth();
 
+  const lang = useSelector(getLang);
+  const { MassageFirstPartText, MassageSecondPartText, Error403Text, Error404Text } = langOptionsLoginTestUser;
+
   const onLogin = () => {
     dispatch(authOperations.logIn(TEST_USER)).then(response => {
       if (response.payload === 'Request failed with status code 403') {
-        toast.error('Oops... Password is incorrect!');
+        toast.error(Error403Text[lang]);
         return;
       }
       if (response.payload === 'Request failed with status code 404') {
-        toast.error('Oops... User with such email not found!');
+        toast.error(Error404Text[lang]);
         return;
       }
       if (response.payload.token) {
@@ -47,9 +54,9 @@ export default function LoginTestUser({ showTestMode, onClose }) {
           </svg>
         </button>
         <p className={style.text}>
-          Before creating your personal account you can {'   '}
+          {MassageFirstPartText[lang]} {'   '}
           <button className={style.button} type="button" onClick={onLogin}>
-            run demo version
+            {MassageSecondPartText[lang]}
           </button>
         </p>
       </div>

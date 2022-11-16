@@ -44,6 +44,10 @@ function generateArrayOfYears() {
   return years;
 }
 
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
+import { useSelector } from 'react-redux';
+
 export const StatisticTabel = ({
   trSummary,
   expenseSummary,
@@ -51,6 +55,7 @@ export const StatisticTabel = ({
   setYear,
   setMonth,
 }) => {
+
   const isMobile = useMedia('(max-width: 767px)');
 
   const selectOption = data =>
@@ -62,6 +67,10 @@ export const StatisticTabel = ({
 
       return acc;
     }, []);
+
+  const lang = useSelector(getLang);
+  const { MonthText, YearText, CategoryText, SumText, ExpansesText, IncomesText } = langOptionsStatisticTable;
+
   return (
     <Box>
       <SelectWrap>
@@ -83,15 +92,16 @@ export const StatisticTabel = ({
             setYear(e.value);
           }}
           options={selectOption(generateArrayOfYears())}
-        ></Select>
+        ></Select>       
+       
       </SelectWrap>
 
       <Wrapper>
         <Table>
           <thead>
             <tr>
-              <TabHeader>Category</TabHeader>
-              <TabHeader>Sum</TabHeader>
+              <TabHeader>{CategoryText[lang]}</TabHeader>
+              <TabHeader>{SumText[lang]}</TabHeader>
             </tr>
           </thead>
           <tbody>
@@ -110,13 +120,13 @@ export const StatisticTabel = ({
         </Table>
         <TrSummaryWrap>
           <TrSummaryField>
-            <TrSummaryStr>Expanses: </TrSummaryStr>
+            <TrSummaryStr>{ExpansesText[lang]}: </TrSummaryStr>
             <TrSummaryNum red>
               {Math.abs(expenseSummary).toFixed(2)}
             </TrSummaryNum>
           </TrSummaryField>
           <TrSummaryField>
-            <TrSummaryStr>Incomes: </TrSummaryStr>
+            <TrSummaryStr>{IncomesText[lang]}: </TrSummaryStr>
             <TrSummaryNum>{Math.abs(incomeSummary).toFixed(2)}</TrSummaryNum>
           </TrSummaryField>
         </TrSummaryWrap>
