@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.8673b37e.css",
+    "main.css": "/wallet-reactor/static/css/main.a4817311.css",
     "main.js": "/wallet-reactor/static/js/main.d4994356.js",
     "static/css/316.03bf6c8c.chunk.css": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css",
     "static/js/316.888fc11d.chunk.js": "/wallet-reactor/static/js/316.888fc11d.chunk.js",
@@ -29,7 +29,7 @@
     "index.html": "/wallet-reactor/index.html",
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
-    "main.8673b37e.css.map": "/wallet-reactor/static/css/main.8673b37e.css.map",
+    "main.a4817311.css.map": "/wallet-reactor/static/css/main.a4817311.css.map",
     "main.d4994356.js.map": "/wallet-reactor/static/js/main.d4994356.js.map",
     "316.03bf6c8c.chunk.css.map": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css.map",
     "316.888fc11d.chunk.js.map": "/wallet-reactor/static/js/316.888fc11d.chunk.js.map",
@@ -39,7 +39,7 @@
     "210.1dc7b944.chunk.js.map": "/wallet-reactor/static/js/210.1dc7b944.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8673b37e.css",
+    "static/css/main.a4817311.css",
     "static/js/main.d4994356.js"
   ]
 }
