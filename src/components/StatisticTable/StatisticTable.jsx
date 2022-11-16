@@ -1,10 +1,11 @@
+import { useMedia } from 'react-use';
+import Select from 'react-select';
+
 import {
-  Wrapper,
+  Box,
   SelectWrap,
-  SelectField,
-  Select,
-  Option,
   Table,
+  Wrapper,
   TabHeader,
   Tabrow,
   TrSummaryNum,
@@ -12,48 +13,77 @@ import {
   TrSummaryField,
   TrSummaryStr,
 } from './StatisticTable.styled';
+import { customStylesSelect } from './StatisticTable.styled';
+
+const dataMonth = [
+  { id: 0, label: 'January', value: '1' },
+  { id: 1, label: 'February', value: '2' },
+  { id: 2, label: 'March', value: '3' },
+  { id: 3, label: 'April', value: '4' },
+  { id: 4, label: 'May', value: '5' },
+  { id: 5, label: 'June', value: '6' },
+  { id: 6, label: 'July', value: '7' },
+  { id: 7, label: 'August', value: '8' },
+  { id: 8, label: 'September', value: '9' },
+  { id: 9, label: 'October', value: '10' },
+  { id: 10, label: 'November', value: '11' },
+  { id: 11, label: 'December', value: '12' },
+];
+
+function generateArrayOfYears() {
+  const max = new Date().getFullYear();
+  const min = max - 4;
+  const years = [];
+
+  for (let i = max; i >= min; i--) {
+    years.push({
+      value: i,
+      label: i.toString(),
+    });
+  }
+  return years;
+}
 
 export const StatisticTabel = ({
-  handleChange,
   trSummary,
   expenseSummary,
   incomeSummary,
+  setYear,
+  setMonth,
 }) => {
-  return (
-    <div>
-      <SelectWrap>
-        <SelectField>
-          <Select onChange={handleChange} name="month">
-            <Option value="" hidden>
-              Month
-            </Option>
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
-            <Option value="5">5</Option>
-            <Option value="6">6</Option>
-            <Option value="7">7</Option>
-            <Option value="8">8</Option>
-            <Option value="9">9</Option>
-            <Option value="10">10</Option>
-            <Option value="11">11</Option>
-            <Option value="12">12</Option>
-          </Select>
-        </SelectField>
+  const isMobile = useMedia('(max-width: 767px)');
 
-        <SelectField>
-          <Select onChange={handleChange} name="year">
-            <Option value="" hidden>
-              Year
-            </Option>
-            <Option value="2023">2019</Option>
-            <Option value="2023">2020</Option>
-            <Option value="2022">2021</Option>
-            <Option value="2022">2022</Option>
-            <Option value="2023">2023</Option>
-          </Select>
-        </SelectField>
+  const selectOption = data =>
+    data.reduce((acc, item) => {
+      acc.push({
+        value: `${item.value}`,
+        label: `${item.label}`,
+      });
+
+      return acc;
+    }, []);
+  return (
+    <Box>
+      <SelectWrap>
+        <Select
+          name="month"
+          placeholder="Month"
+          styles={customStylesSelect(isMobile)}
+          onChange={e => {
+            setMonth(e.value);
+          }}
+          options={selectOption(dataMonth)}
+        ></Select>
+
+        <Select
+          name="year"
+          placeholder="Year"
+          styles={customStylesSelect(isMobile)}
+          onChange={e => {
+            setYear(e.value);
+          }}
+          options={selectOption(generateArrayOfYears())}
+        ></Select>
       </SelectWrap>
 
       <Wrapper>
@@ -91,13 +121,6 @@ export const StatisticTabel = ({
           </TrSummaryField>
         </TrSummaryWrap>
       </Wrapper>
-    </div>
+    </Box>
   );
 };
-
-//  <Total>
-//           <p>Expenses:</p> <TrSummaryNum>{expenseSummary}</TrSummaryNum>
-//         </Total>
-//         <Total>
-//           <p>Income: </p> <TrSummaryNum>{incomeSummary}</TrSummaryNum>
-//         </Total>
