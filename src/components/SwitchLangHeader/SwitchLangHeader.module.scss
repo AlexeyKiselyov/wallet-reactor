@@ -15,25 +15,11 @@
 .select {
   display: block;
   padding: 2px 4px 1px 4px;
-  // margin: 5px;
-  // height: 22px;
+
   background-color: inherit;
   border-radius: 6px;
   border: 1px solid var(--secondary-text-color);
-  position: absolute;
-  right: 105px;
-  top: 20px;
-  outline: none;
 
+  font-size: 1px;
   color: var(--secondary-text-color);
-
-  @media screen and (min-width: 480px) {
-    right: 115px;
-  }
-  @media screen and (min-width: 768px) {
-    right: 70px;
-  }
-  @media screen and (min-width: 1280px) {
-    right: 70px;
-  }
 }

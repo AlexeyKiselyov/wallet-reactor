@@ -19,9 +19,9 @@ import {
 
 import { openModalLogout } from 'redux/index';
 
-import SwitchLang from "components/SwitchLang/SwitchLang";
-import { getLang } from "redux/lang/langSelector";
+import { getLang } from 'redux/lang/langSelector';
 import { langOptionsExit } from '../../assets/lang/langOptionsExit';
+import SwitchLangHeader from 'components/SwitchLangHeader/SwitchLangHeader';
 
 // ================================================================
 
@@ -50,9 +50,9 @@ export const Header = () => {
             <LogoExit>
               <use href={`${Icons}#icon-logout`} />
             </LogoExit>
-            {!isMobile && ExitText[lang] }
+            {!isMobile && ExitText[lang]}
           </LogoutBtn>
-          <SwitchLang /> 
+          <SwitchLangHeader />
         </UserMenuWrapper>
       </HeaderContainer>
     </HeaderStyled>
