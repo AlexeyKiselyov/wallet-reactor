@@ -1,7 +1,7 @@
 @import '../../assets/sass/utils/mixins';
+
 .tableWrap {
   max-width: 715px;
-  // margin-top: 30px;
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     margin-top: 30px;
   }
@@ -14,6 +14,15 @@
   margin-bottom: 20px;
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     height: 40vh;
+  }
+  tr {
+    border-bottom: 1px solid var(--secondary-text-color);
+  }
+  tr > td:first-child {
+    width: 120px;
+  }
+  tr > td:nth-child(2) {
+    width: 60px;
   }
 }
 .scrollTable table {
@@ -29,6 +38,7 @@
     font-size: 18px;
     background-color: var(--third-text-color);
     &:first-child {
+      width: 120px;
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
     }
@@ -36,9 +46,9 @@
       border-top-right-radius: 30px;
       border-bottom-right-radius: 30px;
     }
-  }
-  tr:not(:first-child) {
-    outline: 1px solid var(--secondary-text-color);
+    &:nth-child(2) {
+      width: 60px;
+    }
   }
 
   td {
@@ -74,10 +84,14 @@
   text-align: center;
   border-collapse: collapse;
   margin-bottom: 5px;
-
   tr {
     background-color: var(--third-text-color);
     padding-top: 2px;
+
+    td:not(:last-child) {
+      padding: 10px 15px;
+      font-size: 16px;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.308);
@@ -109,16 +123,12 @@
   tr:last-child {
     & > td:first-child {
       border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
       box-shadow: inset 4px 0px 0px var(--pink-accent-color);
     }
     & > td:nth-child(2) {
       border-bottom-right-radius: 20px;
     }
-  }
-
-  td {
-    padding: 10px 15px;
-    font-size: 16px;
   }
 }
 
@@ -147,4 +157,44 @@ td.positive {
 
 td.negative {
   color: var(--pink-accent-color);
+}
+
+.scrollTableBtn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  background-color: var(--pink-accent-color);
+  transform: scaleY(1.2);
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.scrollTableBtn:hover,
+.scrollTableBtn:focus {
+  opacity: 1;
+}
+
+.scrollTableBtnMob {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px 15px;
+  border-radius: 0 0 20px 20px;
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  background-color: var(--pink-accent-color);
+  transform: scaleY(1.2);
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.scrollTableBtnMob:hover,
+.scrollTableBtnMob:focus {
+  opacity: 1;
 }
