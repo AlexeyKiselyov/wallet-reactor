@@ -1,0 +1,34 @@
+.init {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+.lightTheme {
+  composes: init;
+  background-color: rgb(243, 245, 239);
+}
+.darkTheme {
+  composes: init;
+  background-color: rgb(63, 63, 63);
+}
+.select {
+  display: block;
+  margin: 5px;
+  height: 22px;
+  background-color: inherit;
+  border-radius: 3px;
+  border: 1px solid inherit;
+  position: absolute;
+  right: 105px;
+
+  @media screen and (min-width: 480px) {
+    right: 115px;
+  }
+  @media screen and (min-width: 768px) {
+    right: 70px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 70px;
+  }
+}

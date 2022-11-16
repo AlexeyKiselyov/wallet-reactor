@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { validate } from 'indicative/validator';
 import { authOperations } from 'redux/auth';
@@ -9,6 +9,8 @@ import Icons from 'images/sprite.svg';
 import Button from 'components/Button';
 import style from './LoginForm.module.css';
 import { useAuth } from 'hook';
+import { getLang } from 'redux/lang/langSelector';
+import { langOptionsLogIn } from '../../assets/lang/langOptionsLogIn';
 
 const rules = {
   email: 'required|email',
@@ -31,6 +33,9 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useAuth();
+
+  const lang = useSelector(getLang);
+  const { inputEmail, inputPass, buttonReg, buttonLogIn, Error403Text, Error404Text } = langOptionsLogIn;
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -56,18 +61,18 @@ export default function LoginForm() {
         };
         dispatch(authOperations.logIn(singInData)).then(response => {
           if (response.payload === 'Request failed with status code 403') {
-            toast.error('Oops... Password is incorrect!');
+            toast.error(Error403Text[lang]);
             return;
           }
           if (response.payload === 'Request failed with status code 404') {
-            toast.error('Oops... User with such email not found!');
+            toast.error(Error404Text[lang]);
             return;
           }
           if (response.payload.token) {
             navigate('/', { replace: true });
+            resetForm();
           }
         });
-        resetForm();
       })
       .catch(errors => {
         setValidationError({
@@ -94,7 +99,7 @@ export default function LoginForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder="E-mail"
+            placeholder={inputEmail[lang]}
             onChange={handleChange}
             name="email"
             value={email}
@@ -108,7 +113,7 @@ export default function LoginForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder="Password"
+            placeholder={inputPass[lang]}
             onChange={handleChange}
             name="password"
             type="password"
@@ -123,11 +128,11 @@ export default function LoginForm() {
           <Button
             className="btn__primary"
             type="submit"
-            text="log in"
+            text={buttonLogIn[lang]}
             isLoading={isLoading}
           />
           <Link to="/register" className={style.authLink}>
-            <Button className="btn__secondary" type="buttom" text="Register" />
+            <Button className="btn__secondary" type="buttom" text={buttonReg[lang]} />
           </Link>
         </div>
       </form>

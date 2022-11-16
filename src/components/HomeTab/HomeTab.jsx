@@ -3,6 +3,8 @@ import s from './HomeTab.module.scss';
 import { selectTransactions } from 'redux/transactions/transactionsSelectors';
 import { useMedia } from 'react-use';
 import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
+import { getLang } from 'redux/lang/langSelector';
+import { langOptionsHomeTab } from '../../assets/lang/langOptionsHomeTab';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
@@ -10,6 +12,17 @@ export const HomeTab = () => {
   const categoriesList = categories.map(data => data);
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
+
+  const lang = useSelector(getLang);
+  const {
+    DataText,
+    TypeText,
+    CategoryText,
+    CommentText,
+    SumText,
+    BalanceText,
+    NoTransactionsText,
+  } = langOptionsHomeTab;
 
   return (
     <>
@@ -27,16 +40,16 @@ export const HomeTab = () => {
                   >
                     <tbody>
                       <tr>
-                        <td>Data</td>
+                        <td>{DataText[lang]}</td>
                         <td>{el.transactionDate}</td>
                       </tr>
                       <tr>
-                        <td>Type</td>
+                        <td>{TypeText[lang]}</td>
                         <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
                       </tr>
 
                       <tr>
-                        <td>Category</td>
+                        <td>{CategoryText[lang]}</td>
                         <td>
                           {categoriesList.length &&
                             categoriesList.find(cat => cat.id === el.categoryId)
@@ -44,24 +57,24 @@ export const HomeTab = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td>Comment</td>
+                        <td>{CommentText[lang]}</td>
                         <td>{el.comment}</td>
                       </tr>
                       <tr>
-                        <td>Sum</td>
+                        <td>{SumText[lang]}</td>
                         <td className={el.amount > 0 ? s.positive : s.negative}>
                           {el.amount}
                         </td>
                       </tr>
                       <tr>
-                        <td>Balance</td>
+                        <td>{BalanceText[lang]}</td>
                         <td>{el.balanceAfter}</td>
                       </tr>
                     </tbody>
                   </table>
                 ))
               ) : (
-                <p>No transactions</p>
+                <p>{NoTransactionsText[lang]}</p>
               )}
             </div>
           </div>
@@ -74,12 +87,12 @@ export const HomeTab = () => {
             <table>
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Category</th>
-                  <th>Comment</th>
-                  <th>Sum</th>
-                  <th>Balance</th>
+                  <th>{DataText[lang]}</th>
+                  <th>{TypeText[lang]}</th>
+                  <th>{CategoryText[lang]}</th>
+                  <th>{CommentText[lang]}</th>
+                  <th>{SumText[lang]}</th>
+                  <th>{BalanceText[lang]}</th>
                 </tr>
               </thead>
             </table>
@@ -106,7 +119,7 @@ export const HomeTab = () => {
                     ))
                   ) : (
                     <tr>
-                      <td>No transactions</td>
+                      <td>{NoTransactionsText[lang]}</td>
                     </tr>
                   )}
                 </tbody>

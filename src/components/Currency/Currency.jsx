@@ -8,11 +8,17 @@ import {
   TableWrap,
   TableRow,
 } from './Currency.styled';
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsCurrency } from '../../assets/lang/langOptionsCurrency';
+import { useSelector } from 'react-redux';
 
 export const Currency = () => {
   const [currency, setCurrency] = useState(null);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const lang = useSelector(getLang);
+  const { messageText, CurrencyText, PurchaseText, SaleText } = langOptionsCurrency;
 
   useEffect(() => {
     async function getCurrency() {
@@ -32,7 +38,7 @@ export const Currency = () => {
     getCurrency();
   }, []);
 
-  const message = 'Sorry, we don’t have any information about currency';
+  const message = messageText[lang];
 
   return (
     <>
@@ -43,9 +49,9 @@ export const Currency = () => {
           <Table>
             <thead>
               <tr>
-                <TableTitle>Currency</TableTitle>
-                <TableTitle>Purchase</TableTitle>
-                <TableTitle>Sale</TableTitle>
+                <TableTitle>{CurrencyText[lang]}</TableTitle>
+                <TableTitle>{PurchaseText[lang]}</TableTitle>
+                <TableTitle>{SaleText[lang]}</TableTitle>
               </tr>
             </thead>
             <tbody>

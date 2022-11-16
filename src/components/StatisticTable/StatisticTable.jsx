@@ -13,19 +13,27 @@ import {
   TrSummaryStr,
 } from './StatisticTable.styled';
 
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
+import { useSelector } from 'react-redux';
+
 export const StatisticTabel = ({
   handleChange,
   trSummary,
   expenseSummary,
   incomeSummary,
 }) => {
+
+  const lang = useSelector(getLang);
+  const { MonthText, YearText, CategoryText, SumText, ExpansesText, IncomesText } = langOptionsStatisticTable;
+
   return (
     <div>
       <SelectWrap>
         <SelectField>
           <Select onChange={handleChange} name="month">
             <Option value="" hidden>
-              Month
+              {MonthText[lang]}
             </Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
@@ -45,7 +53,7 @@ export const StatisticTabel = ({
         <SelectField>
           <Select onChange={handleChange} name="year">
             <Option value="" hidden>
-              Year
+              {YearText[lang]}
             </Option>
             <Option value="2023">2019</Option>
             <Option value="2023">2020</Option>
@@ -60,8 +68,8 @@ export const StatisticTabel = ({
         <Table>
           <thead>
             <tr>
-              <TabHeader>Category</TabHeader>
-              <TabHeader>Sum</TabHeader>
+              <TabHeader>{CategoryText[lang]}</TabHeader>
+              <TabHeader>{SumText[lang]}</TabHeader>
             </tr>
           </thead>
           <tbody>
@@ -80,13 +88,13 @@ export const StatisticTabel = ({
         </Table>
         <TrSummaryWrap>
           <TrSummaryField>
-            <TrSummaryStr>Expanses: </TrSummaryStr>
+            <TrSummaryStr>{ExpansesText[lang]}: </TrSummaryStr>
             <TrSummaryNum red>
               {Math.abs(expenseSummary).toFixed(2)}
             </TrSummaryNum>
           </TrSummaryField>
           <TrSummaryField>
-            <TrSummaryStr>Incomes: </TrSummaryStr>
+            <TrSummaryStr>{IncomesText[lang]}: </TrSummaryStr>
             <TrSummaryNum>{Math.abs(incomeSummary).toFixed(2)}</TrSummaryNum>
           </TrSummaryField>
         </TrSummaryWrap>

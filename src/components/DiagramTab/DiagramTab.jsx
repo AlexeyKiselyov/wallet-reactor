@@ -11,6 +11,9 @@ import {
 import { ChartBox, Box, Title, Wrapper } from './DiagramTab.styled';
 import { getTransactionsSummary } from 'redux/transactionSumController/transactionSumControllerOperations';
 
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsDiagramTab } from '../../assets/lang/langOptionsDiagramTab';
+
 export const DiagramTab = () => {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
@@ -19,6 +22,10 @@ export const DiagramTab = () => {
   const expenseSummary = useSelector(selectExpenseSummary);
   const incomeSummary = useSelector(selectIncomeSummary);
   const dispatch = useDispatch();
+
+  const lang = useSelector(getLang);
+  const { StatisticsText, } = langOptionsDiagramTab;
+
 
   useEffect(() => {
     const fetchTransactionsSummary = ({ month, year }) => {
@@ -45,7 +52,7 @@ export const DiagramTab = () => {
 
   return (
     <Wrapper>
-      <Title>Statistics</Title>
+      <Title>{StatisticsText[lang]}</Title>
       <Box>
         <ChartBox>{<Chart trSummary={trSummary} />}</ChartBox>
         <StatisticTabel

@@ -37,7 +37,7 @@ export const DashboardPage = () => {
       <MainStyled>
         <MainContainer>
           <AsideBar />
-
+        
           <Outlet />
         </MainContainer>
       </MainStyled>
