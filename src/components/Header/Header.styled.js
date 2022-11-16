@@ -75,6 +75,7 @@ export const LogoutBtn = styled.button`
   display: flex;
   align-items: stretch;
   padding: 4px 12px;
+  margin-right: 30px;
 
   border-color: transparent;
   background-color: transparent;
@@ -91,4 +92,21 @@ export const LogoutBtn = styled.button`
   @media screen and (max-width: 767px) {
     padding: 4px 8px;
   }
+`;
+
+export const Avatar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  & img {
+    width: 45px;
+    height: 45px;
+
+    background: url(.png);
+    border-radius: 3px;
+  }
+`;
+
+export const SwitchLangStyle = styled.div`
+  posision
 `;
