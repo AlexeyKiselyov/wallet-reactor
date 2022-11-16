@@ -1,7 +1,7 @@
 import { useMedia } from 'react-use';
-import Select from 'react-select';
+// import Select from 'react-select';
 
-import { getLang } from "redux/lang/langSelector";
+import { getLang } from 'redux/lang/langSelector';
 import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
 import { useSelector } from 'react-redux';
 
@@ -55,7 +55,6 @@ export const StatisticTabel = ({
   setYear,
   setMonth,
 }) => {
-
   const isMobile = useMedia('(max-width: 767px)');
 
   const selectOption = data =>
@@ -69,8 +68,9 @@ export const StatisticTabel = ({
     }, []);
 
   const lang = useSelector(getLang);
-  const { CategoryText, SumText, ExpansesText, IncomesText } = langOptionsStatisticTable;
-//    MonthText, YearText
+  const { CategoryText, SumText, ExpansesText, IncomesText } =
+    langOptionsStatisticTable;
+  //    MonthText, YearText
 
   return (
     <Box>
@@ -93,8 +93,7 @@ export const StatisticTabel = ({
             setYear(e.value);
           }}
           options={selectOption(generateArrayOfYears())}
-        ></Select>       
-       
+        ></Select>
       </SelectWrap>
 
       <Wrapper>
