@@ -102,22 +102,31 @@ export const HomeTab = () => {
               <table>
                 <tbody>
                   {transactions.length ? (
-                    transactionsReverse.map(el => (
-                      <tr key={el.id}>
-                        <td>{el.transactionDate}</td>
-                        <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                        <td>
-                          {categoriesList.length &&
-                            categoriesList.find(cat => cat.id === el.categoryId)
-                              .name}
-                        </td>
-                        <td>{el.comment}</td>
-                        <td className={el.amount > 0 ? s.positive : s.negative}>
-                          {el.amount}
-                        </td>
-                        <td>{el.balanceAfter}</td>
-                      </tr>
-                    ))
+                    transactionsReverse
+                      .sort(
+                        (a, b) =>
+                          new Date(b.transactionDate) -
+                          new Date(a.transactionDate)
+                      )
+                      .map(el => (
+                        <tr key={el.id}>
+                          <td>{el.transactionDate}</td>
+                          <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                          <td>
+                            {categoriesList.length &&
+                              categoriesList.find(
+                                cat => cat.id === el.categoryId
+                              ).name}
+                          </td>
+                          <td>{el.comment}</td>
+                          <td
+                            className={el.amount > 0 ? s.positive : s.negative}
+                          >
+                            {el.amount}
+                          </td>
+                          <td>{el.balanceAfter}</td>
+                        </tr>
+                      ))
                   ) : (
                     <tr>
                       <td>{NoTransactionsText[lang]}</td>
