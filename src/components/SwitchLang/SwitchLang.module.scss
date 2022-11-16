@@ -21,19 +21,19 @@
   border-radius: 6px;
   border: 1px solid var(--secondary-text-color);
   position: absolute;
-  right: 105px;
+  right: 25px;
   top: 20px;
   outline: none;
 
   color: var(--secondary-text-color);
 
-  @media screen and (min-width: 480px) {
-    right: 115px;
-  }
-  @media screen and (min-width: 768px) {
-    right: 70px;
-  }
-  @media screen and (min-width: 1280px) {
-    right: 70px;
-  }
+  // @media screen and (min-width: 480px) {
+  //   right: 115px;
+  // }
+  // @media screen and (min-width: 768px) {
+  //   right: 70px;
+  // }
+  // @media screen and (min-width: 1280px) {
+  //   right: 70px;
+  // }
 }
