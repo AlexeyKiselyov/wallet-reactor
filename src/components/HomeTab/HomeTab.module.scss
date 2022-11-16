@@ -1,5 +1,10 @@
+@import '../../assets/sass/utils/mixins';
 .tableWrap {
   max-width: 715px;
+  // margin-top: 30px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    margin-top: 30px;
+  }
 }
 
 .scrollTableBody {
@@ -7,6 +12,9 @@
   overflow-x: auto;
   margin-top: 0px;
   margin-bottom: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    height: 40vh;
+  }
 }
 .scrollTable table {
   width: 100%;
@@ -19,7 +27,7 @@
     padding: 15px 20px;
 
     font-size: 18px;
-    background-color: #fff;
+    background-color: var(--third-text-color);
     &:first-child {
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
@@ -28,6 +36,9 @@
       border-top-right-radius: 30px;
       border-bottom-right-radius: 30px;
     }
+  }
+  tr:not(:first-child) {
+    outline: 1px solid var(--secondary-text-color);
   }
 
   td {
@@ -65,14 +76,14 @@
   margin-bottom: 5px;
 
   tr {
-    background-color: #fff;
+    background-color: var(--third-text-color);
     padding-top: 2px;
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.308);
     }
     &:not(:first-child, :last-child) {
-      box-shadow: inset 4px 0px 0px #ff6596;
+      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
     }
     & > td:first-child {
       text-align: left;
@@ -89,7 +100,7 @@
   tr:first-child {
     & > td:first-child {
       border-top-left-radius: 20px;
-      box-shadow: inset 4px 0px 0px #ff6596;
+      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
     }
     & > td:nth-child(2) {
       border-top-right-radius: 20px;
@@ -98,7 +109,7 @@
   tr:last-child {
     & > td:first-child {
       border-bottom-left-radius: 20px;
-      box-shadow: inset 4px 0px 0px #ff6596;
+      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
     }
     & > td:nth-child(2) {
       border-bottom-right-radius: 20px;
@@ -110,36 +121,30 @@
     font-size: 16px;
   }
 }
-//
-// table.tablePositive {
-//   box-shadow: 4px 0px 0px #24cca7 inset;
-// }
-// table.tableNegative {
-//   box-shadow: 4px 0px 0px #ff6596 inset;
-// }
+
 table.tablePositive {
   tr {
     &:not(:first-child, :last-child) {
-      box-shadow: inset 4px 0px 0px #24cca7;
+      box-shadow: inset 4px 0px 0px var(--green-accent-color);
     }
   }
 
   tr:first-child {
     & > td:first-child {
-      box-shadow: inset 4px 0px 0px #24cca7;
+      box-shadow: inset 4px 0px 0px var(--green-accent-color);
     }
   }
   tr:last-child {
     & > td:first-child {
-      box-shadow: inset 4px 0px 0px #24cca7;
+      box-shadow: inset 4px 0px 0px var(--green-accent-color);
     }
   }
 }
 
 td.positive {
-  color: #24cca7;
+  color: var(--green-accent-color);
 }
 
 td.negative {
-  color: #ff6596;
+  color: var(--pink-accent-color);
 }

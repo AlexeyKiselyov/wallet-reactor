@@ -81,6 +81,10 @@ export default function RegistrationForm() {
       .then(() => {
         const registerData = { username, email, password };
         dispatch(authOperations.register(registerData)).then(response => {
+          if (response.payload === 'Request failed with status code 400') {
+            toast.error('Oops... Validation error!!');
+            return;
+          }
           if (response.payload === 'Request failed with status code 409') {
             toast.error('Oops...User with such data already exists!');
             return;
@@ -88,9 +92,9 @@ export default function RegistrationForm() {
           if (response.payload.token) {
             toast.success('You are successfully sign up!');
             navigate('/', { replace: true });
+            resetForm();
           }
         });
-        resetForm();
       })
       .catch(errors => {
         setValidationError({

@@ -30,19 +30,7 @@ export const HeaderContainer = styled.div`
     flex-direction: row;
     width: 1280px;
     padding: 20px 16px;
-  }
-
-  /* @include mq(mob) {
-    width: 480px;
-  }
-  @include mq(tab) {
-    width: 768px;
-    padding: 0 32px;
-  }
-  @include mq(desk) {
-    width: 1280px;
-    padding: 0 16px;
-  } */
+  } 
 `;
 
 export const UserMenuWrapper = styled.div`
@@ -60,6 +48,11 @@ export const UserName = styled.p`
   font-family: 'Circe';
   font-size: 18px;
   color: var(--secondary-text-color);
+
+  @media screen and (max-width: 767px) {
+    border-right:none;
+    padding-right: 0px;
+  }
 `;
 
 export const LogoExit = styled.svg`
@@ -68,6 +61,10 @@ export const LogoExit = styled.svg`
   margin-right: 8px;
 
   fill: var(--secondary-text-color);
+
+  @media screen and (max-width: 767px) {
+    margin-right:0px;
+  }
 `;
 
 export const LogoutBtn = styled.button`
@@ -89,5 +86,9 @@ export const LogoutBtn = styled.button`
   &:focus-visible:not(:active) {
     color: #2196f3;
     background: rgba(177, 186, 196, 0.12);
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 4px 8px;
   }
 `;

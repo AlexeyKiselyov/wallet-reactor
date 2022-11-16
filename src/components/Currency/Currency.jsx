@@ -17,9 +17,9 @@ export const Currency = () => {
   useEffect(() => {
     async function getCurrency() {
       try {
+        setIsLoading(true);
         const data = await fetchCurrencyPrivat();
         setCurrency(data);
-        setIsLoading(true);
         if (data.length === 0) {
           throw new Error();
         }

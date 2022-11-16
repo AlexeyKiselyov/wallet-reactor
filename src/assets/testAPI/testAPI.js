@@ -62,3 +62,38 @@ export const categoryTransactions = async () => {
   const { data } = await axios('/transaction-categories');
   console.log(data);
 };
+
+
+// function getRandomHexColor() {
+//   return `#${Math.floor(Math.random() * 16777215)
+//     .toString(16)
+//     .padStart(6, 0)}`;
+// }
+
+// const array = [
+//   {name:'asd',total:100},
+//   {name:'qwe',total:20},
+//   {name:'zxc',total:40},
+//   {name:'rty',total:15},
+// ];
+
+// const newColorArr = array.map(e=>{
+//   e.color = getRandomHexColor();
+//   return e;
+// })
+// console.log(newColorArr);
+
+
+
+// const newArr = [
+//   {name:asd,total:100,color:''},
+// ]
+
+
+// import { Navigate} from 'react-router-dom';
+// import { useMedia } from 'react-use';
+
+// {Mobile&&<Route path="currenty" element={<CurrentyMobilePage />}/>: <Route path="currenty" element={<Navigate to="/" replace />} />}
+
+
+// <Route path="currenty" element={<Navigate to="/" replace />} />
