@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.b7cbfd2c.css",
-    "main.js": "/wallet-reactor/static/js/main.39f5ccfd.js",
+    "main.css": "/wallet-reactor/static/css/main.fc46d084.css",
+    "main.js": "/wallet-reactor/static/js/main.f1ee72d6.js",
     "static/css/316.03bf6c8c.chunk.css": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css",
     "static/js/316.0a3c860b.chunk.js": "/wallet-reactor/static/js/316.0a3c860b.chunk.js",
-    "static/js/675.c101754e.chunk.js": "/wallet-reactor/static/js/675.c101754e.chunk.js",
+    "static/js/675.eacee781.chunk.js": "/wallet-reactor/static/js/675.eacee781.chunk.js",
     "static/js/333.7cef5294.chunk.js": "/wallet-reactor/static/js/333.7cef5294.chunk.js",
-    "static/js/683.775982ad.chunk.js": "/wallet-reactor/static/js/683.775982ad.chunk.js",
+    "static/js/889.9fba0be5.chunk.js": "/wallet-reactor/static/js/889.9fba0be5.chunk.js",
     "static/js/210.1dc7b944.chunk.js": "/wallet-reactor/static/js/210.1dc7b944.chunk.js",
     "static/media/Main_img.svg": "/wallet-reactor/static/media/Main_img.524a2ae994a99e78aba6.svg",
     "static/media/Main_reg_img.svg": "/wallet-reactor/static/media/Main_reg_img.75b887ed3fcbc6bc6817.svg",
@@ -29,17 +29,17 @@
     "index.html": "/wallet-reactor/index.html",
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
-    "main.b7cbfd2c.css.map": "/wallet-reactor/static/css/main.b7cbfd2c.css.map",
-    "main.39f5ccfd.js.map": "/wallet-reactor/static/js/main.39f5ccfd.js.map",
+    "main.fc46d084.css.map": "/wallet-reactor/static/css/main.fc46d084.css.map",
+    "main.f1ee72d6.js.map": "/wallet-reactor/static/js/main.f1ee72d6.js.map",
     "316.03bf6c8c.chunk.css.map": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css.map",
     "316.0a3c860b.chunk.js.map": "/wallet-reactor/static/js/316.0a3c860b.chunk.js.map",
-    "675.c101754e.chunk.js.map": "/wallet-reactor/static/js/675.c101754e.chunk.js.map",
+    "675.eacee781.chunk.js.map": "/wallet-reactor/static/js/675.eacee781.chunk.js.map",
     "333.7cef5294.chunk.js.map": "/wallet-reactor/static/js/333.7cef5294.chunk.js.map",
-    "683.775982ad.chunk.js.map": "/wallet-reactor/static/js/683.775982ad.chunk.js.map",
+    "889.9fba0be5.chunk.js.map": "/wallet-reactor/static/js/889.9fba0be5.chunk.js.map",
     "210.1dc7b944.chunk.js.map": "/wallet-reactor/static/js/210.1dc7b944.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7cbfd2c.css",
-    "static/js/main.39f5ccfd.js"
+    "static/css/main.fc46d084.css",
+    "static/js/main.f1ee72d6.js"
   ]
 }
