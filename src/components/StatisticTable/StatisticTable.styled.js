@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { switchBgStatistic } from 'helpers/switchBgStatistic';
-// import icon from '../../images/sprite.svg';
 
 export const Box = styled.div`
   @media screen and (min-width: 768px) {
