@@ -15,6 +15,7 @@ import {
   UserName,
   LogoExit,
   LogoutBtn,
+  Avatar
 } from './Header.styled';
 
 import { openModalLogout } from 'redux/index';
@@ -22,6 +23,7 @@ import { openModalLogout } from 'redux/index';
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsExit } from '../../assets/lang/langOptionsExit';
 import SwitchLangHeader from 'components/SwitchLangHeader/SwitchLangHeader';
+import { randomAvatar } from '../../utils/randomAvatar';
 
 // ================================================================
 
@@ -42,9 +44,11 @@ export const Header = () => {
             <Logo />
           </Link>
         </div>
-
         <UserMenuWrapper style={{ display: 'flex', alignItems: 'center' }}>
-          <UserName>{name}</UserName>
+        <Avatar><img src={randomAvatar} alt="Avatar"/></Avatar>
+          <UserName>
+            {name}
+          </UserName>
 
           <LogoutBtn onClick={() => dispatch(openModalLogout())} type="button">
             <LogoExit>
@@ -54,7 +58,7 @@ export const Header = () => {
           </LogoutBtn>
           <SwitchLangHeader />
         </UserMenuWrapper>
-      </HeaderContainer>
+      </HeaderContainer> 
     </HeaderStyled>
   );
 };
