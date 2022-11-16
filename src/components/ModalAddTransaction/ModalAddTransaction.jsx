@@ -17,6 +17,9 @@ import { useToggle } from '../../hook/modalAddTransaction';
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
 
+import { getLang } from 'redux/lang/langSelector';
+import { langOptionsModalAddTransaction } from '../../assets/lang/langOptionsModalAddTransaction';
+
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
@@ -37,6 +40,11 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
+
+  const lang = useSelector(getLang);
+  const { AddTransactionText, CommentText, AddText, CancelText } =
+    langOptionsModalAddTransaction;
+
   // const toggleShowSelectList = () =>
   //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
 
@@ -55,7 +63,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
     return () => {
       window.removeEventListener('keydown', closeByEscape);
     };
-  }, [closeModal,dispatch]);
+  }, [closeModal, dispatch]);
 
   const closeByBackdrop = event => {
     if (event.currentTarget === event.target) {
@@ -157,7 +165,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   // const categoriesExpense = categories.filter(
   //   category => category.type !== 'INCOME'
   // );
-   //нужно и это в переменную?
+  //нужно и это в переменную?
 
   const handleClickOption = e => {
     console.log(e.currentTarget.value);
@@ -176,7 +184,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
     <>
       <div className={css.Overlay} onClick={closeByBackdrop}>
         <div className={css.Modal}>
-          <h2 className={cssForm.titleForm}>Add transaction</h2>
+          <h2 className={cssForm.titleForm}>{AddTransactionText[lang]}</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
             <div className={cssForm.wraperSwitch}>
@@ -272,7 +280,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 className={cssForm.inputComment}
                 type="text"
                 name="comment"
-                placeholder="Comment"
+                placeholder={CommentText[lang]}
                 value={comment}
                 onChange={handleChange}
                 //onChange={e => setComment(e.target.value)}
@@ -281,10 +289,10 @@ export const ModalAddTransaction = ({ closeModal }) => {
             {/* select my */}
             <div className={cssForm.btnWraper}>
               <button className={cssForm.btnAdd} type="submit">
-                ADD
+                {AddText[lang]}
               </button>
               <button className={cssForm.btnCancel} type="submit">
-                CANCEL
+                {CancelText[lang]}
               </button>
             </div>
           </form>

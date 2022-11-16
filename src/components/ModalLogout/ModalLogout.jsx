@@ -3,9 +3,14 @@ import { authOperations } from 'redux/auth';
 import { closeModalWindow, resetError } from 'redux/index';
 import { useDispatch } from 'react-redux';
 import Button from 'components/Button';
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsModalLogOut } from '../../assets/lang/langOptionsModalLogOut';
+import { useSelector } from 'react-redux';
 
 function ModalLogoutAndDelete({ action }) {
   const dispatch = useDispatch();
+  const lang = useSelector(getLang);
+  const { TitleText, YesText, NoText } = langOptionsModalLogOut;
 
   const onLogout = () => {
     cleanState();
@@ -23,21 +28,21 @@ function ModalLogoutAndDelete({ action }) {
 
   return (
     <div className={style.modal}>
-      <h2 className={style.title}>Are you sure you want to log out ?</h2>
+      <h2 className={style.title}>{TitleText[lang]}</h2>
       <div className={style.wrapper}>
         {action === 'logout' && (
           <Button
             className="btn__secondary-logout"
             onClick={onLogout}
             type="button"
-            text="Yes"
+            text={YesText[lang]}
           />
         )}
         <Button
           className="btn__primary-logout"
           onClick={onCancelLogout}
           type="button"
-          text="No"
+          text={NoText[lang]}
         />
       </div>
     </div>

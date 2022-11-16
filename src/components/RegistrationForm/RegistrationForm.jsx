@@ -2,13 +2,15 @@ import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import Button from 'components/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 import style from './RegistrationForm.module.css';
 import { authOperations } from 'redux/auth';
 import { useAuth } from 'hook';
+import { getLang } from "redux/lang/langSelector";
+import { langOptionsRegister } from '../../assets/lang/langOptionsRegister';
 
 const rules = {
   email: 'required|email',
@@ -52,6 +54,17 @@ export default function RegistrationForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useAuth();
+  const lang = useSelector(getLang);
+  const {
+    inputUsername,
+    inputEmail,
+    inputPass,
+    inputPassConf,
+    buttonReg,
+    buttonLogIn,
+    Error409Text,
+    SuccessText,
+  } = langOptionsRegister;
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -86,11 +99,11 @@ export default function RegistrationForm() {
             return;
           }
           if (response.payload === 'Request failed with status code 409') {
-            toast.error('Oops...User with such data already exists!');
+            toast.error(Error409Text[lang]);
             return;
           }
           if (response.payload.token) {
-            toast.success('You are successfully sign up!');
+            toast.success(SuccessText[lang]);
             navigate('/', { replace: true });
             resetForm();
           }
@@ -123,7 +136,7 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder="E-mail"
+            placeholder={inputEmail[lang]}
             name="email"
             onChange={handleChange}
             value={email}
@@ -138,7 +151,7 @@ export default function RegistrationForm() {
           <input
             id="inputcheck"
             className={style.input}
-            placeholder="Password"
+            placeholder={inputPass[lang]}
             name="password"
             type="password"
             onChange={handleChange}
@@ -152,7 +165,7 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder="Confirm password"
+            placeholder={inputPassConf[lang]}
             type="password"
             name="password_confirmation"
             onChange={handleChange}
@@ -166,7 +179,7 @@ export default function RegistrationForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-            placeholder="Your name"
+            placeholder={inputUsername[lang]}
             onChange={handleChange}
             name="username"
             value={username}
@@ -180,11 +193,11 @@ export default function RegistrationForm() {
           <Button
             className="btn__primary"
             type="submit"
-            text="register"
+            text={buttonReg[lang]}
             isLoading={isLoading}
           />
           <Link to="/login" className={style.authLink}>
-            <Button className="btn__secondary" type="buttom" text="log in" />
+            <Button className="btn__secondary" type="buttom" text={buttonLogIn[lang]} />
           </Link>
         </div>
       </form>
