@@ -11,9 +11,11 @@ import { selectBalance } from 'redux/auth/auth-selectors';
 import { changeBalance } from 'redux/auth/auth-slice';
 import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../hook/modalAddTransaction';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
+import { number } from 'prop-types';
 
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
+  const theme = useSelector(getTheme);
 
   useEffect(() => {
     const closeByEscape = ({ code }) => {
@@ -138,7 +141,16 @@ export const ModalAddTransaction = ({ closeModal }) => {
   return (
     <>
       <div className={css.Overlay} onClick={closeByBackdrop}>
-        <div className={css.Modal}>
+        <div className={css.Modal}
+         style={{
+          backgroundColor:
+            theme === 'light' ? '' : 'var(--dark-mood-addForm-color)',
+          color:
+            theme === 'light'
+              ? 'var(--title-black-color)'
+              : 'var(--text-white-color)',
+        }}
+        >
           <h2 className={css.titleForm}>Add transaction</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
@@ -217,7 +229,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   type="number"
                   min="0"
                   placeholder="0.00"
-                  value={amount}
+                  value = {amount}
                   onChange={handleChange}
                 />
               </label>
@@ -240,6 +252,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
             <label className={cssForm.commentLabel}>
               <input
                 className={cssForm.inputComment}
+                style={{
+                  backgroundColor:
+                    theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                  color:
+                    theme === 'light'
+                      ? 'var(--title-black-color)'
+                      : 'var(--text-white-color)',
+                }}
                 type="text"
                 name="comment"
                 placeholder="Comment"

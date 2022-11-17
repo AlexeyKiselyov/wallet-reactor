@@ -80,7 +80,6 @@ export const LogoutBtn = styled.button`
   display: flex;
   align-items: stretch;
   padding: 4px 12px;
-  margin-right: 30px;
 
   border-color: transparent;
   background-color: transparent;
@@ -102,6 +101,7 @@ export const LogoutBtn = styled.button`
 export const Avatar = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 5px;
   gap: 12px;
   & img {
     width: 45px;
