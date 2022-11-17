@@ -9,14 +9,13 @@ const SwitchTheme = () => {
   const theme = useSelector(getTheme);
 
   return (
-    <div className={s.switch_theme_div}>
+    <div>
       {theme === "light" ? (
         <button
           className={s.btnD}
           onClick={() => dispatch(changeTheme("dark"))}
         >
           <span role="img" aria-label="moon">
-            {" "}
             ☀
           </span>
         </button>

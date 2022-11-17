@@ -10,9 +10,10 @@ export const MainStyled = styled.main`
     bottom: 0;
     z-index: -1;
     backdrop-filter: blur(25px);
-  }
+    background-color: ${props => props.theme}
 `;
-
+    
+  
 export const MainContainer = styled.div`
   padding: 12px 20px;
   margin-left: auto;

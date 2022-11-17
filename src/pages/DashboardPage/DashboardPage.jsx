@@ -31,10 +31,7 @@ export const DashboardPage = () => {
   return (
     <>
       <Header />
-      <MainStyled
-      style={{
-        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
-      }}
+      <MainStyled theme={theme === "light" ? "" : "var(--dark-mood-bg-color)"}
       >
         <MainContainer>
           <AsideBar />
