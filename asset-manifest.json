@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/wallet-reactor/static/css/main.2da380cd.css",
-    "main.js": "/wallet-reactor/static/js/main.e639cc74.js",
-    "static/css/991.9e6145f1.chunk.css": "/wallet-reactor/static/css/991.9e6145f1.chunk.css",
+    "main.css": "/wallet-reactor/static/css/main.73cce91c.css",
+    "main.js": "/wallet-reactor/static/js/main.a80c023e.js",
+    "static/css/991.878a0556.chunk.css": "/wallet-reactor/static/css/991.878a0556.chunk.css",
     "static/js/991.5dc2eea3.chunk.js": "/wallet-reactor/static/js/991.5dc2eea3.chunk.js",
     "static/js/675.3868008f.chunk.js": "/wallet-reactor/static/js/675.3868008f.chunk.js",
     "static/js/333.7cef5294.chunk.js": "/wallet-reactor/static/js/333.7cef5294.chunk.js",
@@ -34,9 +34,9 @@
     "static/media/close.svg": "/wallet-reactor/static/media/close.4ca60f1813426122dabf.svg",
     "static/media/minus.svg": "/wallet-reactor/static/media/minus.c1930871236002c803c7.svg",
     "static/media/arrow.svg": "/wallet-reactor/static/media/arrow.77b989b3724c69122981.svg",
-    "main.2da380cd.css.map": "/wallet-reactor/static/css/main.2da380cd.css.map",
-    "main.e639cc74.js.map": "/wallet-reactor/static/js/main.e639cc74.js.map",
-    "991.9e6145f1.chunk.css.map": "/wallet-reactor/static/css/991.9e6145f1.chunk.css.map",
+    "main.73cce91c.css.map": "/wallet-reactor/static/css/main.73cce91c.css.map",
+    "main.a80c023e.js.map": "/wallet-reactor/static/js/main.a80c023e.js.map",
+    "991.878a0556.chunk.css.map": "/wallet-reactor/static/css/991.878a0556.chunk.css.map",
     "991.5dc2eea3.chunk.js.map": "/wallet-reactor/static/js/991.5dc2eea3.chunk.js.map",
     "675.3868008f.chunk.js.map": "/wallet-reactor/static/js/675.3868008f.chunk.js.map",
     "333.7cef5294.chunk.js.map": "/wallet-reactor/static/js/333.7cef5294.chunk.js.map",
@@ -44,7 +44,7 @@
     "311.f1c56097.chunk.js.map": "/wallet-reactor/static/js/311.f1c56097.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2da380cd.css",
-    "static/js/main.e639cc74.js"
+    "static/css/main.73cce91c.css",
+    "static/js/main.a80c023e.js"
   ]
 }
