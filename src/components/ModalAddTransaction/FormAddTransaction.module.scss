@@ -146,7 +146,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
+
   gap: 32px;
 
   margin-bottom: 40px;
@@ -192,7 +192,6 @@ li {
   //margin-bottom: 5px;
   //margin-bottom: 10px;
   text-align: left;
-  // border-color: #e7eaf2;
   cursor: pointer;
 
   &::before {
@@ -211,7 +210,6 @@ li {
 
     width: 22px;
     height: 20px;
-    // padding-right: 14px;
     background-image: url('../../assets/icons/date.svg');
 
     background-repeat: no-repeat;

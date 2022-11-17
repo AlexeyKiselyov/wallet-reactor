@@ -1,13 +1,16 @@
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { addTransaction } from 'redux/transactions/transactionsOperations';
 import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
 import { selectBalance } from 'redux/auth/auth-selectors';
+import { selectError } from 'redux/transactionSumController/transactionSumControllerSelectors';
 import { changeBalance } from 'redux/auth/auth-slice';
 import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../hook/modalAddTransaction';
@@ -19,6 +22,7 @@ import cssForm from './FormAddTransaction.module.scss';
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
+  const error = useSelector(selectError);
   const balance = useSelector(selectBalance);
   const { isShowSelect, toggleHook } = useToggle();
 
@@ -80,14 +84,31 @@ export const ModalAddTransaction = ({ closeModal }) => {
         return;
     }
   };
+
+  const resetForm = () => {
+    setAmount('');
+    setComment('');
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (amount < 0) {
+      toast.warning('Amount must be only positive');
+      return;
+    }
     const amountNegative = -amount;
 
     if (isShowSelect) {
-      if (amount > balance) {
-        return alert('Сумма больше, чем баланс. Введите нужную сумму');
+      if (!amount || !categoryId) {
+        toast.error('Please, enter an amount and select category!');
+        return;
       }
+      if (amount > balance) {
+        toast.error('Sorry, your amount is more than the balance!');
+        return;
+      }
+
       onAddTransaction({
         type,
         categoryId,
@@ -96,11 +117,21 @@ export const ModalAddTransaction = ({ closeModal }) => {
         comment,
       });
       dispatch(changeBalance(amount));
-      resetForm();
 
+      if (error) {
+        toast.error(`Sorry, ${error} `);
+        return;
+      }
+
+      toast.success('Succes! Your amount has been successfully added!');
+      resetForm();
       return;
     }
 
+    if (!amount) {
+      toast.error('Please, enter an amount!');
+      return;
+    }
     onAddTransaction({
       type,
       categoryId,
@@ -110,12 +141,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
     });
 
     dispatch(changeBalance(amountNegative));
-    resetForm();
-  };
 
-  const resetForm = () => {
-    setAmount('');
-    setComment('');
+    if (error) {
+      toast.error(`Sorry, ${error} `);
+      return;
+    }
+
+    toast.success('Succes! Your amount has been successfully added!');
+    resetForm();
   };
 
   const handleCheckBox = e => {
@@ -127,28 +160,30 @@ export const ModalAddTransaction = ({ closeModal }) => {
     if (!isShowSelect) {
       setType('EXPENSE');
     }
-
     toggleHook();
   };
 
   const handleClickOption = e => {
-    console.log(e.currentTarget.value);
     setCategoryId(e.currentTarget.value);
     setIsShowSelectList(true);
   };
 
+  const toggleShowSelectList = () =>
+    setIsShowSelectList(isShowSelectList => !isShowSelectList);
+
   return (
     <>
       <div className={css.Overlay} onClick={closeByBackdrop}>
-        <div className={css.Modal}
-         style={{
-          backgroundColor:
-            theme === 'light' ? '' : 'var(--dark-mood-addForm-color)',
-          color:
-            theme === 'light'
-              ? 'var(--title-black-color)'
-              : 'var(--text-white-color)',
-        }}
+        <div
+          className={css.Modal}
+          style={{
+            backgroundColor:
+              theme === 'light' ? '' : 'var(--dark-mood-addForm-color)',
+            color:
+              theme === 'light'
+                ? 'var(--title-black-color)'
+                : 'var(--text-white-color)',
+          }}
         >
           <h2 className={css.titleForm}>Add transaction</h2>
 
@@ -189,7 +224,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                       name="categoryId"
                       type="text"
                       placeholder="Select a category"
-                      onClick={() => setIsShowSelectList(false)}
+                      onClick={toggleShowSelectList}
                       value={categoryTitle}
                     />
                   </label>
@@ -228,7 +263,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   type="number"
                   min="0"
                   placeholder="0.00"
-                  value = {amount}
+                  value={amount}
                   onChange={handleChange}
                 />
               </label>
@@ -293,4 +328,8 @@ export const ModalAddTransaction = ({ closeModal }) => {
       </div>
     </>
   );
+};
+
+ModalAddTransaction.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
