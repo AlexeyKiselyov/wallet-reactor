@@ -16,7 +16,6 @@ const globalSlice = createSlice({
     closeModalWindow: (state, _) => {
       state.isModalLogoutOpen = false;
       state.isModalAddTransactionOpen = false;
-      state.isModalDeleteUserOpen = false;
     },
     setError: (state, action) => {
       state.errorStatus = action.payload;

@@ -24,7 +24,7 @@ import { getLang } from 'redux/lang/langSelector';
 import { langOptionsExit } from '../../assets/lang/langOptionsExit';
 import SwitchLangHeader from 'components/SwitchLangHeader/SwitchLangHeader';
 import { randomAvatar } from '../../utils/randomAvatar';
-import SwitchTheme from "components/SwitchTheme/SwitchTheme";
+import SwitchTheme from "components/SwitchThemeHeader/SwitchThemeHeader";
 import { getTheme } from '../../redux/theme/themeSelector';
 
 // ================================================================
@@ -42,12 +42,12 @@ export const Header = () => {
   return (
     <HeaderStyled
     style={{
-      backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
+      backgroundColor: theme === "light" ? "" : "rgba(0, 0, 0, 0.6)" 
     }}
     >
       <HeaderContainer
       style={{
-        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)" 
+        backgroundColor: theme === "light" ? "" : "rgba(0, 0, 0, 0)"
       }}
       >
         <div>
@@ -67,10 +67,10 @@ export const Header = () => {
             </LogoExit>
             {!isMobile && ExitText[lang]}
           </LogoutBtn>
+          <SwitchTheme />
           <SwitchLangHeader />
         </UserMenuWrapper>
       </HeaderContainer> 
-      <SwitchTheme />
     </HeaderStyled>
   );
 };

@@ -94,10 +94,10 @@ export const Select = styled.select`
   }
 `;
 
-export const customStylesSelect = isMobile => ({
+export const customStylesSelect = (isMobile, darkTheme) => ({
   control: styles => ({
     ...styles,
-    backgroundColor: 'inherit',
+    backgroundColor: darkTheme ? '#e0e0e0' : 'inherit',
     width: '100%',
     height: '50px',
     border: '1px solid #000000',
@@ -107,6 +107,7 @@ export const customStylesSelect = isMobile => ({
     paddingRight: '16px',
 
     color: '#e0e0e0',
+    fill: 'blue',
     fontFamily: 'Exo,  sans-serif',
     fontWeight: `400`,
     fontSize: `18`,

@@ -10,9 +10,10 @@ export const MainStyled = styled.main`
     bottom: 0;
     z-index: -1;
     backdrop-filter: blur(25px);
-  }
+    background-color: ${props => props.theme}
 `;
-
+    
+  
 export const MainContainer = styled.div`
   padding: 12px 20px;
   margin-left: auto;
@@ -40,7 +41,7 @@ export const MainContainer = styled.div`
     align-items: flex-start;
 
     width: 1280px;
-    padding: 46px 16px;
+    padding: 0px 16px;
   }
 
   /* @include mq(mob) {

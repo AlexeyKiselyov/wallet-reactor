@@ -30,7 +30,8 @@ const Balance = () => {
       >
         <span className={styles.currency}
         >&#8372;</span>
-        {balance}.00
+        {balance ? Math.ceil((balance) * 100) / 100 : '0.00'}
+       
       </p>
     </div>
   );

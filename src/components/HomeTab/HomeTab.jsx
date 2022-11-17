@@ -209,7 +209,14 @@ export const HomeTab = () => {
                     </table>
                   ))
               ) : (
-                <p>{NoTransactionsText[lang]}</p>
+                <p
+                style={{
+                  color: 
+                    theme === 'light'
+                      ? 'var(--title-black-color)'
+                      : 'var(--text-white-color)',
+                }}
+                >{NoTransactionsText[lang]}</p>
               )}
             </div>
           </div>
@@ -295,14 +302,10 @@ export const HomeTab = () => {
                     {BalanceText[lang]}
                   </th>
                   <th
-                    style={{
-                      backgroundColor:
-                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
-                      color:
-                        theme === 'light'
-                          ? 'var(--title-black-color)'
-                          : 'var(--text-white-color)',
-                    }}
+                  style={{
+                    backgroundColor:
+                      theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                  }}
                   ></th>
                 </tr>
               </thead>
@@ -349,7 +352,14 @@ export const HomeTab = () => {
                       ))
                   ) : (
                     <tr>
-                      <td>{NoTransactionsText[lang]}</td>
+                      <td
+                      style={{
+                        color:
+                          theme === 'light'
+                            ? 'var(--title-black-color)'
+                            : 'var(--text-white-color)',
+                      }}
+                      >{NoTransactionsText[lang]}</td>
                     </tr>
                   )}
                 </tbody>

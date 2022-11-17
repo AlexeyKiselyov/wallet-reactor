@@ -15,7 +15,7 @@ import { getTheme } from '../../redux/theme/themeSelector';
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:6|max:25',
+  password: 'required|min:6|max:12',
 };
 const messages = {
   required: field => `${field} is required`,

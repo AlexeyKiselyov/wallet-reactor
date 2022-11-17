@@ -14,6 +14,7 @@ import { selectError } from 'redux/transactionSumController/transactionSumContro
 import { changeBalance } from 'redux/auth/auth-slice';
 import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../hook/modalAddTransaction';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
@@ -37,6 +38,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
+  const theme = useSelector(getTheme);
 
   useEffect(() => {
     const closeByEscape = ({ code }) => {
@@ -172,7 +174,17 @@ export const ModalAddTransaction = ({ closeModal }) => {
   return (
     <>
       <div className={css.Overlay} onClick={closeByBackdrop}>
-        <div className={css.Modal}>
+        <div
+          className={css.Modal}
+          style={{
+            backgroundColor:
+              theme === 'light' ? '' : 'var(--dark-mood-addForm-color)',
+            color:
+              theme === 'light'
+                ? 'var(--title-black-color)'
+                : 'var(--text-white-color)',
+          }}
+        >
           <h2 className={css.titleForm}>Add transaction</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
@@ -251,7 +263,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   type="number"
                   min="0"
                   placeholder="0.00"
-                  maxlength="4"
                   value={amount}
                   onChange={handleChange}
                 />
@@ -275,6 +286,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
             <label className={cssForm.commentLabel}>
               <input
                 className={cssForm.inputComment}
+                style={{
+                  backgroundColor:
+                    theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                  color:
+                    theme === 'light'
+                      ? 'var(--title-black-color)'
+                      : 'var(--text-white-color)',
+                }}
                 type="text"
                 name="comment"
                 placeholder="Comment"

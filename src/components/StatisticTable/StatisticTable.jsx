@@ -20,21 +20,6 @@ import {
 } from './StatisticTable.styled';
 import { customStylesSelect } from './StatisticTable.styled';
 
-const dataMonth = [
-  { id: 0, label: 'January', value: '1' },
-  { id: 1, label: 'February', value: '2' },
-  { id: 2, label: 'March', value: '3' },
-  { id: 3, label: 'April', value: '4' },
-  { id: 4, label: 'May', value: '5' },
-  { id: 5, label: 'June', value: '6' },
-  { id: 6, label: 'July', value: '7' },
-  { id: 7, label: 'August', value: '8' },
-  { id: 8, label: 'September', value: '9' },
-  { id: 9, label: 'October', value: '10' },
-  { id: 10, label: 'November', value: '11' },
-  { id: 11, label: 'December', value: '12' },
-];
-
 function generateArrayOfYears() {
   const max = new Date().getFullYear();
   const min = max - 4;
@@ -58,6 +43,45 @@ export const StatisticTabel = ({
 }) => {
   const isMobile = useMedia('(max-width: 767px)');
 
+  const theme = useSelector(getTheme);
+  const darkTheme = theme === 'dark';
+  const lang = useSelector(getLang);
+  const {
+    CategoryText,
+    SumText,
+    ExpansesText,
+    IncomesText,
+    MonthText,
+    YearText,
+    JanuaryText,
+    FebruaryText,
+    MarchText,
+    AprilText,
+    MayText,
+    JuneText,
+    JulyText,
+    AugustText,
+    SeptemberText,
+    OctoberText,
+    NovemberText,
+    DecemberText,
+  } = langOptionsStatisticTable;
+
+  const dataMonth = [
+    { id: 0, label: JanuaryText[lang], value: '1' },
+    { id: 1, label: FebruaryText[lang], value: '2' },
+    { id: 2, label: MarchText[lang], value: '3' },
+    { id: 3, label: AprilText[lang], value: '4' },
+    { id: 4, label: MayText[lang], value: '5' },
+    { id: 5, label: JuneText[lang], value: '6' },
+    { id: 6, label: JulyText[lang], value: '7' },
+    { id: 7, label: AugustText[lang], value: '8' },
+    { id: 8, label: SeptemberText[lang], value: '9' },
+    { id: 9, label: OctoberText[lang], value: '10' },
+    { id: 10, label: NovemberText[lang], value: '11' },
+    { id: 11, label: DecemberText[lang], value: '12' },
+  ];
+
   const selectOption = data =>
     data.reduce((acc, item) => {
       acc.push({
@@ -68,19 +92,13 @@ export const StatisticTabel = ({
       return acc;
     }, []);
 
-  const lang = useSelector(getLang);
-  const { CategoryText, SumText, ExpansesText, IncomesText } =
-    langOptionsStatisticTable;
-  const theme = useSelector(getTheme);
-  //    MonthText, YearText
-
   return (
     <Box>
       <SelectWrap>
         <Select
           name="month"
-          placeholder="Month"
-          styles={customStylesSelect(isMobile)}
+          placeholder={MonthText[lang]}
+          styles={customStylesSelect(isMobile, darkTheme)}
           onChange={e => {
             setMonth(e.value);
           }}
@@ -89,8 +107,8 @@ export const StatisticTabel = ({
 
         <Select
           name="year"
-          placeholder="Year"
-          styles={customStylesSelect(isMobile)}
+          placeholder={YearText[lang]}
+          styles={customStylesSelect(isMobile, darkTheme)}
           onChange={e => {
             setYear(e.value);
           }}
@@ -106,7 +124,10 @@ export const StatisticTabel = ({
                 style={{
                   backgroundColor:
                     theme === 'light' ? '' : 'var(--dark-mood-form-color)',
-                    color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                  color:
+                    theme === 'light'
+                      ? 'var(--title-black-color)'
+                      : 'var(--text-white-color)',
                 }}
               >
                 {CategoryText[lang]}
@@ -115,7 +136,10 @@ export const StatisticTabel = ({
                 style={{
                   backgroundColor:
                     theme === 'light' ? '' : 'var(--dark-mood-form-color)',
-                    color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                  color:
+                    theme === 'light'
+                      ? 'var(--title-black-color)'
+                      : 'var(--text-white-color)',
                 }}
               >
                 {SumText[lang]}
@@ -139,20 +163,30 @@ export const StatisticTabel = ({
         <TrSummaryWrap>
           <TrSummaryField>
             <TrSummaryStr
-            style={{
-              color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
-            }}
-            >{ExpansesText[lang]}: </TrSummaryStr>
+              style={{
+                color:
+                  theme === 'light'
+                    ? 'var(--title-black-color)'
+                    : 'var(--text-white-color)',
+              }}
+            >
+              {ExpansesText[lang]}:{' '}
+            </TrSummaryStr>
             <TrSummaryNum red>
               {Math.abs(expenseSummary).toFixed(2)}
             </TrSummaryNum>
           </TrSummaryField>
           <TrSummaryField>
             <TrSummaryStr
-            style={{
-              color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
-            }}
-            >{IncomesText[lang]}: </TrSummaryStr>
+              style={{
+                color:
+                  theme === 'light'
+                    ? 'var(--title-black-color)'
+                    : 'var(--text-white-color)',
+              }}
+            >
+              {IncomesText[lang]}:{' '}
+            </TrSummaryStr>
             <TrSummaryNum>{Math.abs(incomeSummary).toFixed(2)}</TrSummaryNum>
           </TrSummaryField>
         </TrSummaryWrap>
