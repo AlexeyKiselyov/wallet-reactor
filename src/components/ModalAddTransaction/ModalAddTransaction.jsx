@@ -15,7 +15,6 @@ import { getTheme } from '../../redux/theme/themeSelector';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
-import { number } from 'prop-types';
 
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
