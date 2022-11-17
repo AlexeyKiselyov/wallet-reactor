@@ -158,7 +158,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
     if (!isShowSelect) {
       setType('EXPENSE');
     }
-
     toggleHook();
   };
 
@@ -166,6 +165,9 @@ export const ModalAddTransaction = ({ closeModal }) => {
     setCategoryId(e.currentTarget.value);
     setIsShowSelectList(true);
   };
+
+  const toggleShowSelectList = () =>
+    setIsShowSelectList(isShowSelectList => !isShowSelectList);
 
   return (
     <>
@@ -210,7 +212,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                       name="categoryId"
                       type="text"
                       placeholder="Select a category"
-                      onClick={() => setIsShowSelectList(false)}
+                      onClick={toggleShowSelectList}
                       value={categoryTitle}
                     />
                   </label>
