@@ -24,6 +24,9 @@
   tr > td:nth-child(2) {
     width: 60px;
   }
+  tr > td:last-child {
+    width: 60px;
+  }
 }
 .scrollTable table {
   width: 100%;
@@ -43,6 +46,7 @@
       border-bottom-left-radius: 30px;
     }
     &:last-child {
+      width: 60px;
       border-top-right-radius: 30px;
       border-bottom-right-radius: 30px;
     }
@@ -84,10 +88,13 @@
   text-align: center;
   border-collapse: collapse;
   margin-bottom: 5px;
+
   tr {
     background-color: var(--third-text-color);
-    padding-top: 2px;
-
+    td:nth-child(2) {
+      text-align: right;
+      padding: 10px 15px;
+    }
     td:not(:last-child) {
       padding: 10px 15px;
       font-size: 16px;
@@ -103,11 +110,7 @@
       text-align: left;
       font-weight: 700;
       z-index: -1;
-
       left: 10px;
-    }
-    & > td:last-child {
-      text-align: right;
     }
   }
 
@@ -160,16 +163,15 @@ td.negative {
 }
 
 .scrollTableBtn {
-  display: block;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   outline: none;
   border: none;
   margin: 0 auto;
-  background-color: var(--pink-accent-color);
-  transform: scaleY(1.2);
+  background-color: #6e78e8;
   opacity: 0.9;
   cursor: pointer;
 }
@@ -185,10 +187,12 @@ td.negative {
   height: 100%;
   padding: 10px 15px;
   border-radius: 0 0 20px 20px;
-  outline: none;
+  outline: 1px solid #6e78e8;
   border: none;
   margin: 0 auto;
-  background-color: var(--pink-accent-color);
+  color: #fff;
+  letter-spacing: 0.4em;
+  background-color: #6e78e8;
   transform: scaleY(1.2);
   opacity: 0.9;
   cursor: pointer;
