@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export const useToggle = (initialState = false) => {
-  const [isShowSelect, setisShowSelect] = useState(initialState);
+export const useToggle = () => {
+  const [isShowSelect, setisShowSelect] = useState(false);
 
   const show = () => setisShowSelect(true);
   const hide = () => setisShowSelect(false);

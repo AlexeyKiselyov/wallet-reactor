@@ -1,38 +1,30 @@
 //import PropTypes from 'prop-types';
-import { authOperations } from 'redux/auth';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
-import { addTransaction } from 'redux/transactions/transactionsOperations';
-import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
-
+import moment from 'moment';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import moment from 'moment';
 
-import { fetchTransactionCategories } from 'redux/transactionCategories/transactionCategoriesOperations';
-
+import { addTransaction } from 'redux/transactions/transactionsOperations';
+import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
+import { selectBalance } from 'redux/auth/auth-selectors';
+import { changeBalance } from 'redux/auth/auth-slice';
+import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../hook/modalAddTransaction';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
 
-import { getLang } from 'redux/lang/langSelector';
-import { langOptionsModalAddTransaction } from '../../assets/lang/langOptionsModalAddTransaction';
-import { getTheme } from '../../redux/theme/themeSelector';
-
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
-  const balance = useSelector(authSelectors.selectBalance);
+  const balance = useSelector(selectBalance);
   const { isShowSelect, toggleHook } = useToggle();
-  // const { isShowSelect, show, hide, toggleHook } = useToggle();
 
-  // const [toggle, setToggle] = useState('');
   const [amount, setAmount] = useState('');
   const [valueDate, onChange] = useState(new Date());
   const [transactionDate, setTransactionDate] = useState(
-    moment(valueDate).format()
+    formatDate(moment(valueDate).format())
   );
   const [comment, setComment] = useState('');
   const [type, setType] = useState('INCOME');
@@ -42,18 +34,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
 
-  const lang = useSelector(getLang);
-  const { AddTransactionText, CommentText, AddText, CancelText } = langOptionsModalAddTransaction;
-  const theme = useSelector(getTheme);
-
-  // const toggleShowSelectList = () =>
-  //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
-
-  // console.log(balance);
-  // const total = 10;
   useEffect(() => {
-    // show();
-    dispatch(fetchTransactionCategories());
     const closeByEscape = ({ code }) => {
       if (code === 'Escape') {
         closeModal();
@@ -72,8 +53,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
     }
   };
 
-  // -----------------добавление и прочее
-
   const onAddTransaction = transaction => {
     dispatch(addTransaction({ ...transaction }));
   };
@@ -81,9 +60,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
-      // case 'toggle':
-      //   setToggle(value);
-      //   break;
       case 'amount':
         setAmount(value);
 
@@ -104,25 +80,22 @@ export const ModalAddTransaction = ({ closeModal }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-
-    //если баланс = 3000
+    const amountNegative = -amount;
 
     if (isShowSelect) {
-      // if (total - amount < 0)
       if (amount > balance) {
         return alert('Сумма больше, чем баланс. Введите нужную сумму');
       }
-      const amount1 = -amount;
-      console.log(amount1);
       onAddTransaction({
         type,
         categoryId,
-        amount: amount1,
+        amount: amountNegative,
         transactionDate,
         comment,
       });
+      dispatch(changeBalance(amount));
       resetForm();
-      dispatch(authOperations.fetchCurrentUser());
+
       return;
     }
 
@@ -133,7 +106,8 @@ export const ModalAddTransaction = ({ closeModal }) => {
       transactionDate,
       comment,
     });
-    dispatch(authOperations.fetchCurrentUser());
+
+    dispatch(changeBalance(amountNegative));
     resetForm();
   };
 
@@ -144,91 +118,70 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
   const handleCheckBox = e => {
     if (isShowSelect) {
-      console.log(5);
       setType('INCOME');
       setCategoryId('063f1132-ba5d-42b4-951d-44011ca46262');
-      console.log(type);
-      console.log(amount);
-      //  hide();
     }
 
     if (!isShowSelect) {
-      console.log(6);
       setType('EXPENSE');
-      console.log(type);
-
-      // show();
     }
 
     toggleHook();
   };
-
-  // const categoriesExpense = categories.filter(
-  //   category => category.type !== 'INCOME'
-  // );
-  //нужно и это в переменную?
 
   const handleClickOption = e => {
     console.log(e.currentTarget.value);
     setCategoryId(e.currentTarget.value);
     setIsShowSelectList(true);
   };
-  // const handleChangeSelectInput = () => {
-  //   setIsShowSelectList(true);
-  // };
-
-  let inputProps = {
-    name: 'transactionDate',
-  };
 
   return (
     <>
-      <div className={css.Overlay} onClick={closeByBackdrop}
-      style={{
-        backgroundColor: theme === "light" ? "" : "var(--dark-mood-bg-color)",
-        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)', 
-      }}
-      >
-        <div className={css.Modal}
-        style={{
-          backgroundColor: theme === "light" ? "" : "var(--dark-mood-addForm-color)" 
-        }}
-        >
-          <h2 className={cssForm.titleForm}>{AddTransactionText[lang]}</h2>
+      <div className={css.Overlay} onClick={closeByBackdrop}>
+        <div className={css.Modal}>
+          <h2 className={css.titleForm}>Add transaction</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
-            <div className={cssForm.wraperSwitch}>
-              <label className={css.container}>
-                <input
-                  type="checkbox"
-                  className={css.hiddenInput}
-                  id="hidden-input"
-                  name="toggle"
-                  // checked
-                  onClick={handleCheckBox}
-                />
-                <span className={css.thumbContainer}>
-                  <span className={css.thumb}></span>
-                </span>
-                <span className={css.track}></span>
-              </label>
+            <div className={css.wraperBtnSpan}>
+              <span className={isShowSelect ? css.spanText : css.spanTextGreen}>
+                Income
+              </span>
+              <div className={css.wraperSwitch}>
+                <label className={css.container}>
+                  <input
+                    type="checkbox"
+                    className={css.hiddenInput}
+                    id="hidden-input"
+                    name="toggle"
+                    // checked
+                    onClick={handleCheckBox}
+                  />
+                  <span className={css.thumbContainer}>
+                    <span className={css.thumb}></span>
+                  </span>
+                  <span className={css.track}></span>
+                </label>
+              </div>
+              <span
+                className={!isShowSelect ? css.spanText : css.spanTextActive}
+              >
+                Expense
+              </span>
             </div>
 
             {isShowSelect && (
               <div className={cssForm.selectWraper}>
                 <ul className={cssForm.selectListWraper}>
-                  <input
-                    className={cssForm.selectCustom}
-                    name="categoryId"
-                    type="button"
-                    // type="hidden"
-                    // onClick={handleSelectCustom}
-                    onClick={
-                      () => setIsShowSelectList(false)
-                      //toggleShowSelectList(true)
-                    }
-                    value={categoryTitle}
-                  />
+                  <label>
+                    <input
+                      className={cssForm.selectCustom}
+                      name="categoryId"
+                      type="text"
+                      placeholder="Select a category"
+                      onClick={() => setIsShowSelectList(false)}
+                      value={categoryTitle}
+                    />
+                  </label>
                   {!isShowSelectList && (
                     <div className={cssForm.optionCustomWriper}>
                       {categories
@@ -236,7 +189,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
                         .map(category => (
                           <li
                             key={`${category.id}`}
-                            // onClick={e => console.log(category.name)}
                             onClick={() => setCategoryTitle(category.name)}
                           >
                             <label className={cssForm.selectLabel}>
@@ -244,7 +196,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
                               <input
                                 className={cssForm.selectOptionItem}
                                 name="categoryId"
-                                // type="hidden"
                                 onClick={handleClickOption}
                                 onChange={handleChange}
                                 value={`${category.id}`}
@@ -263,50 +214,60 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 <input
                   className={cssForm.inputAmount}
                   name="amount"
-                  // {if (isShowSelect) min}
+                  type="number"
                   min="0"
                   placeholder="0.00"
                   value={amount}
                   onChange={handleChange}
-                  // onChange={e => setAmount(e.target.value)}
                 />
               </label>
-              {/* <label> */}
-              <Datetime
-                inputProps={inputProps}
-                value={valueDate}
-                onChange={onChange}
-                dateFormat="YYYY-MM-DD"
-                timeFormat={false}
-                onClose={value => setTransactionDate(moment(value).format())}
-                closeOnSelect={true}
-                onNavigate={a => console.log(a)}
-                className={cssForm.inputDate}
-                name="transactionDate"
-              />
+
+              <div className={cssForm.dateTimeWriper}>
+                <Datetime
+                  className={cssForm.inputDate}
+                  name="transactionDate"
+                  value={valueDate}
+                  onChange={onChange}
+                  dateFormat="YYYY-MM-DD"
+                  timeFormat={false}
+                  onClose={value =>
+                    setTransactionDate(formatDate(moment(value).format()))
+                  }
+                  closeOnSelect={true}
+                />
+              </div>
             </div>
             <label className={cssForm.commentLabel}>
               <input
-              style={{
-                backgroundColor: theme === "light" ? "" : "var(--dark-mood-addForm-color)" 
-              }}
                 className={cssForm.inputComment}
                 type="text"
                 name="comment"
-                placeholder={CommentText[lang]}
+                placeholder="Comment"
                 value={comment}
                 onChange={handleChange}
-                //onChange={e => setComment(e.target.value)}
               />
             </label>
-            {/* select my */}
+
             <div className={cssForm.btnWraper}>
-              <button className={cssForm.btnAdd} type="submit">
-                {AddText[lang]}
+              <button
+                className={cssForm.btnAdd}
+                onClick={handleSubmit}
+                type="submit"
+              >
+                ADD
               </button>
-              <button className={cssForm.btnCancel} type="submit">
-                {CancelText[lang]}
+              <button
+                className={cssForm.btnCancel}
+                onClick={closeModal}
+                type="button"
+              >
+                CANCEL
               </button>
+              <button
+                className={css.btnClose}
+                onClick={closeModal}
+                type="button"
+              ></button>
             </div>
           </form>
         </div>
