@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/wallet-reactor/static/css/main.6815824b.css",
-    "main.js": "/wallet-reactor/static/js/main.a426572c.js",
-    "static/css/316.03bf6c8c.chunk.css": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css",
-    "static/js/316.0a88e878.chunk.js": "/wallet-reactor/static/js/316.0a88e878.chunk.js",
+    "main.js": "/wallet-reactor/static/js/main.11d5c959.js",
+    "static/css/316.a2d6b91d.chunk.css": "/wallet-reactor/static/css/316.a2d6b91d.chunk.css",
+    "static/js/316.325d7118.chunk.js": "/wallet-reactor/static/js/316.325d7118.chunk.js",
     "static/js/675.ce7ef9c8.chunk.js": "/wallet-reactor/static/js/675.ce7ef9c8.chunk.js",
     "static/js/333.7cef5294.chunk.js": "/wallet-reactor/static/js/333.7cef5294.chunk.js",
     "static/js/889.9fba0be5.chunk.js": "/wallet-reactor/static/js/889.9fba0be5.chunk.js",
@@ -30,9 +30,9 @@
     "static/media/purple_elipse.svg": "/wallet-reactor/static/media/purple_elipse.488cddf56046cce43473.svg",
     "static/media/pink_elipse.svg": "/wallet-reactor/static/media/pink_elipse.22839d83b7fa40ba645b.svg",
     "main.6815824b.css.map": "/wallet-reactor/static/css/main.6815824b.css.map",
-    "main.a426572c.js.map": "/wallet-reactor/static/js/main.a426572c.js.map",
-    "316.03bf6c8c.chunk.css.map": "/wallet-reactor/static/css/316.03bf6c8c.chunk.css.map",
-    "316.0a88e878.chunk.js.map": "/wallet-reactor/static/js/316.0a88e878.chunk.js.map",
+    "main.11d5c959.js.map": "/wallet-reactor/static/js/main.11d5c959.js.map",
+    "316.a2d6b91d.chunk.css.map": "/wallet-reactor/static/css/316.a2d6b91d.chunk.css.map",
+    "316.325d7118.chunk.js.map": "/wallet-reactor/static/js/316.325d7118.chunk.js.map",
     "675.ce7ef9c8.chunk.js.map": "/wallet-reactor/static/js/675.ce7ef9c8.chunk.js.map",
     "333.7cef5294.chunk.js.map": "/wallet-reactor/static/js/333.7cef5294.chunk.js.map",
     "889.9fba0be5.chunk.js.map": "/wallet-reactor/static/js/889.9fba0be5.chunk.js.map",
@@ -40,6 +40,6 @@
   },
   "entrypoints": [
     "static/css/main.6815824b.css",
-    "static/js/main.a426572c.js"
+    "static/js/main.11d5c959.js"
   ]
 }
