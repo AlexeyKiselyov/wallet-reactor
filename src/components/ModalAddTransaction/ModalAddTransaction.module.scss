@@ -27,10 +27,10 @@
 
   @include mq(tab) {
     width: 540px;
-    // height: inherit;
+
     top: 50%;
     transform: translateY(-50%);
-
+    height: 550px;
     padding: 40px 73px;
     border-radius: 20px;
   }
@@ -127,7 +127,7 @@
 
 .wraperSwitch {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   width: 86px;
   height: 68px;
 }
@@ -177,8 +177,7 @@
   height: 70px;
   left: 0;
   top: 0;
-  transition: transform 150ms var(--shift) 0ms,
-    background-color 150ms var(--shift) 0ms;
+  transition: transform var(--shift), background-color var(--shift);
   z-index: 1;
 }
 
