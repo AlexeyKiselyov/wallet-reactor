@@ -24,6 +24,9 @@
   tr > td:nth-child(2) {
     width: 60px;
   }
+  tr > td:nth-child(4) {
+    overflow: overlay;
+  }
   tr > td:last-child {
     width: 60px;
   }
