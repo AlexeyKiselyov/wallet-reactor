@@ -6,7 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
-  isRefreshing:false,
+  isRefreshing: false,
   error: null,
 };
 
@@ -59,12 +59,12 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.pending](state) {
       state.isRefreshing = true;
       state.isLoading = true;
-      state.error=null;
+      state.error = null;
     },
     [authOperations.fetchCurrentUser.pending](state) {
       state.isLoading = true;
       state.isRefreshing = true;
-      state.error=null;
+      state.error = null;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
@@ -79,6 +79,12 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
   },
+  reducers: {
+    changeBalance(state, action) {
+      state.user.balance = state.user.balance-action.payload;
+    },
+  },
 });
 
 export default authSlice.reducer;
+export const { changeBalance } = authSlice.actions;

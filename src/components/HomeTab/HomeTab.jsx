@@ -7,12 +7,8 @@ import { getLang } from 'redux/lang/langSelector';
 import { langOptionsHomeTab } from '../../assets/lang/langOptionsHomeTab';
 import { getTheme } from '../../redux/theme/themeSelector';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { useEffect } from 'react';
-import {
-  fetchTransactions,
-  deleteTransaction,
-} from 'redux/transactions/transactionsOperations';
-import { authOperations } from 'redux/auth';
+import { deleteTransaction } from 'redux/transactions/transactionsOperations';
+import { changeBalance } from 'redux/auth/auth-slice';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
@@ -21,6 +17,7 @@ export const HomeTab = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
   const transactionsReverse = [...transactions];
+  const dispatch = useDispatch();
 
   const lang = useSelector(getLang);
   const {
@@ -34,17 +31,9 @@ export const HomeTab = () => {
   } = langOptionsHomeTab;
   const theme = useSelector(getTheme);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, [dispatch]);
-
-  const onDelete = id => {
+  const onDelete = (id, amount) => {
     dispatch(deleteTransaction(id));
-
-    setTimeout(() => {
-      dispatch(authOperations.fetchCurrentUser());
-    }, 100);
+    dispatch(changeBalance(amount));
   };
 
   return (
@@ -350,7 +339,7 @@ export const HomeTab = () => {
                           <td>
                             <button
                               type="button"
-                              onClick={() => onDelete(el.id)}
+                              onClick={() => onDelete(el.id, el.amount)}
                               className={s.scrollTableBtn}
                             >
                               <BsFillTrashFill style={{ fill: '#fff' }} />
