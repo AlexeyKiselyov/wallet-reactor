@@ -7,11 +7,12 @@ import {
   TableTitle,
   TableWrap,
   TableRow,
+  TextError,
+  TableError,
 } from './Currency.styled';
-import { getLang } from "redux/lang/langSelector";
+import { getLang } from 'redux/lang/langSelector';
 import { langOptionsCurrency } from '../../assets/lang/langOptionsCurrency';
 import { useSelector } from 'react-redux';
-import { getTheme } from '../../redux/theme/themeSelector';
 
 export const Currency = () => {
   const [currency, setCurrency] = useState(null);
@@ -19,9 +20,9 @@ export const Currency = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const lang = useSelector(getLang);
-  const { messageText, CurrencyText, PurchaseText, SaleText } = langOptionsCurrency;
-  const theme = useSelector(getTheme);
-  
+  const { messageText, CurrencyText, PurchaseText, SaleText } =
+    langOptionsCurrency;
+
   useEffect(() => {
     async function getCurrency() {
       try {
@@ -45,11 +46,20 @@ export const Currency = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p
-      style={{
-        color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
-      }}
-      >{message}</p>}
+      {error && (
+        <TableWrap>
+          <TableError>
+            <thead>
+              <tr>
+                <TableTitle>{CurrencyText[lang]}</TableTitle>
+                <TableTitle>{PurchaseText[lang]}</TableTitle>
+                <TableTitle>{SaleText[lang]}</TableTitle>
+              </tr>
+            </thead>
+          </TableError>
+          <TextError>{message}</TextError>
+        </TableWrap>
+      )}
       {currency && (
         <TableWrap>
           <Table>

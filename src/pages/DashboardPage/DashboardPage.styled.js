@@ -40,7 +40,7 @@ export const MainContainer = styled.div`
     align-items: flex-start;
 
     width: 1280px;
-    padding: 46px 16px;
+    padding: 0px 16px;
   }
 
   /* @include mq(mob) {
