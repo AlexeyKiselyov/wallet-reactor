@@ -1,9 +1,12 @@
+import css from './ButtonAddTransactions.module.scss';
 export const ButtonAddTransactions = ({ onModalOpen }) => {
   return (
     <>
-      <button onClick={onModalOpen} type="button">
-        Button Add Transactions
-      </button>
+      <button
+        className={css.btnAddTransaction}
+        onClick={onModalOpen}
+        type="button"
+      ></button>
     </>
   );
 };

@@ -1,273 +1,308 @@
-.errorMessage {
-  color: red;
-  font-size: 14px;
-}
-
-.titleForm {
-  display: flex;
-  font-weight: 400;
-  font-size: 30px;
-  //   margin-left: auto;
-  //   margin-right: auto;
-  justify-content: center;
-}
-
-.wraperSwitch {
-  display: flex;
-  //display: block;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  // justify-content: center;
-}
-// .switch {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .selectType {
-//   border: 1px;
-//   margin-top: 100px;
-//   //position: absolute;
-//   width: 394px;
-//   height: 32px;
-//   left: 443px;
-//   top: 275px;
-// }
-
-.selectType {
-  width: 394px;
-  height: 32px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  padding-left: 8px;
-  font-size: 18px;
-  line-height: 27px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #e0e0e0;
-  //border-color: #e7eaf2;
-  background: transparent;
-}
-
-.selectTypeOption {
-  border: none;
-  background: transparent;
-  color: red;
-}
-
-.wraperAmountDate {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-}
-
-.inputAmount {
-  width: 181px;
-  //height: 32px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  // padding-left: 55px;
-  font-weight: 700;
-  font-size: 18px;
-  // line-height: 27px;
-  border: none;
-  text-align: center;
-  border-bottom: 1px solid #e0e0e0;
-  border-color: #e7eaf2;
-}
+@import '../../assets/sass/utils/mixins';
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   appearance: none;
   margin: 0;
 }
 input {
-  width: 181px;
-
-  //   margin-top: 10px;
-  //   margin-bottom: 30px;
   margin: 0;
   padding: 0;
-
-  font-family: 'Circe';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-
-  border: none;
-  // text-align: center;
-  border-bottom: 1px solid #e0e0e0;
-  border-color: #e7eaf2;
-}
-
-.inputDate {
-  width: 161px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  font-size: 14px;
   border: 0;
-  text-align: center;
   border-color: #e7eaf2;
 }
 
-::placeholder {
-  color: #bdbdbd;
-}
-.commentLabel {
-  display: flex;
-  justify-content: center;
-}
-.inputComment {
-  display: flex;
-  width: 394px;
-  //height: 32px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  padding-left: 8px;
-  // padding-left: 55px;
-  font-weight: 400;
-  font-size: 18px;
-  // line-height: 27px;
-  //text-align: center;
-  border: none;
-
-  border-bottom: 1px solid #e0e0e0;
-  border-color: #e7eaf2;
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
 }
 
-.btnWraper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-.btnAdd {
-  width: 300px;
-  height: 50px;
-  background: #24cca7;
-  border-radius: 20px;
-
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-}
-.btnCancel {
-  width: 300px;
-  height: 50px;
-  background: #ffffff;
-  border: 1px solid #4a56e2;
-  border-radius: 20px;
-
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-
-  color: #4a56e2;
-}
-// .font {
-//   font-family: 'Circe';
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 18px;
-//   line-height: 27px;
-// }
-// ::placeholder {
-//   color: #bdbdbd;
-// }
-
-//---------------SELECT
 li {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
+//-----------------------SELEKT-----------------------
+.selectType {
+  padding-left: 8px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 394px;
+  height: 32px;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid (--fourth-text-color);
+  background: transparent;
+}
+
+//---------------SELECT-------------------
+
 .selectWraper {
+  position: relative;
   display: flex;
   justify-content: center;
-}
-.selectType {
-  width: 394px;
-  height: 32px;
-  //   margin-top: 10px;
-  //   margin-bottom: 30px;
-  padding-left: 8px;
-  font-size: 18px;
-  line-height: 27px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #e0e0e0;
-  //border-color: #e7eaf2;
-  background: transparent;
-}
-.optionCustomWriper {
-  // display: flex;
-  // align-items: center;
-  //justify-content: space-between;
-  width: 394px;
-  height: 352px;
-  z-index: 1000;
-}
-.selectCustom {
-  width: 394px;
-  height: 32px;
-  //   margin-top: 10px;
-  //   margin-bottom: 30px;
-  margin-left: auto;
+  width: 280px;
+  margin-bottom: 40px;
   margin-right: auto;
+  margin-left: auto;
+
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 5px;
+
+    width: 13px;
+    height: 13px;
+
+    background-image: url('../../assets/icons/arrow.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+  }
+
+  @include mq(tab) {
+    width: 394px;
+  }
+}
+
+.selectCustom {
+  position: relative;
   padding-left: 8px;
+  width: 280px;
+  height: 32px;
+
   font-size: 18px;
-  line-height: 27px;
+  line-height: 1.5;
+
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #e0e0e0;
-  //border-color: #e7eaf2;
-  background: transparent;
+
+  cursor: pointer;
+
+  @include mq(tab) {
+    width: 394px;
+  }
 }
-.selectWraper {
-  display: flex;
-}
-.selectListWraper {
-  margin: 0;
-  padding: 0;
-}
+
 .optionCustomWriper {
   position: absolute;
+  width: 280px;
+
   background: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(25px);
-  /* Note: backdrop-filter has minimal browser support */
-
   border-radius: 20px;
+
+  z-index: 1000;
+
+  @include mq(tab) {
+    width: 394px;
+  }
 }
 
 .selectLabel {
   display: flex;
   margin: 0;
+  margin-bottom: 3px;
+  margin-top: 5px;
   padding-left: 20px;
-  font-family: 'Circe';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
 
-  color: #000000;
+  font-size: 18px;
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  @include mq(tab) {
+    width: 394px;
+  }
+}
+
+.selectLabel:hover,
+.selectLabel:focus {
+  color: var(--pink-accent-color);
+  background-color: var(--white-background-color);
 }
 
 .selectOptionItem {
   opacity: 0;
-  //font-size: 14px;
+  width: 20px;
+}
+
+//--------------------AMOUNT---------------------------
+.wraperAmountDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  gap: 32px;
+
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mq(tab) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+  }
+}
+
+.inputAmount {
+  width: 280px;
+
+  font-size: 18px;
+  border: none;
+  text-align: center;
+  border-bottom: 1px solid var(--fourth-text-color);
+  border-color: var(--primary-background-color);
+
+  @include mq(tab) {
+    width: 181px;
+  }
+}
+
+::placeholder {
+  color: var(--secondary-text-color);
+}
+
+//-----------------DATETIME-------------
+.inputDate {
+  position: relative;
+  width: 280px;
+
+  //margin-bottom: 10px;
+  //padding-bottom: 5px;
+  //margin-bottom: 5px;
+  //margin-bottom: 10px;
+  text-align: center;
+  // border-color: #e7eaf2;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 280px;
+    border-bottom: 1px solid var(--fourth-text-color);
+    bottom: 1px;
+    left: 0px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 14px;
+
+    width: 22px;
+    height: 20px;
+    // padding-right: 14px;
+    background-image: url('../../assets/icons/date.svg');
+
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+
+  @include mq(tab) {
+    width: 181px;
+    &::before {
+      width: 181px;
+    }
+  }
+}
+
+//----------------------------COMMENT----------------
+.commentLabel {
+  display: flex;
+  justify-content: center;
+}
+.inputComment {
+  display: flex;
+  width: 280px;
+  margin-bottom: 40px;
+  padding-left: 8px;
+
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid var(--fourth-text-color);
+  border-color: var(--primary-background-color);
+
+  @include mq(tab) {
+    width: 394px;
+  }
+}
+
+//-------------------BUTTONS----
+.btnWraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  padding-bottom: 20px;
+
+  @include mq(tab) {
+    padding-bottom: 0px;
+  }
+}
+.btnAdd {
+  width: 300px;
+  height: 50px;
+  background: var(--green-background-color);
+  border-radius: 20px;
+  border: none;
+
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--third-text-color);
+  // cursor: pointer;
+}
+
+.btnAdd:hover,
+.btnAdd:focus {
+  background-color: var(--btn-secondary-color);
+  color: var(--btn-primary-color);
+  transform: scale(1.04);
+}
+
+.btnCancel {
+  width: 300px;
+  height: 50px;
+  background: var(--white-background-color);
+  border: 1px solid var(--blue-background-color);
+  border-radius: 20px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--btn-accent-color);
+  cursor: pointer;
+}
+
+.btnCancel:hover,
+.btnCancel:focus {
+  color: var(--btn-primary-color);
+  background-color: var(--btn-secondary-color);
+  transform: scale(1.04);
 }

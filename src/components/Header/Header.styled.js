@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderStyled = styled.header`
-background-color:var(--white-background-color);
+  background-color: var(--white-background-color);
 `;
 
 export const HeaderContainer = styled.div`
@@ -18,7 +18,6 @@ export const HeaderContainer = styled.div`
 
   @media screen and (min-width: 480px) {
     width: 480px;
-
   }
 
   @media screen and (min-width: 768px) {
@@ -30,7 +29,7 @@ export const HeaderContainer = styled.div`
     flex-direction: row;
     width: 1280px;
     padding: 20px 16px;
-  } 
+  }
 `;
 
 export const UserMenuWrapper = styled.div`
@@ -50,7 +49,7 @@ export const UserName = styled.p`
   color: var(--secondary-text-color);
 
   @media screen and (max-width: 767px) {
-    border-right:none;
+    border-right: none;
     padding-right: 0px;
   }
 `;
@@ -63,7 +62,7 @@ export const LogoExit = styled.svg`
   fill: var(--secondary-text-color);
 
   @media screen and (max-width: 767px) {
-    margin-right:0px;
+    margin-right: 0px;
   }
 `;
 
