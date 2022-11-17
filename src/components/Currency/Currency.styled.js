@@ -99,6 +99,6 @@ export const TextError = styled.div`
   }
   @media screen and (min-width: 320px) {
     text-align: center;
-    margin: 10px;
+    margin: 0 10px 0 10px;
   }
 `;
