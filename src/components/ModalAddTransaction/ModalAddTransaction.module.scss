@@ -5,9 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+
   background: rgba(0, 0, 0, 0.25);
 
   z-index: 1200;
@@ -17,26 +15,22 @@
   position: relative;
   top: 75px;
   width: 100%;
-  //width: 320px;
+
   padding: 20px 10px;
   margin-left: auto;
   margin-right: auto;
-  //border-radius: 20px;
 
   background-color: var(--white-background-color);
-
-  // @include mq(mob-only) {
-  //   height: 100%;
-  // }
+  @include mq(mob-only) {
+    height: 100%;
+  }
 
   @include mq(tab) {
     width: 540px;
+    // height: inherit;
     top: 50%;
     transform: translateY(-50%);
-    // padding-top: 40px;
-    // padding-bottom: 40px;
-    // padding-left: 73px;
-    // padding-right: 73px;
+
     padding: 40px 73px;
     border-radius: 20px;
   }

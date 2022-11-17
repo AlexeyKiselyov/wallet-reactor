@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 export const HeaderStyled = styled.header`
   background-color: var(--white-background-color);
+ @media screen and (max-width: 767px) {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+  }
+  }
 `;
 
 export const HeaderContainer = styled.div`
