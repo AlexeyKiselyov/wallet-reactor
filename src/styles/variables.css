@@ -74,4 +74,9 @@
   --mobile: 320px;
   --tablet: 768px;
   --desktop: 1280px;
+
+  /* dark mood */
+  --dark-mood-bg-color: rgba(0, 0, 0, 0.5);
+  --dark-mood-form-color:  rgba(0, 0, 0, 0.1);
+  --dark-mood-addForm-color: #565d64;
 }

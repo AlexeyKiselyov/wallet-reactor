@@ -9,6 +9,7 @@ import { useMedia } from 'react-use';
 export const AsideBar = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
+ 
   return (
     <>
       {isMobile && (

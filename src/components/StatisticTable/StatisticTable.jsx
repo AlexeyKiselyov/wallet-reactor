@@ -4,6 +4,7 @@ import Select from 'react-select';
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsStatisticTable } from '../../assets/lang/langOptionsStatisticTable';
 import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/theme/themeSelector';
 
 import {
   Box,
@@ -70,6 +71,7 @@ export const StatisticTabel = ({
   const lang = useSelector(getLang);
   const { CategoryText, SumText, ExpansesText, IncomesText } =
     langOptionsStatisticTable;
+  const theme = useSelector(getTheme);
   //    MonthText, YearText
 
   return (
@@ -100,8 +102,24 @@ export const StatisticTabel = ({
         <Table>
           <thead>
             <tr>
-              <TabHeader>{CategoryText[lang]}</TabHeader>
-              <TabHeader>{SumText[lang]}</TabHeader>
+              <TabHeader
+                style={{
+                  backgroundColor:
+                    theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                    color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                }}
+              >
+                {CategoryText[lang]}
+              </TabHeader>
+              <TabHeader
+                style={{
+                  backgroundColor:
+                    theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                    color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+                }}
+              >
+                {SumText[lang]}
+              </TabHeader>
             </tr>
           </thead>
           <tbody>
@@ -120,13 +138,21 @@ export const StatisticTabel = ({
         </Table>
         <TrSummaryWrap>
           <TrSummaryField>
-            <TrSummaryStr>{ExpansesText[lang]}: </TrSummaryStr>
+            <TrSummaryStr
+            style={{
+              color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+            }}
+            >{ExpansesText[lang]}: </TrSummaryStr>
             <TrSummaryNum red>
               {Math.abs(expenseSummary).toFixed(2)}
             </TrSummaryNum>
           </TrSummaryField>
           <TrSummaryField>
-            <TrSummaryStr>{IncomesText[lang]}: </TrSummaryStr>
+            <TrSummaryStr
+            style={{
+              color: theme === 'light' ? 'var(--title-black-color)' : 'var(--text-white-color)',
+            }}
+            >{IncomesText[lang]}: </TrSummaryStr>
             <TrSummaryNum>{Math.abs(incomeSummary).toFixed(2)}</TrSummaryNum>
           </TrSummaryField>
         </TrSummaryWrap>

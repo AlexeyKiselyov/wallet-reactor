@@ -5,6 +5,7 @@ import { useMedia } from 'react-use';
 import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsHomeTab } from '../../assets/lang/langOptionsHomeTab';
+import { getTheme } from '../../redux/theme/themeSelector';
 import { useEffect } from 'react';
 import {
   fetchTransactions,
@@ -34,6 +35,7 @@ export const HomeTab = () => {
     BalanceText,
     NoTransactionsText,
   } = langOptionsHomeTab;
+  const theme = useSelector(getTheme);
 
   const onDelete = id => {
     dispatch(deleteTransaction(id));
@@ -62,16 +64,43 @@ export const HomeTab = () => {
                     >
                       <tbody>
                         <tr>
-                          <td>{DataText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {DataText[lang]}
+                          </td>
                           <td>{el.transactionDate}</td>
                         </tr>
                         <tr>
-                          <td>{TypeText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {TypeText[lang]}
+                          </td>
                           <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
                         </tr>
 
                         <tr>
-                          <td>{CategoryText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {CategoryText[lang]}
+                          </td>
                           <td>
                             {categoriesList.length &&
                               categoriesList.find(
@@ -80,11 +109,29 @@ export const HomeTab = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>{CommentText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {CommentText[lang]}
+                          </td>
                           <td>{el.comment}</td>
                         </tr>
                         <tr>
-                          <td>{SumText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {SumText[lang]}
+                          </td>
                           <td
                             className={el.amount > 0 ? s.positive : s.negative}
                           >
@@ -92,7 +139,16 @@ export const HomeTab = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>{BalanceText[lang]}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {BalanceText[lang]}
+                          </td>
                           <td>{el.balanceAfter}</td>
                         </tr>
                         <tr>
@@ -123,12 +179,78 @@ export const HomeTab = () => {
             <table>
               <thead>
                 <tr>
-                  <th>{DataText[lang]}</th>
-                  <th>{TypeText[lang]}</th>
-                  <th>{CategoryText[lang]}</th>
-                  <th>{CommentText[lang]}</th>
-                  <th>{SumText[lang]}</th>
-                  <th>{BalanceText[lang]}</th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {DataText[lang]}
+                  </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {TypeText[lang]}
+                  </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {CategoryText[lang]}
+                  </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {CommentText[lang]}
+                  </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {SumText[lang]}
+                  </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  >
+                    {BalanceText[lang]}
+                  </th>
                   <th></th>
                 </tr>
               </thead>
