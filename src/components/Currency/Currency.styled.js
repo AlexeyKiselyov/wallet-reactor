@@ -49,6 +49,17 @@ export const Table = styled.table`
   }
 `;
 
+export const TableError = styled.table`
+  width: 100%;
+  padding: 11px 17px;
+  @media (min-width: 768px) {
+    padding: 11px 20px;
+  }
+  @media (min-width: 1280px) {
+    padding: 17px 60px 17px 44px;
+  }
+`;
+
 export const TableTitle = styled.th`
   font-size: 18px;
   font-weight: 700;
@@ -76,3 +87,18 @@ export const TableText = styled.td`
 `;
 
 export const TableRow = styled.tr``;
+
+export const TextError = styled.div`
+  @media (min-width: 1280px) {
+    text-align: center;
+    margin: 10px;
+  }
+  @media (min-width: 768px) {
+    text-align: center;
+    margin: 10px;
+  }
+  @media screen and (min-width: 320px) {
+    text-align: center;
+    margin: 10px;
+  }
+`;

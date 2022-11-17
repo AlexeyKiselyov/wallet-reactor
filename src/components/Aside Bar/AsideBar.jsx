@@ -2,33 +2,33 @@ import Balance from 'components/Balance/Balance';
 import { Currency } from 'components/Currency/Currency';
 import { Navigation } from 'components/Navigation/Navigation';
 
-import { AsideWrapper } from './AsideBar.styled';
+import { AsideWrapper, AsideBorder, AsideTablet } from './AsideBar.styled';
 import { useMedia } from 'react-use';
 // =================================================
 
 export const AsideBar = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
- 
+
   return (
-    <>
+    <AsideBorder>
       {isMobile && (
         <AsideWrapper>
-          <div>
+          <AsideTablet>
             <Navigation />
             <Balance />
-          </div>
+          </AsideTablet>
         </AsideWrapper>
       )}
       {isLaptop && (
         <AsideWrapper>
-          <div>
+          <AsideTablet>
             <Navigation />
             <Balance />
-          </div>
+          </AsideTablet>
           <Currency />
         </AsideWrapper>
       )}
-    </>
+    </AsideBorder>
   );
 };

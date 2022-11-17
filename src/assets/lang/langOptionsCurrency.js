@@ -1,19 +1,18 @@
 export const langOptionsCurrency = {
   messageText: {
-    ua: "Вибачте, але ми не маємо iнформацiї про курс",
-    en: "Sorry, we don’t have any information about currency",
+    ua: 'Вибачте, на даний момент немає доступу до курсу валют, ведуться технічні роботи',
+    en: 'Sorry, at the moment there is no access to the exchange rate, technical work is in progress',
   },
   CurrencyText: {
-    ua: "Курс",
-    en: "Currency",
+    ua: 'Курс',
+    en: 'Currency',
   },
   PurchaseText: {
-    ua: "Покупка",
-    en: "Purchase",
+    ua: 'Покупка',
+    en: 'Purchase',
   },
   SaleText: {
-    ua: "Продажi",
-    en: "Sale",
+    ua: 'Продажi',
+    en: 'Sale',
   },
-
 };
