@@ -163,14 +163,16 @@ li {
 
 .inputAmount {
   width: 280px;
-
+  text-align: left;
+  padding-left: 20px;
   font-size: 18px;
   border: none;
-  text-align: center;
+
   border-bottom: 1px solid var(--fourth-text-color);
   border-color: var(--primary-background-color);
 
   @include mq(tab) {
+    text-align: center;
     width: 181px;
   }
 }
@@ -183,12 +185,13 @@ li {
 .inputDate {
   position: relative;
   width: 280px;
+  padding-left: 20px;
 
   //margin-bottom: 10px;
   //padding-bottom: 5px;
   //margin-bottom: 5px;
   //margin-bottom: 10px;
-  text-align: center;
+  text-align: left;
   // border-color: #e7eaf2;
   cursor: pointer;
 
@@ -219,6 +222,7 @@ li {
     width: 181px;
     &::before {
       width: 181px;
+      text-align: center;
     }
   }
 }

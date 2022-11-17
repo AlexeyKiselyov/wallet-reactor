@@ -1,17 +1,20 @@
 //import PropTypes from 'prop-types';
+import { authOperations } from 'redux/auth';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { addTransaction } from 'redux/transactions/transactionsOperations';
+import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
+import { selectBalance } from 'redux/auth/auth-selectors';
+import { formatDate } from 'helpers/formatDate';
+
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
 
-import { authOperations } from 'redux/auth';
-import { addTransaction } from 'redux/transactions/transactionsOperations';
-import { selectTransactionCategories } from 'redux/transactionCategories/transactionCategoriesSelectors';
 import { fetchTransactionCategories } from 'redux/transactionCategories/transactionCategoriesOperations';
-import { selectBalance } from 'redux/auth/auth-selectors';
+
 import { useToggle } from '../../hook/modalAddTransaction';
-import { formatDate } from '../../helpers/formatDate';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
@@ -22,6 +25,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const balance = useSelector(selectBalance);
   const { isShowSelect, toggleHook } = useToggle();
 
+  // const [toggle, setToggle] = useState('');
   const [amount, setAmount] = useState('');
   const [valueDate, onChange] = useState(new Date());
   const [transactionDate, setTransactionDate] = useState(
@@ -34,10 +38,13 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
-  //const [toggle, setToggle] = useState('true');
+
+  // const toggleShowSelectList = () =>
+  //   setIsShowSelectList(isShowSelectList => !isShowSelectList);
 
   useEffect(() => {
-    dispatch(fetchTransactionCategories());
+    // show();
+    // dispatch(fetchTransactionCategories());
     const closeByEscape = ({ code }) => {
       if (code === 'Escape') {
         closeModal();
@@ -56,6 +63,10 @@ export const ModalAddTransaction = ({ closeModal }) => {
     }
   };
 
+  // -----------------добавление и прочее
+
+  //----------------------------------------------------------------
+
   const onAddTransaction = transaction => {
     dispatch(addTransaction({ ...transaction }));
   };
@@ -68,6 +79,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
       //   break;
       case 'amount':
         setAmount(value);
+
         break;
       case 'transactionDate':
         setTransactionDate(value);
@@ -83,7 +95,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
         return;
     }
   };
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -91,7 +102,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
       if (amount > balance) {
         return alert('Сумма больше, чем баланс. Введите нужную сумму');
       }
-
       const amountNegative = -amount;
 
       onAddTransaction({
@@ -114,8 +124,8 @@ export const ModalAddTransaction = ({ closeModal }) => {
       comment,
     });
     dispatch(authOperations.fetchCurrentUser());
-
     resetForm();
+    //console.log(transactionDate);
   };
 
   const resetForm = () => {
@@ -123,22 +133,43 @@ export const ModalAddTransaction = ({ closeModal }) => {
     setComment('');
   };
 
-  const handleCheckBox = () => {
+  const handleCheckBox = e => {
     if (isShowSelect) {
+      console.log(5);
       setType('INCOME');
       setCategoryId('063f1132-ba5d-42b4-951d-44011ca46262');
+      console.log(type);
+      console.log(amount);
+      //  hide();
     }
 
     if (!isShowSelect) {
+      console.log(6);
       setType('EXPENSE');
+      console.log(type);
+
+      // show();
     }
+
     toggleHook();
   };
+
+  // const categoriesExpense = categories.filter(
+  //   category => category.type !== 'INCOME'
+  // );
+  //нужно и это в переменную?
 
   const handleClickOption = e => {
     console.log(e.currentTarget.value);
     setCategoryId(e.currentTarget.value);
     setIsShowSelectList(true);
+  };
+  // const handleChangeSelectInput = () => {
+  //   setIsShowSelectList(true);
+  // };
+
+  let inputProps = {
+    name: 'transactionDate',
   };
 
   return (
@@ -146,6 +177,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
       <div className={css.Overlay} onClick={closeByBackdrop}>
         <div className={css.Modal}>
           <h2 className={css.titleForm}>Add transaction</h2>
+
           <form autoComplete="off" onSubmit={handleSubmit}>
             <div className={css.wraperBtnSpan}>
               <span className={isShowSelect ? css.spanText : css.spanTextGreen}>
@@ -154,12 +186,12 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <div className={css.wraperSwitch}>
                 <label className={css.container}>
                   <input
-                    className={css.hiddenInput}
                     type="checkbox"
-                    name="toggle"
+                    className={css.hiddenInput}
                     id="hidden-input"
-                    onChange={handleCheckBox}
+                    name="toggle"
                     // checked
+                    onClick={handleCheckBox}
                   />
                   <span className={css.thumbContainer}>
                     <span className={css.thumb}></span>
@@ -180,11 +212,11 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   <label>
                     <input
                       className={cssForm.selectCustom}
-                      type="text"
                       name="categoryId"
+                      type="text"
                       placeholder="Select a category"
-                      value={categoryTitle}
                       onClick={() => setIsShowSelectList(false)}
+                      value={categoryTitle}
                     />
                   </label>
                   {!isShowSelectList && (
@@ -194,6 +226,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                         .map(category => (
                           <li
                             key={`${category.id}`}
+                            // onClick={e => console.log(category.name)}
                             onClick={() => setCategoryTitle(category.name)}
                           >
                             <label className={cssForm.selectLabel}>
@@ -201,9 +234,10 @@ export const ModalAddTransaction = ({ closeModal }) => {
                               <input
                                 className={cssForm.selectOptionItem}
                                 name="categoryId"
-                                value={`${category.id}`}
-                                onChange={handleChange}
+                                // type="hidden"
                                 onClick={handleClickOption}
+                                onChange={handleChange}
+                                value={`${category.id}`}
                               />
                             </label>
                           </li>
@@ -218,31 +252,35 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <label>
                 <input
                   className={cssForm.inputAmount}
-                  type="number"
                   name="amount"
+                  type="number"
                   min="0"
                   placeholder="0.00"
                   value={amount}
                   onChange={handleChange}
+                  // onChange={e => setAmount(e.target.value)}
                 />
               </label>
 
               <div className={cssForm.dateTimeWriper}>
+                {/* <label> */}
                 <Datetime
                   className={cssForm.inputDate}
+                  //inputProps={inputProps}
                   name="transactionDate"
-                  dateFormat="YYYY-MM-DD"
-                  timeFormat={false}
                   value={valueDate}
                   onChange={onChange}
+                  dateFormat="YYYY-MM-DD"
+                  timeFormat={false}
                   onClose={value =>
                     setTransactionDate(formatDate(moment(value).format()))
                   }
                   closeOnSelect={true}
+                  // onNavigate={a => console.log(a)}
                 />
+                {/* </label> */}
               </div>
             </div>
-
             <label className={cssForm.commentLabel}>
               <input
                 className={cssForm.inputComment}
@@ -251,8 +289,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 placeholder="Comment"
                 value={comment}
                 onChange={handleChange}
+                //onChange={e => setComment(e.target.value)}
               />
+              {/* <svg width="21" height="16" className={cssForm.inputIcon}>
+                <use href={`${Icons}#close`} />
+                {/* // href={`${Icons}#icon-email`} */}
+              {/* </svg>  */}
             </label>
+            {/* select my */}
             <div className={cssForm.btnWraper}>
               <button
                 className={cssForm.btnAdd}
@@ -264,14 +308,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <button
                 className={cssForm.btnCancel}
                 onClick={closeModal}
-                type="submit"
+                type="button"
               >
                 CANCEL
               </button>
               <button
                 className={css.btnClose}
                 onClick={closeModal}
-                type="submit"
+                type="button"
               ></button>
             </div>
           </form>
