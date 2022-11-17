@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './HomeTab.module.scss';
 import { selectTransactions } from 'redux/transactions/transactionsSelectors';
 import { useMedia } from 'react-use';
@@ -6,6 +6,9 @@ import { selectTransactionCategories } from 'redux/transactionCategories/transac
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsHomeTab } from '../../assets/lang/langOptionsHomeTab';
 import { getTheme } from '../../redux/theme/themeSelector';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { deleteTransaction } from 'redux/transactions/transactionsOperations';
+import { changeBalance } from 'redux/auth/auth-slice';
 
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
@@ -14,6 +17,7 @@ export const HomeTab = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
   const transactionsReverse = [...transactions];
+  const dispatch = useDispatch();
 
   const lang = useSelector(getLang);
   const {
@@ -27,6 +31,11 @@ export const HomeTab = () => {
   } = langOptionsHomeTab;
   const theme = useSelector(getTheme);
 
+  const onDelete = (id, amount) => {
+    dispatch(deleteTransaction(id));
+    dispatch(changeBalance(amount));
+  };
+
   return (
     <>
       {isMobile && (
@@ -34,102 +43,171 @@ export const HomeTab = () => {
           <div className={s.scrollTableMob}>
             <div className={s.scrollTableBodyMob}>
               {transactions.length !== 0 ? (
-                transactionsReverse.map(el => (
-                  <table
-                    className={
-                      el.amount > 0 ? s.tablePositive : s.tableNegative
-                    }
-                    key={el.id}
-                  >
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {DataText[lang]}
-                        </td>
-                        <td>{el.transactionDate}</td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {TypeText[lang]}
-                        </td>
-                        <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
-                      </tr>
+                transactionsReverse
+                  .reverse()
+                  .sort(
+                    (a, b) =>
+                      new Date(b.transactionDate) - new Date(a.transactionDate)
+                  )
+                  .map(el => (
+                    <table
+                      className={
+                        el.amount > 0 ? s.tablePositive : s.tableNegative
+                      }
+                      key={el.id}
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {DataText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.transactionDate}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {TypeText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.type !== 'EXPENSE' ? '+' : '-'}
+                          </td>
+                        </tr>
 
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {CategoryText[lang]}
-                        </td>
-                        <td>
-                          {categoriesList.length &&
-                            categoriesList.find(cat => cat.id === el.categoryId)
-                              .name}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {CommentText[lang]}
-                        </td>
-                        <td>{el.comment}</td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {SumText[lang]}
-                        </td>
-                        <td className={el.amount > 0 ? s.positive : s.negative}>
-                          {el.amount}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            backgroundColor:
-                              theme === 'light'
-                                ? ''
-                                : 'var(--dark-mood-form-color)',
-                          }}
-                        >
-                          {BalanceText[lang]}
-                        </td>
-                        <td>{el.balanceAfter}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                ))
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {CategoryText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {categoriesList.length &&
+                              categoriesList.find(
+                                cat => cat.id === el.categoryId
+                              ).name}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {CommentText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.comment}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {SumText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                            className={el.amount > 0 ? s.positive : s.negative}
+                          >
+                            {el.amount}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {BalanceText[lang]}
+                          </td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.balanceAfter}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <button
+                              type="button"
+                              className={s.scrollTableBtnMob}
+                              onClick={() => onDelete(el.id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  ))
               ) : (
                 <p>{NoTransactionsText[lang]}</p>
               )}
@@ -216,6 +294,16 @@ export const HomeTab = () => {
                   >
                     {BalanceText[lang]}
                   </th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  ></th>
                 </tr>
               </thead>
             </table>
@@ -225,6 +313,7 @@ export const HomeTab = () => {
                 <tbody>
                   {transactions.length ? (
                     transactionsReverse
+                      .reverse()
                       .sort(
                         (a, b) =>
                           new Date(b.transactionDate) -
@@ -247,6 +336,15 @@ export const HomeTab = () => {
                             {el.amount}
                           </td>
                           <td>{el.balanceAfter}</td>
+                          <td>
+                            <button
+                              type="button"
+                              onClick={() => onDelete(el.id, el.amount)}
+                              className={s.scrollTableBtn}
+                            >
+                              <BsFillTrashFill style={{ fill: '#fff' }} />
+                            </button>
+                          </td>
                         </tr>
                       ))
                   ) : (
