@@ -52,3 +52,16 @@ export const addTransaction = createAsyncThunk(
     }
   }
 );
+
+//удаляет транзакцию
+export const deleteTransaction = createAsyncThunk(
+  'transaction/deleteTransaction',
+  async (id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`/transactions/${id}`);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
