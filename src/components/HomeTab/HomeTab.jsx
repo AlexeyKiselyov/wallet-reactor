@@ -6,6 +6,7 @@ import { selectTransactionCategories } from 'redux/transactionCategories/transac
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsHomeTab } from '../../assets/lang/langOptionsHomeTab';
 import { getTheme } from '../../redux/theme/themeSelector';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { useEffect } from 'react';
 import {
   fetchTransactions,
@@ -20,11 +21,7 @@ export const HomeTab = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const isLaptop = useMedia('(min-width: 768px)');
   const transactionsReverse = [...transactions];
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch(authOperations.fetchCurrentUser());
-    dispatch(fetchTransactions());
-  }, [dispatch]);
+
   const lang = useSelector(getLang);
   const {
     DataText,
@@ -37,9 +34,17 @@ export const HomeTab = () => {
   } = langOptionsHomeTab;
   const theme = useSelector(getTheme);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, [dispatch]);
+
   const onDelete = id => {
     dispatch(deleteTransaction(id));
-    dispatch(authOperations.fetchCurrentUser());
+
+    setTimeout(() => {
+      dispatch(authOperations.fetchCurrentUser());
+    }, 100);
   };
 
   return (
@@ -50,11 +55,11 @@ export const HomeTab = () => {
             <div className={s.scrollTableBodyMob}>
               {transactions.length !== 0 ? (
                 transactionsReverse
+                  .reverse()
                   .sort(
                     (a, b) =>
                       new Date(b.transactionDate) - new Date(a.transactionDate)
                   )
-                  .reverse()
                   .map(el => (
                     <table
                       className={
@@ -74,7 +79,16 @@ export const HomeTab = () => {
                           >
                             {DataText[lang]}
                           </td>
-                          <td>{el.transactionDate}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.transactionDate}
+                          </td>
                         </tr>
                         <tr>
                           <td
@@ -87,7 +101,16 @@ export const HomeTab = () => {
                           >
                             {TypeText[lang]}
                           </td>
-                          <td>{el.type !== 'EXPENSE' ? '+' : '-'}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.type !== 'EXPENSE' ? '+' : '-'}
+                          </td>
                         </tr>
 
                         <tr>
@@ -101,7 +124,14 @@ export const HomeTab = () => {
                           >
                             {CategoryText[lang]}
                           </td>
-                          <td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
                             {categoriesList.length &&
                               categoriesList.find(
                                 cat => cat.id === el.categoryId
@@ -119,7 +149,16 @@ export const HomeTab = () => {
                           >
                             {CommentText[lang]}
                           </td>
-                          <td>{el.comment}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.comment}
+                          </td>
                         </tr>
                         <tr>
                           <td
@@ -133,6 +172,12 @@ export const HomeTab = () => {
                             {SumText[lang]}
                           </td>
                           <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
                             className={el.amount > 0 ? s.positive : s.negative}
                           >
                             {el.amount}
@@ -149,7 +194,16 @@ export const HomeTab = () => {
                           >
                             {BalanceText[lang]}
                           </td>
-                          <td>{el.balanceAfter}</td>
+                          <td
+                            style={{
+                              backgroundColor:
+                                theme === 'light'
+                                  ? ''
+                                  : 'var(--dark-mood-form-color)',
+                            }}
+                          >
+                            {el.balanceAfter}
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="2">
@@ -251,7 +305,16 @@ export const HomeTab = () => {
                   >
                     {BalanceText[lang]}
                   </th>
-                  <th></th>
+                  <th
+                    style={{
+                      backgroundColor:
+                        theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+                      color:
+                        theme === 'light'
+                          ? 'var(--title-black-color)'
+                          : 'var(--text-white-color)',
+                    }}
+                  ></th>
                 </tr>
               </thead>
             </table>
@@ -261,12 +324,12 @@ export const HomeTab = () => {
                 <tbody>
                   {transactions.length ? (
                     transactionsReverse
+                      .reverse()
                       .sort(
                         (a, b) =>
                           new Date(b.transactionDate) -
                           new Date(a.transactionDate)
                       )
-                      .reverse()
                       .map(el => (
                         <tr key={el.id}>
                           <td>{el.transactionDate}</td>
@@ -290,7 +353,7 @@ export const HomeTab = () => {
                               onClick={() => onDelete(el.id)}
                               className={s.scrollTableBtn}
                             >
-                              Delete
+                              <BsFillTrashFill style={{ fill: '#fff' }} />
                             </button>
                           </td>
                         </tr>
