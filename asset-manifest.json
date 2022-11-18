@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/wallet-reactor/static/css/main.5241c640.css",
-    "main.js": "/wallet-reactor/static/js/main.eb50c63b.js",
+    "main.js": "/wallet-reactor/static/js/main.368c0425.js",
     "static/css/991.764b92cc.chunk.css": "/wallet-reactor/static/css/991.764b92cc.chunk.css",
     "static/js/991.99328b94.chunk.js": "/wallet-reactor/static/js/991.99328b94.chunk.js",
-    "static/js/67.d7eef79e.chunk.js": "/wallet-reactor/static/js/67.d7eef79e.chunk.js",
+    "static/js/67.6243ad81.chunk.js": "/wallet-reactor/static/js/67.6243ad81.chunk.js",
     "static/js/333.7cef5294.chunk.js": "/wallet-reactor/static/js/333.7cef5294.chunk.js",
     "static/js/889.9fba0be5.chunk.js": "/wallet-reactor/static/js/889.9fba0be5.chunk.js",
     "static/js/311.f1c56097.chunk.js": "/wallet-reactor/static/js/311.f1c56097.chunk.js",
@@ -35,16 +35,16 @@
     "static/media/minus.svg": "/wallet-reactor/static/media/minus.c1930871236002c803c7.svg",
     "static/media/arrow.svg": "/wallet-reactor/static/media/arrow.77b989b3724c69122981.svg",
     "main.5241c640.css.map": "/wallet-reactor/static/css/main.5241c640.css.map",
-    "main.eb50c63b.js.map": "/wallet-reactor/static/js/main.eb50c63b.js.map",
+    "main.368c0425.js.map": "/wallet-reactor/static/js/main.368c0425.js.map",
     "991.764b92cc.chunk.css.map": "/wallet-reactor/static/css/991.764b92cc.chunk.css.map",
     "991.99328b94.chunk.js.map": "/wallet-reactor/static/js/991.99328b94.chunk.js.map",
-    "67.d7eef79e.chunk.js.map": "/wallet-reactor/static/js/67.d7eef79e.chunk.js.map",
+    "67.6243ad81.chunk.js.map": "/wallet-reactor/static/js/67.6243ad81.chunk.js.map",
     "333.7cef5294.chunk.js.map": "/wallet-reactor/static/js/333.7cef5294.chunk.js.map",
     "889.9fba0be5.chunk.js.map": "/wallet-reactor/static/js/889.9fba0be5.chunk.js.map",
     "311.f1c56097.chunk.js.map": "/wallet-reactor/static/js/311.f1c56097.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5241c640.css",
-    "static/js/main.eb50c63b.js"
+    "static/js/main.368c0425.js"
   ]
 }
