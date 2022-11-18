@@ -56,7 +56,8 @@ export const Header = () => {
           </Link>
         </div>
         <UserMenuWrapper style={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar><img src={randomAvatar} alt="Avatar"/></Avatar>
+        {!isMobile && <Avatar><img src={randomAvatar} alt="Avatar"/></Avatar>}
+        {/* <Avatar><img src={randomAvatar} alt="Avatar"/></Avatar> */}
           <UserName>
             {name}
           </UserName>
