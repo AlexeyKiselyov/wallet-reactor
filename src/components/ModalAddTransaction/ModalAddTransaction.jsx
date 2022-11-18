@@ -15,6 +15,8 @@ import { changeBalance } from 'redux/auth/auth-slice';
 import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../hook/modalAddTransaction';
 import { getTheme } from '../../redux/theme/themeSelector';
+import { getLang } from 'redux/lang/langSelector';
+import { langOptionsModalAddTrans } from '../../assets/lang/langOptionsModalAddTrans';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
@@ -38,7 +40,24 @@ export const ModalAddTransaction = ({ closeModal }) => {
   );
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
+  
   const theme = useSelector(getTheme);
+  const lang = useSelector(getLang);
+  const {
+    IncomeText,
+    ExpenseText,
+    SelectСategoryText,
+    CommentText,
+    AddText,
+    CancelText,
+    AmountMustBeOnlyPositiveText,
+    PleaseEnterAnAmountAndSelectCategoryText,
+    SorryYourAmountIsMoreThanTheBalanceText,
+    SorryText,
+    SuccesText,
+    PleaseEnterAnAmountText,
+    AddTransactionText,
+  } = langOptionsModalAddTrans;
 
   useEffect(() => {
     const closeByEscape = ({ code }) => {
@@ -94,18 +113,18 @@ export const ModalAddTransaction = ({ closeModal }) => {
     e.preventDefault();
 
     if (amount < 0) {
-      toast.warning('Amount must be only positive');
+      toast.warning(AmountMustBeOnlyPositiveText[lang]);
       return;
     }
     const amountNegative = -amount;
 
     if (isShowSelect) {
       if (!amount || !categoryId) {
-        toast.error('Please, enter an amount and select category!');
+        toast.error(PleaseEnterAnAmountAndSelectCategoryText[lang]);
         return;
       }
       if (amount > balance) {
-        toast.error('Sorry, your amount is more than the balance!');
+        toast.error(SorryYourAmountIsMoreThanTheBalanceText[lang]);
         return;
       }
 
@@ -119,17 +138,17 @@ export const ModalAddTransaction = ({ closeModal }) => {
       dispatch(changeBalance(amount));
 
       if (error) {
-        toast.error(`Sorry, ${error} `);
+        toast.error(SorryText[lang] `, ${error} `);
         return;
       }
 
-      toast.success('Succes! Your amount has been successfully added!');
+      toast.success(SuccesText[lang]);
       resetForm();
       return;
     }
 
     if (!amount) {
-      toast.error('Please, enter an amount!');
+      toast.error(PleaseEnterAnAmountText[lang]);
       return;
     }
     onAddTransaction({
@@ -147,7 +166,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
       return;
     }
 
-    toast.success('Succes! Your amount has been successfully added!');
+    toast.success(SuccesText[lang]);
     resetForm();
   };
 
@@ -185,12 +204,12 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 : 'var(--text-white-color)',
           }}
         >
-          <h2 className={css.titleForm}>Add transaction</h2>
+          <h2 className={css.titleForm}>{AddTransactionText[lang]}</h2>
 
           <form autoComplete="off" onSubmit={handleSubmit}>
             <div className={css.wraperBtnSpan}>
               <span className={isShowSelect ? css.spanText : css.spanTextGreen}>
-                Income
+              {IncomeText[lang]}
               </span>
               <div className={css.wraperSwitch}>
                 <label className={css.container}>
@@ -211,7 +230,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <span
                 className={!isShowSelect ? css.spanText : css.spanTextActive}
               >
-                Expense
+                {ExpenseText[lang]}
               </span>
             </div>
 
@@ -223,7 +242,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                       className={cssForm.selectCustom}
                       name="categoryId"
                       type="text"
-                      placeholder="Select a category"
+                      placeholder={SelectСategoryText[lang]}
                       onClick={toggleShowSelectList}
                       value={categoryTitle}
                     />
@@ -261,7 +280,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   className={cssForm.inputAmount}
                   name="amount"
                   type="number"
-                  min="0"
+                  min='0.01'
                   placeholder="0.00"
                   value={amount}
                   onChange={handleChange}
@@ -296,7 +315,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 }}
                 type="text"
                 name="comment"
-                placeholder="Comment"
+                placeholder={CommentText[lang]}
                 value={comment}
                 onChange={handleChange}
               />
@@ -308,14 +327,14 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 onClick={handleSubmit}
                 type="submit"
               >
-                ADD
+                {AddText[lang]}
               </button>
               <button
                 className={cssForm.btnCancel}
                 onClick={closeModal}
                 type="button"
               >
-                CANCEL
+                {CancelText[lang]}
               </button>
               <button
                 className={css.btnClose}
