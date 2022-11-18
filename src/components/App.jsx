@@ -70,7 +70,7 @@ export const App = () => {
       )}
 
       {showModalLogout && <Modal children={<ModalLogout action="logout" />} />}
-      <ToastContainer autoClose={3000} theme="colored" limit={2} />
+      <ToastContainer autoClose={3000} theme="colored" limit={2} style={{zIndex:'100000'}}/>
     </>
   );
 };
