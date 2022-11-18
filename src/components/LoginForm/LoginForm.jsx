@@ -36,7 +36,14 @@ export default function LoginForm() {
   const { isLoading } = useAuth();
 
   const lang = useSelector(getLang);
-  const { inputEmail, inputPass, buttonReg, buttonLogIn, Error403Text, Error404Text } = langOptionsLogIn;
+  const {
+    inputEmail,
+    inputPass,
+    buttonReg,
+    buttonLogIn,
+    Error403Text,
+    Error404Text,
+  } = langOptionsLogIn;
   const theme = useSelector(getTheme);
 
   const handleChange = event => {
@@ -96,10 +103,11 @@ export default function LoginForm() {
   const { message, field } = validationError;
 
   return (
-    <div className={style.authForm}
-    style={{
-      backgroundColor: theme === "light" ? "" : "var(--dark-mood-form-color)"  
-    }}
+    <div
+      className={style.authForm}
+      style={{
+        backgroundColor: theme === 'light' ? '' : 'var(--dark-mood-form-color)',
+      }}
     >
       <div className={style.logo}>
         <Logo />
@@ -109,7 +117,6 @@ export default function LoginForm() {
         <label className={style.authLabel}>
           <input
             className={style.input}
-
             placeholder={inputEmail[lang]}
             onChange={handleChange}
             name="email"
@@ -137,13 +144,17 @@ export default function LoginForm() {
 
         <div className={style.wrapper}>
           <Button
-            className="btn__primary" 
+            className="btn__primary"
             type="submit"
             text={buttonLogIn[lang]}
             isLoading={isLoading}
           />
           <Link to="/register" className={style.authLink}>
-            <Button className="btn__secondary" type="buttom" text={buttonReg[lang]} />
+            <Button
+              className="btn__secondary"
+              type="buttom"
+              text={buttonReg[lang]}
+            />
           </Link>
         </div>
       </form>
