@@ -10,7 +10,6 @@ import { authOperations } from 'redux/auth';
 import { getLang } from 'redux/lang/langSelector';
 import { langOptionsLoginTestUser } from '../../assets/lang/langOptionsLoginTestUser';
 import { useSelector } from 'react-redux';
-// import Lazy from 'yup/lib/Lazy';
 
 export default function LoginTestUser({ showTestMode, onClose }) {
   const dispatch = useDispatch();
@@ -19,6 +18,8 @@ export default function LoginTestUser({ showTestMode, onClose }) {
 
   const lang = useSelector(getLang);
   const { MassageFirstPartText, MassageSecondPartText, Error403Text, Error404Text } = langOptionsLoginTestUser;
+
+  TEST_USER.password = process.env.REACT_APP_TEST_USER_PASSWORD;
 
   const onLogin = () => {
     dispatch(authOperations.logIn(TEST_USER)).then(response => {
