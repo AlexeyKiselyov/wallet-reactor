@@ -12,7 +12,6 @@ export const Box = styled.div`
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 320px;
-  /* overflow: visible scroll; */
   margin: 0 auto;
 
   @media screen and (min-width: 768px) {
@@ -254,6 +253,12 @@ export const Tabrow = styled.td`
     width: 100%;
     border: 1px solid #dcdcdf;
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
+
+  &:last-child {
+    padding-right: 20px;
+    display: flex;
+    justify-content: right;
   }
 `;
 
